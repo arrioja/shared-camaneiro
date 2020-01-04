@@ -1,0 +1,132 @@
+<com:TContent ID="cuerpo">
+    <com:MensajeDiv ID="LTB"/>
+
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Inclusi&oacute;n descripci&oacute;n Bienes Muebles.</legend>
+    <table Width="70%" aling="center" border="1">
+        <tr >
+            <td Align="left">
+                <com:TLabel Text="Grupo:"/>
+            </td>
+
+
+            <td>
+                <com:TActiveDropDownList ID="cmb_grupo"
+                DataTextField="grupo"
+                DataValueField="grupo"
+                PromptText="Seleccione un Grupo"
+                PromptValue="-1"
+                ValidationGroup="1"
+                OnCallback="cargar_subgrupo"
+                CausesValidation="False"
+                AutoPostBack="true"
+
+
+
+
+                />
+                    <com:TRequiredFieldValidator ID="val_grupo"
+                    ControlToValidate="cmb_grupo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    InitialValue="-1"
+                    />
+
+            </td>
+        </tr>
+ <tr >
+            <td Align="left">
+                <com:TLabel Text="Sub Grupo:"/>
+            </td>
+
+
+            <td>
+                <com:TActiveDropDownList ID="cmb_subgrupo"
+                DataTextField="subgrupo"
+                DataValueField="subgrupo"
+                PromptText="Seleccione un Sub Grupo"
+                PromptValue="-1"
+                ValidationGroup="1"
+                CausesValidation="False"
+
+                />
+                    <com:TRequiredFieldValidator ID="val_subgrupo"
+                    ControlToValidate="cmb_subgrupo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    InitialValue="-1"
+                    />
+
+            </td>
+        </tr>
+        <tr >
+            <td Align="left">
+                <com:TLabel Text="Secciones:"/>
+            </td>
+
+
+            <td>
+                <com:TActiveTextBox ID="txt_secciones"
+                    Columns="5"
+                    MaxLength="2"
+                    ValidationGroup="1"
+                    />
+                    <com:TRequiredFieldValidator ID="val_secciones"
+                    ControlToValidate="txt_secciones"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    />
+                <!--solo enteros-->
+                <com:TDataTypeValidator
+                    ControlToValidate="txt_secciones"
+                    DataType="Integer"
+                    Text="S&oacute;lo Enteros."
+                    Display="Dynamic"
+                    ValidationGroup="1"/>
+                    <com:TCustomValidator ID="val_secciones2"
+                    ControlToValidate="txt_secciones"
+                    OnServerValidate="check_secciones"
+                    Text="C&oacute;digo para Secci&oacute;n duplicado"
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    />
+               
+            </td>
+        </tr>
+
+        <tr>
+            <td Align="left">
+                <com:TLabel Text="Descripci&oacute;n:"/>
+            </td>
+            <td >
+                <com:TActiveTextBox ID="txt_descripcion"
+                    Columns="50"
+                    ValidationGroup="1"
+                    />
+                <com:TRequiredFieldValidator ID="val_descripcion"
+                    ControlToValidate="txt_descripcion"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <td>
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="incluir"
+                    ValidationGroup="1"
+                    >
+                    </com:TButton>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+</div>
+</com:TContent>

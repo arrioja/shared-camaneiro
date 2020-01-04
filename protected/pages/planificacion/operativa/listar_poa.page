@@ -1,0 +1,96 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="80%">
+    <legend>Listado de Planes Operativos.</legend>
+        <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Organizaci&oacute;n:"/>
+                </com:TTableCell>
+                <com:TTableCell ColumnSpan="3">
+                    <com:TLabel ID="lbl_organizacion" Text=""/>
+                </com:TTableCell>
+            </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Plan Estratégico"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_plan"
+                    DataTextField="nombre"
+                    DataValueField="cod_plan_estrategico"
+                    AutoPostBack="true"
+                    OnCallback="actualizar_listado"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_plan"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        </com:TTable>
+
+        <br>
+        <com:XActiveDataGrid
+            ID="DataGrid"
+            Width="95%"
+            AllowPaging="true"
+            PageSize="20"
+            PagerStyle.Mode="Numeric"
+            PagerStyle.HorizontalAlign="Center"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            OnPageIndexChanged="changePage"
+            OnPagerCreated="pagerCreated"
+            OnItemDataBound="nuevo_item"
+            AutoGenerateColumns="false"
+            ForeColor="black"
+            BorderColor="black"
+            EmptyTemplate="<div style='font-size:14px;
+                                       color:#FF0000;
+                                       height:100px;
+                                       font-weight:bold;
+                                       vertical-align:middle;
+                                       padding-top:40px;'>
+                            No existen datos para realizar el listado.</div>"
+            >
+                <com:XActiveBoundColumn
+                ID="nombre"
+                HeaderText="Plan Operativo"
+                DataField="nombre"
+                ItemStyle.HorizontalAlign="Left"
+                />
+
+                <com:XActiveBoundColumn
+                ID="porcentaje"
+                HeaderText="Avance"
+                HeaderStyle.Width="60px"
+                DataField="porcentaje_completo"
+                ItemStyle.HorizontalAlign="Center"
+                />
+        </com:XActiveDataGrid>
+</fieldset>
+</div>
+
+</com:TContent>

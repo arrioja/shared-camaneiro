@@ -1,0 +1,142 @@
+<!--modulo de evaluacion continua de personal-->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Evaluacion Continua</h1>
+    <table align="center" border="1">
+        <tr>
+            <td colspan="2">
+                cedula:
+                <com:TDropDownList
+                ID="drop_cedula"
+                DataTextField="cedula"
+                DataValueField="cedula"
+                OnTextChanged="buscar_datos"
+                AutoPostBack="true"
+                PromptText="Seleccione una Cedula"/>
+            </td>                                    
+        </tr>
+        <tr>
+            <td colspan="2">
+                apellidos:
+                <com:TTextBox ReadOnly="true" ID="id_apellidos" Width="402px"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                nombres:
+                <com:TTextBox ReadOnly="true" ID="id_nombres" Width="402px"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                cargo:
+                <com:TTextBox ReadOnly="true" ID="id_cargo" Width="402px"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                numero:
+                <com:TTextBox ReadOnly="true" ID="id_numero" Text="FEC-001"/>
+            </td>
+            <td>
+                tipo:
+                <com:TTextBox ReadOnly="true" ID="id_tipo"/>
+            </td>
+        </tr>
+    </table>
+    <br></br>
+    <table align="center" border="1">
+        <tr>
+            <td colspan="5">
+                codigo evaluacion:
+                <com:TDropDownList
+                ID="drop_evaluacion"
+                DataTextField="descripcion"
+                DataValueField="codigo"
+                PromptText="Seleccione un código"
+                AutoPostBack="true"
+                OnTextChanged="cargar_odi"/>
+                vincular al O.D.I.:
+                <com:TDropDownList
+                ID="drop_odi"
+                PromptText="Seleccione un codigo"
+                DataTextField="cod_odi"
+                DataValueField="cod_odi"/>                
+            </td>
+        </tr>
+        <tr>
+            <td>tipo de actividad</td>
+            <td>inicio</td>
+            <td>finalizacion</td>
+            <td>observaciones</td>
+            <td>firmas</td>
+        </tr>
+        <tr>
+            <td><com:TTextBox TextMode="MultiLine" ID="id_tipo_act"/></td>
+            <td>
+                fecha:<com:TDatePicker ID="id_fecha_ini" Width="80px" Culture="es"/>
+                <hr></hr>
+                hora :<com:TTextBox ID="id_hora_ini" ValidationGroup="grp2" AutoPostBack="true" Width="80px"/>
+                <com:TRegularExpressionValidator
+                ValidationGroup="grp2"
+                ControlToValidate="id_hora_ini"
+                RegularExpression="^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+                Text="use hh:mm"
+                FocusOnError="mensajes"/>
+            </td>
+            <td>
+                estimada:<com:TDatePicker ID="id_fecha_est" Width="80px"/>
+                <br></br>
+                estimada:<com:TTextBox ID="id_hora_est" ValidationGroup="grp1" AutoPostBack="true" Width="80px"/>
+                <com:TRegularExpressionValidator
+                ValidationGroup="grp1"
+                ControlToValidate="id_hora_est"
+                RegularExpression="^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+                Text="use hh:mm"/>
+                <hr></hr>
+                definitiva:<com:TDatePicker ID="id_fecha_def" Width="80px"/>
+                <br></br>
+                definitiva:<com:TTextBox ID="id_hora_def" ValidationGroup="grp3" AutoPostBack="true" Width="80px"/>
+                <com:TRegularExpressionValidator
+                ValidationGroup="grp3"
+                ControlToValidate="id_hora_def"
+                RegularExpression="^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"
+                Text="use hh:mm"
+                FocusOnError="mensajes"/>
+            </td>
+            <td>
+                desempeño:
+                <com:TDropDownList ID="id_desempeno">
+                <com:TListItem Value="0" Text="-" />
+                <com:TListItem Value="1" Text="1" />
+                <com:TListItem Value="2" Text="2" />
+                <com:TListItem Value="3" Text="3" />
+                <com:TListItem Value="4" Text="4" />
+                <com:TListItem Value="5" Text="5" />
+                </com:TDropDownList>
+                <br></br>
+                <com:TTextBox TextMode="MultiLine" ID="id_observaciones"/>
+            </td>
+            <td>
+                empleado:
+                <br></br>
+                <com:TDropDownList ID="id_firma_empleado" Width="80px">
+                <com:TListItem Value="0" Text="-" />
+                <com:TListItem Value="1" Text="conforme" />
+                <com:TListItem Value="2" Text="conforme con observaciones" />
+                <com:TListItem Value="3" Text="no conforme" />
+                </com:TDropDownList>
+                <hr></hr>
+                evaluador:
+                <br></br>
+                <com:TDropDownList ID="id_firma_evaluador" Width="80px">
+                <com:TListItem Value="0" Text="-" />
+                <com:TListItem Value="1" Text="aprobado" />
+                <com:TListItem Value="2" Text="no aprobado" />
+                </com:TDropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"><com:TButton Text="Guardar" OnClick="guardar_datos"/></td>
+        </tr>
+    </table>
+</com:TContent>

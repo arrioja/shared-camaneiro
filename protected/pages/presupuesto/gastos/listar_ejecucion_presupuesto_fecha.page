@@ -1,0 +1,224 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="95%">
+    <legend>Ejecución Presupuestaria.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left" ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                    <com:TLabel Text="Tipo:"/>
+                </com:TTableCell>
+                <com:TTableCell HorizontalAlign="Left" ColumnSpan="3">
+                    <com:TRadioButton
+                        ID="gasto"
+                        AutoPostBack="true"
+                        GroupName="grupo_tipo"
+                        Checked="true"
+                        Text="Gasto"
+                        OnCheckedChanged="actualiza_listado"
+                        />
+                    <com:TRadioButton
+                        ID="retencion"
+                        AutoPostBack="true"
+                        GroupName="grupo_tipo"
+                        Text="Retenci&oacute;n"
+                        OnCheckedChanged="actualiza_listado"
+                        />
+                </com:TTableCell>
+            </com:TTableRow>
+
+
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Presupuesto:"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left">
+                <com:TActiveDropDownList ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    AutoPostBack="true"
+                    OnCallback="actualiza_listado"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                    <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Ejecución al:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3" HorizontalAlign="Left">
+                <com:TDatePicker ID="txt_fecha_desde" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Date=<%= @date('d/m/Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+
+                <com:TRequiredFieldValidator ID="val_fecha_desde"
+                    ControlToValidate="txt_fecha_desde"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="95%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="nuevo_item"
+    Caption="Presupuesto de Gastos"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Presupuesto de Gastos. <br><br>
+                No existen datos suficientes para realizar el listado.</div>">
+
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+		<com:XActiveBoundColumn
+		ID="codigo"
+		HeaderText="C&oacute;d. Presup."
+		HeaderStyle.Width="130px"
+		DataField="codigo"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripcion"
+		DataField="descripcion"
+        Visible="false"
+		/>
+		<com:XActiveBoundColumn
+		ID="monto"
+		HeaderText="Asig. Inicial"
+		DataField="asignado"
+        ItemStyle.ForeColor="green"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="aumentos"
+		HeaderText="Aumentos"
+		DataField="aumentos"
+        ItemStyle.ForeColor="green"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="disminuciones"
+		HeaderText="Disminuciones"
+		DataField="disminuciones"
+        ItemStyle.ForeColor="red"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="modificado"
+		HeaderText="Modificado"
+		DataField="modificado"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="comprometido"
+		HeaderText="Comprometido"
+		DataField="comprometido"
+        ItemStyle.ForeColor="red"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="causado"
+		HeaderText="Causado"
+		DataField="causado"
+        ItemStyle.ForeColor="red"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="pagado"
+		HeaderText="Pagado"
+		DataField="pagado"
+        ItemStyle.ForeColor="red"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="disponible"
+		HeaderText="Disponible"
+		DataField="disponible"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="acumulado"
+		HeaderText="acumulado"
+		DataField="acumulado"
+        ItemStyle.HorizontalAlign="Right"
+        Visible = "false"
+		/>
+        <com:XActiveTemplateColumn
+		ID="ver"
+		HeaderText="Ver Ordenes"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['cedula'] %>"   Text="<img src='imagenes/iconos/ver_p.png' border='0' />" OnClick="Page.ver_ordenes" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

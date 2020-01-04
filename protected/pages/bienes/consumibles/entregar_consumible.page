@@ -1,0 +1,43 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <br></br>
+        <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AutoGenerateColumns="false"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        Caption="Consumibles Disponibles para la Entrega"
+        OnItemDataBound="comprobar_link"
+        ForeColor="black"
+        BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="id"
+            DataField="id"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            HeaderText="idvinculo"
+            DataField="idvinculo"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            HeaderText="Descripcion"
+            DataField="descripcion"/>
+            <com:XActiveBoundColumn
+            ID='total'
+            HeaderText="Disponible"
+            DataField="total"/>
+            <com:XActiveTemplateColumn ID="column_item" HeaderText="Entregar">
+            <prop:ItemTemplate>
+                <com:TLinkButton ID='link' CommandParameter="<%# array($this->Parent->DataItem['idvinculo']) %>" Text="entregar" OnClick="page.despachar"></com:TLinkButton>
+            </prop:ItemTemplate>
+            </com:XActiveTemplateColumn>
+        </com:XActiveDataGrid>
+    </div>
+</com:TContent>

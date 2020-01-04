@@ -1,0 +1,26 @@
+<%@ Title="N&oacute;mina - Administrar Integrantes de la N&oacute;mina" %>
+<com:TContent ID="cuerpo">
+<br>
+<br>
+<table align="center" width="60%" >
+
+    <tr>
+	    <td class="formtd" width="20"><com:TLabel Text="Tipos de N&oacute;mina" /></td>
+		<td class="formcampo"><com:TDropDownList ID="drop_tipo_nomina"
+                DataTextField="tipo_nomina"
+                 PromptText="Seleccione un tipo de N&oacute;mina"
+                PromptValue="-1"
+                DataValueField="tipo_nomina"
+            />
+		<com:TRequiredFieldValidator ID="val" 
+        ControlToValidate="drop_tipo_nomina" ErrorMessage="Requerido!!"
+        ValidationGroup="1" Display="Dynamic"/>
+        <com:TButton ID="btn_set" Text="Establecer" ValidationGroup="1" OnClick="set" />
+           
+		</td>
+
+	</tr>
+</table>
+<br/>
+
+</com:TContent>

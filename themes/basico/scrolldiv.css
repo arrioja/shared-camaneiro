@@ -1,0 +1,34 @@
+.div1
+{
+    width:auto;
+    height:350px;
+    overflow:auto;
+}
+.div2
+{
+    width:320px;
+    height:150px;
+}
+.div3
+{
+    width:auto;
+    height:450px;
+    overflow:auto;    
+}
+.div4
+{
+    width:auto;
+    height:100px;
+    overflow:auto;
+}
+.div5
+{
+    width:auto;
+    height:550px;
+    overflow:auto;
+}
+.div6 {
+    width:auto;
+    height:200px;
+    overflow:auto;
+}

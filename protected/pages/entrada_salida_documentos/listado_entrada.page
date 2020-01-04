@@ -1,0 +1,108 @@
+<com:TContent ID="cuerpo">    
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+        <legend>Opciones de Filtrado</legend>
+         <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Fecha Entrada: "/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="dp_ini" Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                    </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Número: "/>
+                </com:TTableCell>
+                <com:TTableCell>
+                    <com:TDropDownList ID="ddl1" DataTextField="numero" DataValueField="numero"></com:TDropDownList>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="A Quien: "/>
+                </com:TTableCell>
+                <com:TTableCell>
+                    <com:TDropDownList ID="ddl2" DataTextField="a_quien" DataValueField="a_quien"></com:TDropDownList>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Quien Envia: "/>
+                </com:TTableCell>
+                <com:TTableCell>
+                    <com:TDropDownList ID="ddl3" DataTextField="quien_envia" DataValueField="quien_envia"></com:TDropDownList>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Quien Recibe: "/>
+                </com:TTableCell>
+                <com:TTableCell>
+                    <com:TDropDownList ID="ddl4" DataTextField="quien_recibe" DataValueField="quien_recibe"></com:TDropDownList>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow HorizontalAlign="Center">
+                <com:TTableCell ColumnSpan='2'>
+                    <com:TButton Text="Filtrar" OnClick="filtrar"></com:TButton>
+                </com:TTableCell>
+            </com:TTableRow>
+         </com:TTable>
+        </fieldset>
+        <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AutoGenerateColumns="false"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        Caption="Listado de Consumibles que pueden Devolverse"
+        ForeColor="black"
+        BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="id"
+            DataField="id"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            HeaderText="fecha entrada"
+            DataField="fecha_entrada"
+            visible="true"/>
+            <com:XActiveBoundColumn
+            HeaderText="numero"
+            DataField="numero"
+            visible="true"/>
+            <com:XActiveBoundColumn
+            HeaderText="a quien"
+            DataField="a_quien"
+            visible="true"/>
+            <com:XActiveBoundColumn
+            HeaderText="quien envia"
+            DataField="quien_envia"
+            visible="true"/>
+            <com:XActiveBoundColumn
+            HeaderText="quien recibe"
+            DataField="quien_recibe"
+            visible="true"/>
+            <com:XActiveBoundColumn
+            HeaderText="descripcion"
+            DataField="descripcion"
+            visible="true"/>
+        </com:XActiveDataGrid>
+        <br></br>
+        <com:TButton Text="Imprimir" OnClick="imprimir"></com:TButton>
+    </div>    
+</com:TContent>

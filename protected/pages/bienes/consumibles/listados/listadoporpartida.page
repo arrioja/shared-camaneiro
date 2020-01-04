@@ -1,0 +1,146 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Listado por partida</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Partida Presupuestaria"/>
+                    </com:TTableCell>
+                    <com:TTableCell>                                                                                                
+                        <com:TDropDownList
+                        ID="ddl1"
+                        DataTextField="ano"
+                        DataValueField="ano"
+                        PromptText="año"
+                        AutoPostBack="true"
+                        OnTextChanged="listar_ano"/>
+                        <com:TDropDownList
+                        ID="ddl2"
+                        DataTextField="partida"
+                        DataValueField="partida"
+                        PromptText="partida"
+                        AutoPostBack="true"
+                        OnTextChanged="listar_partida"/>
+                        <com:TDropDownList
+                        ID="ddl3"
+                        DataTextField="generica"
+                        DataValueField="generica"
+                        PromptText="generica"
+                        AutoPostBack="true"
+                        OnTextChanged="listar_generica"/>
+                        <com:TDropDownList
+                        ID="ddl4"
+                        DataTextField="especifica"
+                        DataValueField="especifica"
+                        PromptText="especifica"
+                        AutoPostBack="true"
+                        OnTextChanged="listar_especifica"/>
+                        <com:TDropDownList
+                        ID="ddl5"
+                        DataTextField="subespecifica"
+                        DataValueField="subespecifica"
+                        PromptText="subespecifica"
+                        AutoPostBack="true"
+                        OnTextChanged="listar_subespecifica"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Fecha Inicio"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="dp_ini"  Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="dp_ini"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Fecha Final"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="dp_fin"  Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="dp_fin"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                        <com:TButton Text="Listar" OnClick="listarconfecha" ValidationGroup="grupo1"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+        <div class="div3">
+        <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        AutoGenerateColumns="false"
+        OnItemDataBound="formatear_fecha"
+        Caption="Listado de Consumibles por Partidas"
+        ForeColor="black"
+        BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="id"
+            DataField="id"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            ID="fecha"
+            HeaderText="fecha"
+            DataField="f_entrega"/>
+            <com:XActiveBoundColumn
+            HeaderText="direccion"
+            DataField="nombre_completo"/>
+            <com:XActiveBoundColumn
+            HeaderText="cantidad"
+            DataField="cantidad"/>
+            <com:XActiveBoundColumn
+            HeaderText="descripcion"
+            DataField="descripcion"/>
+            <com:XActiveBoundColumn
+            HeaderText="ano"
+            DataField="ano"/>
+            <com:XActiveBoundColumn
+            HeaderText="partida"
+            DataField="partida"/>
+            <com:XActiveBoundColumn
+            HeaderText="generica"
+            DataField="generica"/>
+            <com:XActiveBoundColumn
+            HeaderText="especifica"
+            DataField="especifica"/>
+            <com:XActiveBoundColumn
+            HeaderText="subespecifica"
+            DataField="subespecifica"/>
+        </com:XActiveDataGrid>
+        <br></br>
+        <com:TButton Text="Imprimir" OnClick="imprimir"/>
+        </div>
+    </div>
+</com:TContent>

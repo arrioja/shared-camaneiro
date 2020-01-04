@@ -1,0 +1,140 @@
+<%@ Title="N&oacute;mina - Administrar Integrantes de la N&oacute;mina" %>
+<com:TContent ID="cuerpo">
+<div align="center">
+<fieldset>
+    <legend>Datos de la Nomina</legend>
+<table width="60%" border="0"align="center">
+
+<tr>
+    <td Align="Left">
+            <span>Nombres:</span>
+    </td>
+    <td>
+        <com:TTextBox ID="txt_nombres" ReadOnly="True" />
+    </td>
+</tr>
+
+ <tr>
+     <td Align="Left">
+        <span>Apellidos:</span>
+     </td>
+     <td Align="Left">
+        <com:TTextBox ID="txt_apellidos" ReadOnly="True" />
+     </td>
+ </tr>
+<tr>
+<td Align="Left">
+        <span>C&eacute;dula:</span>
+     </td>
+     <td Align="Left">
+        <com:TTextBox ID="txt_cedula" ReadOnly="True" />
+     </td>
+ </tr>
+
+</table>
+</br>
+<com:XActiveDataGrid
+	ID="DataGrid_asignaciones"
+	AllowPaging="false"
+	Width="80%"
+	PageSize="15"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    OnItemCreated="itemCreated"
+    OnItemDataBound="formatear"
+
+    Caption="Listado de Conceptos"
+    ShowFooter="true"
+
+  >
+
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+
+		<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="Cod"
+		DataField="cod"
+		HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="C&eacute;dula"
+		DataField="cedula"
+		HeaderStyle.Width="80px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+        <com:XActiveBoundColumn
+        ID="tipo"
+        HeaderText="Tipo"
+        DataField="tipo"
+        ItemStyle.HorizontalAlign="Center"
+        />
+
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripci&oacute;n"
+		DataField="descripcion"
+		HeaderStyle.Width="400px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="monto"
+		HeaderText="monto"
+		DataField="monto_incidencia"
+        visible="false"
+		/>
+		<com:XActiveBoundColumn
+		ID="monto_credito"
+		HeaderText="Asignaciones"
+		HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="monto_debito"
+		HeaderText="Deducciones"
+		HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+<com:XActiveBoundColumn
+		ID="monto_total"
+		HeaderText="Total"
+		HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+
+
+	</com:XActiveDataGrid>
+</fieldset>
+</div>
+<com:MensajeDiv ID="cargando"/>
+
+
+<table Width="90%" aling="center" >
+    <tr>
+    <td aling="center">
+        <div align="center"><com:TButton BorderWidth="0" ID="btn_volver"
+                    Text="Regresar"
+                    OnClick="regresar"
+                    />
+                    </div>
+    </td>
+    </tr>
+    </table>
+
+</com:TContent>

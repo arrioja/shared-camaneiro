@@ -1,0 +1,145 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="80%">
+    <legend>Listado de Planes Estratégicos registrados en el Sistema.</legend>
+        <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Organizaci&oacute;n:"/>
+                </com:TTableCell>
+                <com:TTableCell ColumnSpan="3">
+                    <com:TLabel ID="lbl_organizacion" Text=""/>
+                </com:TTableCell>
+            </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+        </com:TTable>
+
+        <br>
+        <com:XActiveDataGrid
+            ID="DataGrid"
+            Width="95%"
+            AllowPaging="true"
+            PageSize="20"
+            PagerStyle.Mode="Numeric"
+            PagerStyle.HorizontalAlign="Center"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            OnPageIndexChanged="changePage"
+            OnPagerCreated="pagerCreated"
+            OnItemDataBound="nuevo_item"
+            AutoGenerateColumns="false"
+            ForeColor="black"
+            BorderColor="black"
+            EmptyTemplate="<div style='font-size:14px;
+                                       color:#FF0000;
+                                       height:100px;
+                                       font-weight:bold;
+                                       vertical-align:middle;
+                                       padding-top:40px;'>
+                            No existen datos para realizar el listado.</div>"
+            >
+                <com:XActiveBoundColumn
+                ID="nombre"
+                HeaderText="Nombre del Plan"
+                DataField="nombre"
+                ItemStyle.HorizontalAlign="Left"
+                />
+                <com:XActiveBoundColumn
+                ID="inicio"
+                HeaderText="Inicio"
+                HeaderStyle.Width="60px"
+                DataField="ano_inicio"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="fin"
+                HeaderText="Fin"
+                HeaderStyle.Width="60px"
+                DataField="ano_fin"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="porcentaje"
+                HeaderText="Avance"
+                HeaderStyle.Width="60px"
+                DataField="porcentaje_completo"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="estatus"
+                HeaderText="Estatus"
+                HeaderStyle.Width="60px"
+                DataField="estatus"
+                ItemStyle.HorizontalAlign="Center"
+                />
+        <com:XActiveTemplateColumn
+        ID="detalle"
+        HeaderText="Acción"
+        HeaderStyle.Width="70px"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TActiveLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img src='imagenes/iconos/detalle.png' border='0' />" OnClick="Page.actualiza_listado2" />
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img alt='Ver' src='imagenes/iconos/imprimir.png' border='0' />" OnClick="Page.imprimir_objetivos" />
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+        </com:XActiveDataGrid>
+<br>
+        <com:XActiveDataGrid
+            ID="DataGrid_obj"
+            Width="95%"
+            AllowPaging="true"
+            PageSize="20"
+            PagerStyle.Mode="Numeric"
+            PagerStyle.HorizontalAlign="Center"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            OnPageIndexChanged="changePage"
+            OnPagerCreated="pagerCreated"
+            OnItemDataBound="nuevo_item2"
+            AutoGenerateColumns="false"
+            ForeColor="black"
+            BorderColor="black"
+            >
+                <com:XActiveBoundColumn
+                ID="nombre2"
+                HeaderText="Objetivos Estratégicos"
+                DataField="nombre"
+                ItemStyle.HorizontalAlign="Left"
+                />
+
+                <com:XActiveBoundColumn
+                ID="porcentaje2"
+                HeaderText="Avance"
+                HeaderStyle.Width="60px"
+                DataField="porcentaje_completo"
+                ItemStyle.HorizontalAlign="Center"
+                />
+        </com:XActiveDataGrid>
+
+</fieldset>
+</div>
+
+</com:TContent>

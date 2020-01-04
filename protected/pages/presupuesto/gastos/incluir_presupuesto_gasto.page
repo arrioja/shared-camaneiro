@@ -1,0 +1,117 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir Presupuesto de Gastos</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:TDropDownList ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tipo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TRadioButton
+                    ID="gasto"
+                    GroupName="grupo_tipo"
+                    Checked="true"
+                    ValidationGroup="9"
+                    Text="Gasto"
+                    />
+                <com:TRadioButton
+                    ID="retencion"
+                    GroupName="grupo_tipo"
+                    ValidationGroup="9"
+                    Text="Retenci&oacute;n"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="C&oacute;digo:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:MaskedTextBox ID="txt_codigo" Mask="##-##-##-##-##-###-##-##-##-#####" Columns="35" />
+                <com:TRequiredFieldValidator ID="val_codigo_1"
+                    ControlToValidate="txt_codigo"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+                <com:TRegularExpressionValidator ID="val_codigo_2"
+                    ControlToValidate="txt_codigo"
+                    RegularExpression="\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{3}-\d{2}-\d{2}-\d{2}-\d{5}"
+                    ErrorMessage="El código debe ser SS-PG-SP-PR-AC-PAR-GE-ES-SE-ORDIN"
+                    Display="Dynamic"/>
+                <com:TCustomValidator
+                    ControlToValidate="txt_codigo"
+                    OnServerValidate="validar_codigo"
+                    FocusOnError="true"
+                    Text="El C&oacute;dico presupuestario existe." />
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Monto:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_monto" Text="0.00" MaxLength="20" Columns="20" />
+                <com:TRequiredFieldValidator ID="val_monto"
+                    ControlToValidate="txt_monto"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+                <com:TCompareValidator
+                    ControlToValidate="txt_monto"
+                    DataType="Float"
+                    ValueToCompare="0"
+                    Operator="GreaterThanEqual"
+                    ErrorMessage="Debe ser num&eacute;rico y positivo" />
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Descripci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_descripcion" Text="" MaxLength="250" Columns="60"/>
+                <com:TRequiredFieldValidator ID="val2"
+                    ControlToValidate="txt_descripcion"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TButton ID="incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+  </fieldset>
+</div>
+</com:TContent>

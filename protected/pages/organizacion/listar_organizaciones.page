@@ -1,0 +1,63 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	OnEditCommand="editItem"
+	OnDeleteCommand="anularItem"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    Caption="Listado de Organizaciones (Organismos, Instituciones, Entidades etc)"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de Organizaciones. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+		<com:TBoundColumn
+		ID="rif"
+		HeaderText="RIF"
+		DataField="rif"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="nombre"
+		HeaderText="Nombre"
+		DataField="nombre"
+		/>
+		<com:TBoundColumn
+		ID="telefono1"
+		HeaderText="Tel&eacute;fono 1"
+		DataField="telefono1"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="telefono2"
+		HeaderText="Tel&eacute;fono 2"
+		DataField="telefono2"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+</com:TDataGrid>
+</div>
+
+</com:TContent>

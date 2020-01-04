@@ -1,0 +1,157 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="80%">
+    <legend>Listado de Objetivos Específicos.</legend>
+        <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Organizaci&oacute;n:"/>
+                </com:TTableCell>
+                <com:TTableCell ColumnSpan="3">
+                    <com:TLabel ID="lbl_organizacion" Text=""/>
+                </com:TTableCell>
+            </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Plan Estratégico"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_plan"
+                    DataTextField="nombre"
+                    DataValueField="cod_plan_estrategico"
+                    AutoPostBack="true"
+                    OnCallback="actualizar_listado_plan_operativo"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_plan"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Plan Operativo"/>
+                <com:TActiveLabel ID="lbl_cod_plan_estrategico" Visible = "false" Text=""/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_plan_operativo"
+                    DataTextField="nombre"
+                    DataValueField="cod_plan_operativo"
+                    AutoPostBack="true"
+                    OnCallback="actualizar_listado"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_plan_operativo"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_direcciones"
+                    DataTextField="nombre"
+                    PromptText="Seleccione"
+                    PromptValue="X"
+                    AutoPostBack="true"
+                    CausesValidation="false"
+                    ValidationGroup="2"
+                    OnCallback="actualizar_obj_operativo"
+                    DataValueField="codigo" >
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_direcciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="Obj. Operativo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_obj_ope"
+                    DataTextField="nombre"
+                    PromptText="Seleccione"
+                    PromptValue="X"
+                    AutoPostBack="true"
+                    CausesValidation="false"
+                    ValidationGroup="2"
+                    OnCallback="actualizar_listado"
+                    DataValueField="cod_objetivo_operativo" >
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_obj_ope"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        </com:TTable>
+
+        <br>
+        <com:XActiveDataGrid
+            ID="DataGrid"
+            Width="95%"
+            AllowPaging="true"
+            PageSize="20"
+            PagerStyle.Mode="Numeric"
+            PagerStyle.HorizontalAlign="Center"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            OnPageIndexChanged="changePage"
+            OnPagerCreated="pagerCreated"
+            OnItemDataBound="nuevo_item"
+            AutoGenerateColumns="false"
+            ForeColor="black"
+            BorderColor="black"
+            >
+                <com:XActiveBoundColumn
+                ID="nombre"
+                HeaderText="Objetivo Específico"
+                DataField="nombre"
+                ItemStyle.HorizontalAlign="Left"
+                />
+
+                <com:XActiveBoundColumn
+                ID="porcentaje"
+                HeaderText="Avance"
+                HeaderStyle.Width="60px"
+                DataField="porcentaje_completo"
+                ItemStyle.HorizontalAlign="Center"
+                />
+        </com:XActiveDataGrid>
+</fieldset>
+</div>
+
+</com:TContent>

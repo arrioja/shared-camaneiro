@@ -1,0 +1,80 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Listado por Período</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Fecha Inicio"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="dp_ini"  Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="dp_ini"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Fecha Final"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="dp_fin"  Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="dp_fin"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="2" HorizontalAlign="Center"><com:TButton Text="Listar" OnClick="listar" ValidationGroup="grupo1"></com:TButton></com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+    <div class="div5">
+            <com:XActiveDataGrid
+            ID="dg1"
+            Width="90%"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AutoGenerateColumns="false"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            Caption="Listado del Archivo"
+            ForeColor="black"
+            BorderColor="black">
+                <com:XActiveBoundColumn
+                HeaderText="codigo"
+                DataField="codigo"/>
+                <com:XActiveBoundColumn
+                HeaderText="usuario"
+                DataField="usuario"/>
+                <com:XActiveBoundColumn
+                HeaderText="fecha"
+                DataField="fecha"/>
+            </com:XActiveDataGrid>
+        </div>
+</com:TContent>

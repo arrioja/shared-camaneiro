@@ -1,0 +1,226 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Anular Parcialmente Compromiso</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+                <com:TLabel ID="lbl_codigo_temporal" Text="" Visible="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tipo:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="drop_tipo"
+                    DataTextField="nombre"
+                    DataValueField="siglas"
+                    PromptText="Seleccione"
+                    AutoPostBack="True"
+                    ValidationGroup="99"
+                    OnSelectedIndexChanged="carga_proveedores_con_compromisos"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_tipo"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o: "/>
+                <com:TLabel ID="lbl_ano" Text="XXXX" Font.Bold="true"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Fecha: "/>
+                <com:TLabel ID="lbl_fecha" Text="XX/XX/XXXX" Font.Bold="true"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Proveedor"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TDropDownList ID="drop_proveedor"
+                    DataTextField="nomb"
+                    DataValueField="cod_proveedor"
+                    AutoPostBack="True"
+                    PromptText="Seleccione"
+                    ValidationGroup="99"
+                    OnSelectedIndexChanged="carga_ordenes_disponibles"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_proveedor"
+                    InitialValue="X"
+                    Text="?." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+<com:TTableRow BorderWidth="1">
+ <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Compromisos"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TDropDownList ID="drop_compromisos"
+                    DataTextField="nomb"
+                    DataValueField="id"
+                    AutoPostBack="True"
+                    PromptText="Seleccione"
+                    ValidationGroup="99"
+                    OnSelectedIndexChanged="carga_codigos_presupuestarios"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_proveedor"
+                    InitialValue="X"
+                    Text="?." />
+            </com:TTableCell>
+</com:TTableRow>
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Motivo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TActiveTextBox ID="txt_motivo" TextMode="MultiLine" Rows="3" Columns="80" >
+                </com:TActiveTextBox>
+				<com:TRequiredFieldValidator ID="val_direccion"
+                    ControlToValidate="txt_motivo"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+                </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Center" ColumnSpan="4">
+                <com:TRepeater ID="Repeater">
+                    <prop:HeaderTemplate>
+                        <table width = "80%" >
+                            <tr style="color:white;background-color:#29166F">
+                              <th>C&oacute;digo</th>
+                              <th>Comprometido</th>
+                              <th>Pendiente</th>
+                              <th>Causado</th>
+                              <th>Monto a Anular</th>
+                            </tr>
+                    </prop:HeaderTemplate>
+
+                    <prop:ItemTemplate>
+
+                                <tr style="<%# 'background-color:' . ($this->ItemIndex%2 ? '#BFCFFF' : '#E6ECFF') %>">
+                                  <td align="center">
+                                      <com:THiddenField
+                                       ID="lbl_codigo_imputado"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['codigo']%> />
+                                  <com:THiddenField
+                                       ID="lbl_id2"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['id2']%> />
+                                  <com:THiddenField
+                                       ID="lbl_cod_organizacion"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['cod_organizacion']%> />
+                                  <com:THiddenField
+                                       ID="lbl_tipo_documento"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['tipo_documento']%> />
+                                  <com:THiddenField
+                                       ID="lbl_numero"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['numero']%> />
+                                  <com:THiddenField
+                                       ID="lbl_ano"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['ano']%> />
+                                  <com:TLabel
+                                       ID="lbl_codigo"
+                                       Text=<%#$this->Data['codigo']%> />
+                                  </td>
+                                  <td align = "right">
+                                  Bs.
+                                  <com:TLabel
+                                       ID="lbl_monto_parcial"
+                                       Text=<%#$this->Data['monto_parcial']%> />
+                                  </td>
+
+                                  <td align = "right">
+                                  Bs.
+                                  <com:TLabel
+                                       ID="lbl_monto"
+                                       Text=<%#$this->Data['monto_pendiente']%> />
+                                  </td>
+                                  <td align = "right">
+                                  Bs.
+                                  <com:TLabel
+                                       ID="lbl_monto_pendiente"
+                                       Text=<%#$this->Data['monto_causado']%> />
+                                  </td>
+                                  <td align = "right">
+                                  Bs.
+                                  <com:TTextBox
+                                       ID="txt_monto_anular"
+                                       Columns="10"
+                                       Text=<%#$this->Data['monto_pendiente']%> />
+                                       <com:TRequiredFieldValidator ID="val_monto"
+                                        ControlToValidate="txt_monto_anular"
+                                        ErrorMessage="Requerido"
+                                        Display="Dynamic"/>
+                                        <com:TCompareValidator
+                                        ControlToValidate="txt_monto_anular"
+                                        DataType="Float"
+                                        ValueToCompare="0"
+                                        Operator="GreaterThanEqual"
+                                        ErrorMessage="Debe ser num&eacute;rico y positivo" />
+                                  </td>
+                                </tr>
+
+                    </prop:ItemTemplate>
+
+                    <prop:FooterTemplate>
+                        </table>
+                    </prop:FooterTemplate>
+                </com:TRepeater>
+                        
+            </com:TTableCell>
+        </com:TTableRow>
+
+<com:TTableRow>
+    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+        <com:TActiveLabel ID="lbl_motivo"  />
+</com:TTableCell>
+</com:TTableRow>
+
+<com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="3">
+                <com:TActiveButton
+                Text="Anular Compromiso"
+                ID="btn_anular_orden"
+                OnCallback="anular_orden" >
+                <prop:ClientSide
+                OnLoading="Element.show('mensaje')"
+                OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+            </com:TTableCell>
+             <com:TTableCell HorizontalAlign="Right" >
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    Enabled="True"
+                    OnClick="imprimir_item"/><com:TActiveLabel ID="lbl_numero" Text="" Visible="false"  />
+            </com:TTableCell>
+           
+</com:TTableRow>
+
+    </com:TTable>
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+  </fieldset>
+</div>
+</com:TContent>

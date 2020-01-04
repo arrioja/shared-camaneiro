@@ -1,0 +1,205 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+    <br>
+ <fieldset Align="Center" width="80%">
+    <legend>Eliminar Movimiento Bancario.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="A&ntilde;o:"/>
+                </com:TTableCell>
+                <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    PromptText="Seleccione"
+                    ValidationGroup="1"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione." />
+ 
+                </com:TTableCell>
+
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Mes:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_mes"
+                    PromptValue="X"
+                    PromptText="Seleccione"
+                    DataTextField="nombre"
+                    DataValueField="mes"
+                    OnCallback="actualiza_listado"/>
+
+                    <com:TRequiredFieldValidator
+                        ControlToValidate="drop_mes"
+                        InitialValue="X"
+                        Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+<com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Banco:"/>
+                </com:TTableCell>
+                <com:TTableCell>
+                     <com:TActiveDropDownList ID="drop_banco"
+                    PromptValue="X"
+                    PromptText="Seleccione"
+                    DataTextField="nombre"
+                    DataValueField="cod_banco"
+                   
+                    OnCallback="cargar_cuentas"/>
+                    </td>
+                </com:TTableCell>
+
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Cuenta:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+               <com:TActiveDropDownList ID="drop_cuentas"
+                    DataTextField="numero_cuenta"
+                    DataValueField="numero"
+                    OnCallback="actualiza_listado"/>
+
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+      
+    </com:TTable>
+</fieldset>
+<div align="center">
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+</div>
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="90%"
+    AllowPaging="true"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+    PageSize="20"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="nuevo_item"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de Movimientos Bancarios<br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+<com:XActiveBoundColumn
+		ID="cod_movimiento"
+		HeaderText="Numero"
+		DataField="cod_movimiento"
+        HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+        visible="false"
+		/>
+        <com:XActiveBoundColumn
+		ID="id_mov"
+		HeaderText="id"
+		DataField="id_mov"
+        HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+        visible="false"
+		/>
+        <com:XActiveBoundColumn
+		ID="fecha"
+		HeaderText="Fecha"
+        HeaderStyle.Width="80px"
+        ItemStyle.HorizontalAlign="Center"
+		DataField="fecha"
+		/>
+		
+        <com:XActiveBoundColumn
+		ID="tipo"
+		HeaderText="Tipo"
+		DataField="tipo"
+        HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="referencia"
+		HeaderText="Referencia"
+		DataField="referencia"
+        HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Left"
+		/>
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Detalle"
+		DataField="descripcion"
+		/>
+		<com:XActiveBoundColumn
+		ID="monto"
+		HeaderText="Monto"
+		DataField="monto"
+        HeaderStyle.Width="90px"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+        <com:XActiveBoundColumn
+		ID="debe"
+		HeaderText="debe"
+		DataField="debe"
+        HeaderStyle.Width="90px"
+        ItemStyle.HorizontalAlign="Right"
+        visible="false"
+		/>
+       <com:XActiveBoundColumn
+		ID="haber"
+		HeaderText="haber"
+		DataField="haber"
+        HeaderStyle.Width="90px"
+        ItemStyle.HorizontalAlign="Right"
+        visible="false"
+		/>
+		
+        <com:XActiveTemplateColumn
+        ID="eliminar"
+        HeaderText="Eliminar"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TActiveLinkButton CommandParameter="<%#$this->Page->createMultiple($this, array('id'))%>" Text="<img alt='Eliminar' src='imagenes/iconos/delete.png' border='0' />" OnClick="Page.eliminar" ToolTip="Eliminar Movimiento" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de Eliminar el movimiento seleccionado?')) return false;" >
+                <prop:ClientSide
+              OnLoading="Element.show('mensaje')"
+              OnComplete="Element.hide('mensaje')"
+            /></com:TActiveLinkButton>
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+             
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

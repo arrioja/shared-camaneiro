@@ -1,0 +1,312 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="LTB"/>
+ <fieldset Align="Center" width="80%" height="500px">
+    <legend>Inclusi&oacute;n de Bienes.</legend>
+    <com:TTabPanel ID="tab_panel" ActiveViewID="View1">
+    <com:TTabView ID="View1" Caption="Datos del Bien" >
+    <table Width="70%" aling="center" border="1">
+        <tr >
+            <td Align="left" width="160">
+                <com:TLabel Text="Grupo:"/>
+            </td>
+            <td Align="left">
+                <com:TLabel Text="Sub Grupo:"/>
+            </td>
+            <td Align="left">
+                <com:TLabel Text="Secciones:"/>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                <com:TActiveDropDownList ID="cmb_grupo"
+                DataTextField="grupo"
+                DataValueField="grupo"
+                PromptText="Seleccione Grupo"
+                PromptValue="-1"
+                ValidationGroup="1"
+                OnCallback="cargar_subgrupo"
+                CausesValidation="False"
+                AutoPostBack="true">
+                                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                    <com:TRequiredFieldValidator ID="val_grupo"
+                    ControlToValidate="cmb_grupo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    InitialValue="-1"
+                    />
+            </td>
+            <td>
+                <com:TActiveDropDownList ID="cmb_subgrupo"
+                DataTextField="subgrupo"
+                DataValueField="subgrupo"
+                PromptText="--"
+                PromptValue="-1"
+                OnCallback="cargar_secciones"
+                ValidationGroup="1"
+                CausesValidation="False"
+                AutoPostBack="true">
+                                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                    <com:TRequiredFieldValidator ID="val_subgrupo"
+                    ControlToValidate="cmb_subgrupo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    InitialValue="-1"
+                    />
+
+            </td>
+            <td>
+                <com:TActiveDropDownList ID="cmb_secciones"
+                   DataTextField="secciones"
+                    DataValueField="secciones"
+                    PromptText="--"
+                    PromptValue="-1"
+                    OnCallback="cargar_descripcion"
+                    ValidationGroup="1"
+                    CausesValidation="False"
+                    AutoPostBack="true">
+                                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                    <com:TRequiredFieldValidator ID="val_secciones"
+                    ControlToValidate="cmb_secciones"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    InitialValue="-1"
+                    />
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <com:TLabel Text="Descripci&oacute;n:"/>
+            </td>
+            <td ColSpan="2">
+                <com:TActiveTextBox ID="txt_desc" ReadOnly="True"
+                    Columns="50"
+                />
+                    <com:TRequiredFieldValidator ID="val_desc"
+                    ControlToValidate="txt_desc"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    />
+             </td>
+        </tr>
+
+    </table>
+<table Width="70%" aling="center" border="1">
+    <tr>
+           <td>
+                <com:TLabel Text="C&oacute;digo del Bien:"/>
+            </td>
+            <td ColSpan="3">
+                <com:TActiveTextBox ID="txt_codigo" MaxLength="10"
+
+
+                    />
+                    <com:TRequiredFieldValidator ID="val_cod"
+                    ControlToValidate="txt_codigo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    />
+                <com:TDataTypeValidator
+                    ControlToValidate="txt_codigo"
+                    DataType="Integer"
+                    Text="S&oacute;lo N&uacute;meros Enteros."
+                    Display="Dynamic"
+                    ValidationGroup="1"/>
+        <com:TCustomValidator ControlToValidate='txt_codigo'
+              OnServerValidate='check_codigo'
+              Text='C&oacute;digo Existente!'
+              Display='Dynamic'
+              ValidationGroup="1"/>
+             </td>
+   </tr>
+   <tr>
+    <td>
+        <span>Direcci&oacute;n:</span>
+    </td>
+    <td>
+            <com:TActiveDropDownList ID="cmb_direcciones"
+            DataValueField="codigo"
+            DataTextField="nombre_completo"
+            OnCallback="activa_imagen"
+            PromptText="--"
+            PromptValue="-1"
+            >
+            </com:TActiveDropDownList>
+            <com:TRequiredFieldValidator ID="val_dir"
+            ControlToValidate="cmb_direcciones"
+            ErrorMessage="Requerido."
+            Display="Dynamic"
+            ValidationGroup="1"
+            InitialValue="-1"
+            />
+    </td>
+</tr>
+<tr>
+    <td>Tipo de incorporaci&oacute;n:</td>
+        <td>
+            <com:TActiveDropDownList ID="drop_tipo_incorporacion"
+            DataValueField="cod"
+            DataTextField="descripcion"
+            PromptText="Seleccione un tipo de incorporaci&oacute;n"
+            PromptValue="-1"
+            ValidationGroup="1"
+            AutoPostBack="False"
+            >
+            </com:TActiveDropDownList>
+            <com:TRequiredFieldValidator ID="val_inc"
+            ControlToValidate="drop_tipo_incorporacion"
+            ErrorMessage="Requerido."
+            Display="Dynamic"
+            ValidationGroup="1"
+            InitialValue="-1"
+            />
+    </td>
+</tr>
+        <tr>
+            <td>
+                <com:TLabel Text="Cantidad"/>
+            </td>
+
+           <td ColSpan="3">
+           <com:TActiveTextBox ID="txt_cantidad" Columns="10"/>
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_cantidad"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+            </td>
+            
+
+        </tr>
+<tr >
+    <td>
+        <span>Descripci&oacute;n:</span>
+    </td>
+            <td Span="2">
+           <com:TTextBox ID="txt_descripcion" Columns="40"/>
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_descripcion"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Precio Incorporaci&oacute;n:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_precio_incorporacion" Columns="10"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Serial:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_serial" Columns="20"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Fecha Incorporación:</span>
+    </td>
+            <td ColSpan="3">
+            <com:TDatePicker ID="txt_fecha_incorporacion"  Culture="es"
+            DateFormat="dd/MM/yyyy"
+             />
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_fecha_incorporacion"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Años de vida &uacute;til:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_a_vida_util" Columns="10"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Meses de vida &uacute;til:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_meses_vida_util" Columns="10"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>D&iacute;as de vida &uacute;til:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_dias_vida_util" Columns="10"/>
+            </td>
+</tr>
+
+<com:TLabel ID="Result" />
+
+        <tr>
+            <td> </td>
+            <td ColSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Guardar" ValidationGroup="1"
+                    OnClick="incluir"
+               >
+                </com:TButton>
+            </td>
+        </tr>
+</table>
+</com:TTabView>
+
+  <com:TTabView ID="View2" Caption="Imágenes">
+        <table Width="65%">
+            <tr>
+                <td align="center" >
+                <com:TActiveImageButton ID="img_1" ImageUrl="imagenes/iconos/upload.png"  OnClick="click_img" />
+                </td>
+            </tr>
+            <tr Border="1">
+              <td>
+               <com:TLabel Text="Seleccione un Archivo:"/>
+               <com:TActiveFileUpload ID="uploadimagen1" Enabled="False"
+               MaxFileSize="1572864"
+               OnFileUpload="cargar"/>
+               Máximo: 1512Kb c/u &nbsp;
+               Click: Para Eliminar.
+               <com:TActiveLabel
+                   ID="lbl_tipo_arch"
+                   ForeColor="Red"
+                   Text=""/>
+               </td>
+            </tr>
+        </table>
+
+  </com:TTabView>
+</com:TTabPanel>
+</fieldset>
+</div>
+</com:TContent>

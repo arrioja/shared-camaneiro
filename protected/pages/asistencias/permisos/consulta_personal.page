@@ -1,0 +1,150 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="LTB"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Consulta de Permisos Personal.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1" >
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                 <com:TLabel Text="Cedula:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveLabel ID="cedula_usuario"/>
+
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6" visible="false" >
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Consultar"
+                    OnClick="consulta_permisos">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</br>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+    HeaderStyle.Font.Size = "14px"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="Black"
+    ItemStyle.Font.Size = "14px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="formatear"
+    ForeColor="black"
+    Caption=""
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+               color:#FF0000;
+               height:100px;
+               font-weight:bold;
+               vertical-align:middle;
+               padding-top:40px;'>
+    No existen datos para generar el reporte.</div>"
+    >
+
+	<com:XActiveBoundColumn
+		ID="cedula"
+        visible="false"
+		HeaderText="Cedula"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="70px"/>
+
+	<com:XActiveBoundColumn
+        ID="nombres"
+        DataField="nombres"
+        HeaderText="Nombres"
+         visible="false"
+                />
+
+	
+	<com:XActiveBoundColumn
+        ID="codigo"
+        DataField="codigo"
+        HeaderText="Codigo"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="20px"/>
+
+<com:XActiveBoundColumn
+        ID="falta"
+        DataField="falta"
+        HeaderText="Falta"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="tipo"
+        DataField="tipo"
+        HeaderText="Tipo"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="desde"
+        DataField="desde"
+        HeaderText="Desde"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="hasta"
+        DataField="hasta"
+        HeaderText="Hasta"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+<com:XActiveBoundColumn
+        ID="hora_desde"
+        DataField="hora_desde"
+        HeaderText="hora_desde"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px" Visible="False"/>
+
+<com:XActiveBoundColumn
+        ID="hora_hasta"
+        DataField="hora_hasta"
+        HeaderText="hora_hasta"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px" Visible="False"/>
+
+<com:XActiveBoundColumn
+        ID="estado"
+        DataField="estado"
+        HeaderText="Estado"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px" />
+
+<com:XActiveTemplateColumn
+        ID="acciones"
+HeaderStyle.Width="20px"
+        HeaderText="Acciones"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img alt='Ver' src='imagenes/iconos/imprimir.png' border='0' />" ToolTip="Imprimir Solicitud" OnClick="Page.imprimir_item" />
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+
+</com:XActiveDataGrid>
+</fieldset>
+<br>
+<div class="notas_y_leyendas">
+</div>
+</div>
+</com:TContent>

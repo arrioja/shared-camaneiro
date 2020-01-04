@@ -1,0 +1,72 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Reversar Movimiento Bancario</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+                <com:TLabel ID="lbl_codigo_temporal" Text="" Visible="false"/>
+            </com:TTableCell>
+        </com:TTableRow>    
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+               
+            </com:TTableCell>
+            <com:TTableCell>
+                
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TLabel Text="Fecha: "/>
+                <com:TDatePicker ID="txt_fecha" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Mode="ImageButton"
+                    InputMode="TextBox"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha"
+                    ControlToValidate="txt_fecha"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Presupuesto: "/>
+                <com:TLabel ID="lbl_ano" Text="XXXX" Font.Bold="true"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+       
+       <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Detalle:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_motivo" TextMode="MultiLine" Rows="2" Columns="80">
+                </com:TTextBox>
+                <com:TRequiredFieldValidator ID="val_direccion"
+                    ControlToValidate="txt_motivo"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"
+                     ValidationGroup="9"
+                                        />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    ValidationGroup="9"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+    <com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+  </fieldset>
+</div>
+</com:TContent>

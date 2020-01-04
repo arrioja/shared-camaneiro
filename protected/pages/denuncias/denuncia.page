@@ -1,0 +1,122 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Datos de la Actuación</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Número:</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t1"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t1"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>                        
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Fecha</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="fecha1" Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="fecha1"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Solicitantes</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t2" TextMode="MultiLine" Width="180px"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t2"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Motivo</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t3" TextMode="MultiLine" Width="180px"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t3"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Ubicación</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t4" TextMode="MultiLine" Width="180px"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t4"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Organismos / Entes Involucrados</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t5" TextMode="MultiLine" Width="180px"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t5"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Documentos Consignados</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t6" TextMode="MultiLine" Width="180px"/>                        
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Limitaciones</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t7" TextMode="MultiLine" Width="180px"/>                        
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Estado de Actuación</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t8" TextMode="MultiLine" Width="180px"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t8"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Observaciones</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t9" TextMode="MultiLine" Width="180px"/>                        
+                    </com:TTableCell>
+                </com:TTableRow>                
+                 <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Tipo Actuación</com:TTableCell>
+                    <com:TTableCell ColumnSpan="4">
+                        <com:TRadioButtonList RepeatColumns="4" ID="rb1">
+                            <com:TListItem Value="Denuncia" Text="Denuncia"/>
+                            <com:TListItem Value="Queja / Reclamo" Text="Queja / Reclamo"/>
+                            <com:TListItem Value="Sugerencia" Text="Sugerencia"/>
+                            <com:TListItem Value="Petición" Text="Petición"/>
+                        </com:TRadioButtonList>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="rb1"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                        <com:TButton Text="Guardar" OnClick="agregar" ValidationGroup="grupo1"></com:TButton>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

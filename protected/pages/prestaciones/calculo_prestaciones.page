@@ -1,0 +1,74 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Calculo de Prestaciones</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Cédula"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDropDownList
+                            ID="ddl1"
+                            PromptText="seleccione"
+                            AutoPostBack="true"
+                            DataTextField="cedula"
+                            DataValueField="cedula"
+                            OnSelectedIndexChanged="nya">
+                        </com:TDropDownList>
+                        <com:TRequiredFieldValidator
+                            ValidationGroup="group1"
+                            ControlToValidate="ddl1"
+                            InitialValue="seleccione"
+                            Text="seleccione" />
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Nombres y Apellidos"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t1" Width="300px"></com:TTextBox>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Motivo del Cese"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDropDownList
+                            ID="ddl2"
+                            PromptText="seleccione"
+                            AutoPostBack="true"
+                            DataTextField=""
+                            DataValueField=""
+                            OnSelectedIndexChanged="">
+                            <com:TListItem Value="despido" Text="Despido"/>
+                            <com:TListItem Value="renuncia" Text="Renuncia"/>
+                            <com:TListItem Value="injustificado" Text="Despido Injutificado"/>
+                        </com:TDropDownList>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Fecha de incorporacion"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="fecha1" Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                        fecha actual
+                        <com:TTextBox ID="t2" ReadOnly="true"></com:TTextBox>
+                        <com:TButton ID="b1" OnClick="diashabiles" text="DH"></com:TButton>
+                        <com:TTextBox ID="t3"></com:TTextBox>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

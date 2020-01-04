@@ -1,0 +1,48 @@
+<com:TContent ID="cuerpo">
+<div id="principal" align="center">
+<div  id="loading" style="display:none;width: 90%;text-align: center; "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+</div>
+<div  id="mensaje"   style="display:none;width: 20%;text-align: center;border: 1px solid #C00;color:#5FA6D7" onclick="this.style.display='none'"
+				>
+ aqui va el mensaje<img ID='loading' src='imagenes/iconos/smiley_031.gif'>
+
+</div>
+ <fieldset Align="Center" width="80%">
+    <legend>Crear N&oacute;mina</legend>
+    <table Width="90%" aling="center" border="1">
+       
+<tr>
+
+            <td align="center" ColSpan="2">
+
+
+            </td>
+  </tr>
+<tr>
+<h1>Example 3: Using Active controls</h1>
+    <p><com:TCheckBox ID="D" Text="Show it!" />
+    <com:MEffectPanel BorderStyle="solid"
+        ToggleControls="D"
+        OpenByDefault="False"
+        OpenEffect="Effect.SlideDown"
+        OpenEffectOptions="{duration:.5,queue:'end'}"
+        CloseEffect="Effect.SlideUp"
+        CloseEffectOptions="{duration:.5,queue:'end'}" >
+
+        <com:TActiveTextBox
+			ID="ActiveText"
+			Text="Change me"
+			AutoPostBack="true"
+			OnTextChanged = 'Page.onTextChanged'/><br />
+
+		<com:TActiveTextBox ID="ReceiveText" Enabled="False"  /><br />
+
+    </com:MEffectPanel>
+ </tr>
+    </table>
+
+</fieldset>
+</div>
+
+</com:TContent>

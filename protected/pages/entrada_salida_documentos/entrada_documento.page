@@ -1,0 +1,70 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Entrada Documento</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Fecha</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t1" ReadOnly="true"></com:TTextBox>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Número</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t2"></com:TTextBox>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t2"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">A quien va dirigido</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t3"></com:TTextBox>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t3"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Quien lo envía</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t4"></com:TTextBox>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t4"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Quien lo recibe</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t5" ReadOnly="true"></com:TTextBox>                        
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Descripción</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t6" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t6"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="2" HorizontalAlign="Center">
+                        <com:TButton Text="Guardar" OnClick="guardar" ValidationGroup="grupo1"></com:TButton>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

@@ -1,0 +1,37 @@
+<!--modulo de incluir odis en la evaluacion -->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Tipo Empleado</h1>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <com:TDropDownList
+                ID="drop_cedula"
+                PromptText="cedula"
+                OnTextChanged="buscar_datos"
+                DataTextField="cedula"
+                DataValueField="cedula"
+                AutoPostBack="true"/>
+            </td>
+        <tr><td><com:TTextBox ReadOnly="true" ID="t_nombre"/></td></tr>
+        <tr><td><com:TTextBox ReadOnly="true" ID="t_apellido"/></td></tr>
+        <tr><td><com:TTextBox ReadOnly="true" ID="t_denominacion"/></td></tr>
+        <tr><td><com:TTextBox ReadOnly="true" ID="t_cod_dir"/></td></tr>
+        <tr><td><com:TTextBox ReadOnly="true" ID="t_nom_abre"/></td></tr>
+        <tr>
+            <td>
+                <com:TDropDownList
+                ID="drop_tipo"
+                PromptText="tipo">
+                    <com:TListItem  Value="1" Text="Administrativo"/>
+                    <com:TListItem  Value="2" Text="Técnico/Profesional"/>
+                    <com:TListItem  Value="3" Text="supervisor"/>
+                </com:TDropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <com:TButton ID="button1" Text="guardar" OnClick='guardar_datos'/>
+            </td>
+        </tr>        
+    </table>
+</com:TContent>

@@ -1,0 +1,30 @@
+<!--modulo para imprimir evaluacion -->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Imprimir.</h1>
+    <table align="center" border="1">
+        <tr>
+            <td>cedula</td>
+            <td>
+                <com:TDropDownList
+                ID="drop_cedula"
+                PromptText="cedula"
+                DataTextField="cedula"
+                DataValueField="cedula"
+                AutoPostBack="true"
+                OnTextChanged="buscar_evaluacion"/>
+            </td>
+        </tr>
+        <tr>
+            <td>evaluaciones</td>
+            <td>
+                <com:TDropDownList
+                ID="drop_evaluacion"
+                PromptText="evaluacion"
+                DataTextField="codigo"
+                DataValueField="codigo"
+                AutoPostBack="true"
+                OnTextChanged="buscar_datos"/>
+            </td>
+        </tr>
+    </table>    
+</com:TContent>

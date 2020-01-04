@@ -1,0 +1,47 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Listado de Consumibles Entregados por Período</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">                                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Código del Documento</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDropDownList ID="ddl1" DataTextField="codigo" DataValueField="codigo"></com:TDropDownList>
+                        <com:TButton Text="Listar" OnClick="listar"></com:TButton>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+        <div class="div5">
+            <com:XActiveDataGrid
+            ID="dg1"
+            Width="90%"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AutoGenerateColumns="false"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            Caption="Listado del Archivo"
+            ForeColor="black"
+            BorderColor="black">
+                <com:XActiveBoundColumn
+                HeaderText="codigo"
+                DataField="codigo"/>
+                <com:XActiveBoundColumn
+                HeaderText="usuario"
+                DataField="usuario"/>
+                <com:XActiveBoundColumn
+                HeaderText="fecha"
+                DataField="fecha"/>
+            </com:XActiveDataGrid>
+        </div>
+    </div>
+</com:TContent>

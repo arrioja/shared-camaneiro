@@ -1,0 +1,198 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Carga Familiar</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                        Persona
+                        <com:TDropDownList
+                            ID="drop_persona"
+                            PromptText="seleccione"
+                            AutoPostBack="true"
+                            DataTextField="nombre"
+                            DataValueField="cedula"
+                            OnSelectedIndexChanged="cargar_data"
+                             ValidationGroup="1">
+                        </com:TDropDownList>
+                    </com:TTableCell>
+
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b">Datos Familiar</com:TTableCell>
+                </com:TTableRow>
+
+
+          <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Nombres:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TActiveTextBox ID="txt_nombre"
+                    Columns="50"
+                    />
+                <com:TRequiredFieldValidator ID="val_nombre"
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Apellidos:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TActiveTextBox ID="txt_apellido"
+                    Columns="50"
+                    />
+                <com:TRequiredFieldValidator ID="val_apellido"
+                    ControlToValidate="txt_apellido"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right"  CssClass="color_b">
+                <com:TLabel Text="Parentesco:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_parentesco">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Esposo(a)" Text="Esposo(a)" />
+                  <com:TListItem Value="Hijo(a)" Text="Hijo(a)" />
+                  <com:TListItem Value="Padre" Text="Padre" />
+                  <com:TListItem Value="Madre" Text="Madre" />
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_parentesco"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right"  CssClass="color_b">
+                <com:TLabel Text="Sexo:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_sexo">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Masculino" Text="Masculino" />
+                  <com:TListItem Value="Femenino" Text="Femenino" />
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_sexo"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+                        <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Cedula:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+                <com:TActiveTextBox ID="txt_cedula_cf" Columns="10"/> Solo si posee.
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Fecha de Nacimiento:" />
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDatePicker ID="txt_fecha_nac" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    FromYear="1930"
+                    UpToYear="<%= @date('Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_nac"
+                    ControlToValidate="txt_fecha_nac"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+
+        </com:TTableRow>
+  <com:TTableRow BorderWidth="1">
+           
+        </com:TTableRow>
+ <com:TTableRow >
+                 <com:TTableCell ColumnSpan="4" HorizontalAlign="Right">
+                    <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"
+                    ValidationGroup="2"/>
+                 </com:TTableCell>
+                 </com:TTableRow>
+                 <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b">Listado de Familiares</com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+                        <div align="center" class="div4">
+                        <com:XActiveDataGrid
+                            Width="100%"
+                            CellSpacing="0"
+                            CellPadding="2"
+                            ID="DataGrid"
+                            DataKeyField="id"
+                            AutoGenerateColumns="false"
+                            HeaderStyle.BackColor="#29166F"
+                            HeaderStyle.ForeColor="white"
+                            ItemStyle.BackColor="#BFCFFF"
+                            ItemStyle.BorderColor="white"
+                           	AlternatingItemStyle.BackColor="#E6ECFF"
+                            EditItemStyle.BackColor="lightyellow"
+                            OnItemCreated="itemCreated"
+                            OnItemDataBound="nuevo_item"
+                            OnDeleteCommand="deleteItem"
+                            EmptyTemplate="<div style='font-size:14px;
+                            color:#FF0000;
+                            
+                            font-weight:bold;
+                            vertical-align:middle;
+                            padding-top:40px;'>
+                            No existen datos de familiares.</div>">
+                            <com:XActiveBoundColumn
+                                HeaderText="id"
+                                DataField="id"
+                                visible="false"/>
+                                <com:XActiveBoundColumn
+                                HeaderText="Parentesco"
+                                DataField="parentesco"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                  <com:XActiveBoundColumn
+                                HeaderText="Nombres y Apellidos"
+                                DataField="nombre"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                HeaderText="Sexo"
+                                DataField="sexo"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                 ID="cedula"
+                                HeaderText="Cedula"
+                                DataField="cedula"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                ID="fecha_nacimiento"
+                                HeaderText="Fecha de Nacimiento"
+                                DataField="fecha_nacimiento"
+                                ItemStyle.HorizontalAlign="Center"/>
+                               
+                                <com:XActiveButtonColumn
+                                ID="DeleteColumn"
+                                HeaderText="Remover"
+                                HeaderStyle.Width="50px"
+                                ItemStyle.HorizontalAlign="Center"
+                                ItemStyle.Font.Italic="false"
+                                Text="Remover"
+                                CommandName="delete"
+                                />
+                        </com:XActiveDataGrid>
+                        </div>
+                    </com:TTableCell>
+                </com:TTableRow>
+                
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

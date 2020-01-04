@@ -1,0 +1,39 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AutoGenerateColumns="false"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        Caption="Listado de Consumibles que pueden Devolverse"
+        ForeColor="black"
+        BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="id"
+            DataField="id"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            HeaderText="fecha salida"
+            DataField="fecha_salida"
+            visible="true"/>
+            <com:XActiveBoundColumn
+            HeaderText="a quien se envio"
+            DataField="a_quien"
+            visible="true"/>
+            <com:XActiveBoundColumn
+            HeaderText="quien recibe"
+            DataField="quien_recibe"
+            visible="true"/>
+        </com:XActiveDataGrid>
+        <br></br>
+        <com:TButton Text="Imprimir" OnClick="imprimir"></com:TButton>
+    </div>
+</com:TContent>

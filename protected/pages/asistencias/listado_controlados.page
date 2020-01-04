@@ -1,0 +1,98 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Listado de Personal Sujeto del Control de Asistencias.</legend>
+
+<com:XActiveDataGrid
+	ID="DataGrid_tiene"
+	Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	OnDeleteCommand="eliminar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Personas SUJETAS al control de asistencias"
+    BorderColor="black">
+
+	<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="Cédula"
+		HeaderStyle.Width="90px"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+        ID="nombre"
+        HeaderStyle.Width="80%"
+        DataField="nombre"
+        HeaderText="Nombre del Grupo"/>
+
+	<com:XActiveButtonColumn
+        HeaderText="Acci&oacute;n"
+        HeaderStyle.Width="50px"
+        ID="quitar_column"
+        ItemStyle.HorizontalAlign="Center"
+        Text="Quitar"
+        CommandName="delete"/>
+
+</com:XActiveDataGrid>
+
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid_no_tiene"
+	Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+    EnableViewState="true"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#FFBFBF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+    OnDeleteCommand="agregar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Personas NO SUJETAS al control de asistencias"
+    BorderColor="black">
+
+	<com:XActiveBoundColumn
+		ID="cedula2"
+		HeaderText="Cédula"
+		HeaderStyle.Width="90px"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+        ID="nombre2"
+        HeaderStyle.Width="80%"
+        DataField="nombre"
+        HeaderText="Nombre del Grupo"/>
+
+	<com:XActiveButtonColumn
+        HeaderText="Acci&oacute;n"
+        HeaderStyle.Width="50px"
+        ID="quitar_column2"
+        ItemStyle.HorizontalAlign="Center"
+        Text="Agregar"
+        CommandName="delete"/>
+
+</com:XActiveDataGrid>
+
+
+</fieldset>
+</div>
+</com:TContent>

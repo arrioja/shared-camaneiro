@@ -1,0 +1,95 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+<com:XActiveDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+    OnItemDataBound="nuevo_item"
+
+	OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    Caption="Listado de Días No Laborables y Feriados"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Días No Laborables y Feriados. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+		<com:XActiveBoundColumn
+		ID="dia"
+		HeaderText="Día"
+		HeaderStyle.Width="80px"
+		DataField="dia"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="mes"
+		HeaderText="Mes"
+		HeaderStyle.Width="80px"
+		DataField="mes"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="ano"
+		HeaderText="Año"
+		HeaderStyle.Width="80px"
+		DataField="ano"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripcion"
+		DataField="descripcion"
+		/>
+    <com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:XActiveButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

@@ -1,0 +1,64 @@
+<com:TContent ID="cuerpo">
+    <fieldset Align="Center">
+        <legend>Listado de Rangos de Actuación que acepta el Sistema.</legend>
+            <div align="center">
+            <com:TLabel ID="lbl_num_registros" Visible="false" Text="0"/>
+            <com:XActiveDataGrid
+                ID="DataGrid"
+                AllowPaging="true"
+                Width="60%"
+                PageSize="20"
+                PagerStyle.Mode="Numeric"
+                PagerStyle.HorizontalAlign="Center"
+                CellPadding="0"
+                CellSpacing="0"
+                GridLines="Both"
+                HeaderStyle.BackColor="#29166F"
+                HeaderStyle.ForeColor="white"
+                ItemStyle.BackColor="#BFCFFF"
+                ItemStyle.BorderColor="white"
+                DataKeyField="id"
+                OnItemDataBound="formato"
+                AlternatingItemStyle.BackColor="#E6ECFF"
+                OnPageIndexChanged="changePage"
+                OnPagerCreated="pagerCreated"
+                AutoGenerateColumns="false"
+                ForeColor="black"
+                BorderColor="black"
+                EmptyTemplate="<div style='font-size:14px;
+                                       color:#FF0000;
+                                       height:100px;
+                                       font-weight:bold;
+                                       vertical-align:middle;
+                                       padding-top:40px;'>
+                            <br>Listado de Paises. <br><br>
+                            No existen datos suficientes para realizar el listado.</div>"
+                >
+                    <com:XActiveBoundColumn
+                    ID="cod_rango_actuacion"
+                    HeaderStyle.Width="80px"
+                    HeaderText="C&oacute;digo"
+                    DataField="cod_rango_actuacion"
+                    ItemStyle.HorizontalAlign="Center"
+                    />
+
+                    <com:XActiveBoundColumn
+                    ID="descripcion"
+                    HeaderText="Descripcion"
+                    DataField="descripcion"
+                    />
+                <com:XActiveTemplateColumn
+                ID="ordenar"
+                HeaderText="Ordenar"
+                HeaderStyle.Width="80px"
+                ItemStyle.HorizontalAlign="Center"
+                >
+                    <prop:ItemTemplate>
+                        <com:TActiveLinkButton ID="sube" CommandParameter="<%# array($this->Parent->DataItem['id'],$this->Parent->DataItem['orden']) %>" Text="<img src='imagenes/iconos/flecha_sube.png' border='0' />" OnClick="Page.subir_click" />
+                        <com:TActiveLinkButton ID="baja" CommandParameter="<%# array($this->Parent->DataItem['id'],$this->Parent->DataItem['orden']) %>" Text="<img src='imagenes/iconos/flecha_baja.png' border='0' />" OnClick="Page.bajar_click" />
+                    </prop:ItemTemplate>
+                </com:XActiveTemplateColumn>
+            </com:XActiveDataGrid>
+            </div>
+    </fieldset>
+</com:TContent>

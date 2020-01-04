@@ -1,0 +1,18 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<fieldset Align="Center" width="80%">
+    <legend>Adjuntar al Memorando</legend>
+    <com:TTable Width="100%"BorderWidth="1" GridLines="Both">
+        <com:TTableRow HorizontalAlign="Center">
+            <com:TTableCell>
+                <com:TFileUpload ID="fu1" OnFileUpload="cargar"/>
+                    <com:TButton ID="b2" Text="cargar"/>
+                        <div align="center" class="div2">
+                            <com:TTextBox ID="t1" TextMode="MultiLine" Rows="8" Columns="40"></com:TTextBox>
+                        </div>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+ </fieldset>
+ </div>    
+</com:TContent>

@@ -1,0 +1,90 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center">
+    <legend>Nuevo Plan Estratégico Institucional.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Año Inicio"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_ano_inicio"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    AutoPostBack="true"
+                    OnCallback="generar_drop_ano_final"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano_inicio"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="Año fin:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:TActiveDropDownList ID="drop_ano_fin"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    AutoPostBack="false"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano_fin"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Título:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_nombre_completo" Columns="50" MaxLength="150"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_nombre_completo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Descripción:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_descripcion" TextMode="MultiLine" Rows="3" Columns="80">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

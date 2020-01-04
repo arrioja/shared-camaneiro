@@ -1,0 +1,19 @@
+/* 
+    Document   : loading.css
+    Created on : 08/04/2009, 10:39:15 AM
+    Author     : capepo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.loading1 {
+	background:url(../../imagenes/iconos/loading.gif) no-repeat 50% 0%;
+	text-align: center;
+	padding-top: 33px;
+	margin: 20px 0px 20px 0px;
+}

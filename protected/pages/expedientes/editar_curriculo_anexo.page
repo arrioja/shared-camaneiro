@@ -1,0 +1,81 @@
+<com:TContent ID="cuerpo">
+    <com:TTextBox ID="oculto" visible="false"/>
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+        <legend>Modificar Curriculo / Anexo</legend>        
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">Curso</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t1"></com:TTextBox>                        
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">Fecha Inicio</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="fecha1"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>                        
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">Fecha Final</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="fecha2"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Horas</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t2"></com:TTextBox>                        
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Tipo</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TRadioButtonList RepeatColumns="4" ID="rb1">
+                            <com:TListItem Value="administrativo" Text="Administrativo"/>
+                            <com:TListItem Value="operativo" Text="Operativo"/>
+                            <com:TListItem Value="directivo" Text="Directivo"/>
+                        </com:TRadioButtonList>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Ponente / Participante</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TRadioButtonList RepeatColumns="4" ID="rb2">
+                            <com:TListItem Value="ponente" Text="Ponente"/>
+                            <com:TListItem Value="participante" Text="Participante"/>
+                        </com:TRadioButtonList>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Documento</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TFileUpload ID="fu1" OnFileUpload="cargar">                            
+                        </com:TFileUpload>
+                        <com:TTextBox ID="t3" ReadOnly="true" visible="false"></com:TTextBox>
+                    </com:TTableCell>                    
+                </com:TTableRow>                                
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                       <com:TButton CommandParameter="<%# array($this->Parent->DataItem['cedula']) %>" Text="Guardar" OnClick="guardar" ValidationGroup="grupo1"></com:TButton>
+                       <com:TButton CommandParameter="<%# array($this->Parent->DataItem['cedula']) %>" Text="volver" OnClick="page.volver_curriculo_anexo"></com:TButton>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

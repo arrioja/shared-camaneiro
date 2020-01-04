@@ -1,0 +1,61 @@
+<%@ MasterClass="Application.layouts.solo_login.solo_login"%>
+<com:TContent ID="cuerpo">
+<br>
+<br>
+<br>
+<br>
+<div class="xsnazzy" align="center">
+	<b class="xtop"><b class="xb1"></b><b class="xb2 color_b"></b><b class="xb3 color_b"></b><b class="xb4 color_b"></b></b>
+	<div class="xboxcontent">
+<h1 class="color_b">Autenticaci&oacute;n de usuario</h1>
+  <table width="498" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="24%" rowspan="5" align="center">
+            <com:TImage ImageUrl="imagenes/botones/password.png" Height="128" Width="128"></com:TImage>
+</td>
+
+    </tr>
+    <tr>
+      <td width="12%"><strong>Login:</strong></td>
+      <td width="64%" class="datos_login">
+          <com:TTextBox ID="txt_login" Columns="30" MaxLength="30">
+          </com:TTextBox>
+        <com:TRequiredFieldValidator ID="val_txt_login"
+            ControlToValidate="txt_login"
+            ErrorMessage="Valor Requerido."
+            Display="Dynamic"/>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Clave:</strong></td>
+      <td class="datos_login">
+          <com:TTextBox ID="txt_password" Columns="30" MaxLength="30" TextMode="Password">
+          </com:TTextBox>
+            <com:TCustomValidator
+                ControlToValidate="txt_password"
+                ErrorMessage="La clave es incorrecta."
+                Display="Dynamic"
+                OnServerValidate="valida_usuario" />
+
+        <com:TRequiredFieldValidator ID="val_txt_password"
+            ControlToValidate="txt_password"
+            ErrorMessage="Valor Requerido."
+            Display="Dynamic"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><div align="right">
+        <com:TButton ID="btn_login"
+            Text="Aceptar"
+            OnClick="btn_login_click"/>
+      </div></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center" class="datos_login"><div align="justify">Coloque su nombre de usuario y clave, luego haga click en el bot&oacute;n &quot;ACEPTAR&quot;.</div></td>
+    </tr>
+  </table>
+	</div>
+	<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+</div>
+<br>
+</com:TContent>

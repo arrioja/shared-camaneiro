@@ -1,0 +1,160 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Asignaciones del Cargo</legend>
+          <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+          <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Cargo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3" HorizontalAlign="Left">
+                 <com:TActiveLabel ID="lbl_cargo"/>
+            </com:TTableCell>
+        </com:TTableRow>
+          <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b">Datos Asignacion</com:TTableCell>
+          </com:TTableRow>
+          <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Tipo:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+            <com:TActiveDropDownList 
+            ID="drop_tipo"
+           
+            OnSelectedIndexChanged="cargar_descripcion"
+            ValidationGroup="1" >
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+            </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_tipo"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+
+<com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Descripción:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+            <com:TActiveDropDownList 
+            ID="drop_descripcion"
+            AutoPostBack="true"
+            DataTextField="descripcion"
+            DataValueField="id">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_descripcion"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+        </com:TTableRow>
+  
+
+
+          <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Monto Bs.:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3" HorizontalAlign="Left">
+                <com:TActiveTextBox ID="txt_monto"
+                    Columns="15"/>
+                <com:TRequiredFieldValidator ID="val_monto"
+                    ControlToValidate="txt_monto"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+        </com:TTableRow>
+            <com:TTableRow >
+                 <com:TTableCell ColumnSpan="4" HorizontalAlign="Right">
+                    <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"
+                    ValidationGroup="2"/>&nbsp;&nbsp;&nbsp;<com:TButton ID="btn_cancelar"
+                    Text="Cancelar"
+                    CausesValidation="False"
+                    OnClick="btn_cancelar_click"/>
+                 </com:TTableCell>
+                 </com:TTableRow>
+                 <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b">Listado de Asignaciones</com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+                        <div align="center" class="div4">
+                        <com:XActiveDataGrid
+                            Width="100%"
+                            CellSpacing="0"
+                            CellPadding="2"
+                            ID="DataGrid"
+                            DataKeyField="id"
+                            AutoGenerateColumns="false"
+                            HeaderStyle.BackColor="#29166F"
+                            HeaderStyle.ForeColor="white"
+                            ItemStyle.BackColor="#BFCFFF"
+                            ItemStyle.BorderColor="white"
+                           	AlternatingItemStyle.BackColor="#E6ECFF"
+                            EditItemStyle.BackColor="lightyellow"
+                            OnItemCreated="itemCreated"
+                            OnItemDataBound="nuevo_item"
+                            OnEditCommand="editItem"
+                            OnUpdateCommand="saveItem"
+                            OnCancelCommand="cancelItem"
+                            OnDeleteCommand="deleteItem"
+                            EmptyTemplate="<div style='font-size:14px;
+                            color:#FF0000;
+                            font-weight:bold;
+                            vertical-align:middle;
+                            padding-top:40px;'>
+                            No existen Asignaciones.</div>">
+                            <com:XActiveBoundColumn
+                                HeaderText="id"
+                                DataField="id"
+                                visible="false"/>
+                                <com:XActiveDropDownListColumn
+                                ID="tipo"
+                                HeaderText="Tipo"
+                                DataTextField="tipo"
+                                ItemStyle.HorizontalAlign="Center"
+                                HeaderStyle.Width="70px">
+                                    <com:TListItem Value="DEBITO" Text="DEBITO" />
+                                    <com:TListItem Value="CREDITO" Text="CREDITO" />
+                                </com:XActiveDropDownListColumn>
+                                 <com:XActiveBoundColumn
+                                ID="denominacion"
+                                HeaderText="Descripción"
+                                DataField="denominacion"
+                                ItemStyle.HorizontalAlign="Left"/>
+                                <com:XActiveBoundColumn
+                                ID="monto"
+                                HeaderText="Monto"
+                                DataField="monto"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveEditCommandColumn
+                                HeaderText="Editar"
+                                HeaderStyle.Width="50px"
+                                UpdateText="Guardar"
+                                ItemStyle.HorizontalAlign="Center"
+                                ItemStyle.Font.Italic="false"
+                                CancelText="Cancelar"
+                                EditText="Editar"/>
+                                <com:XActiveButtonColumn
+                                ID="Borrar"
+                                HeaderText="Borrar"
+                                HeaderStyle.Width="50px"
+                                ItemStyle.HorizontalAlign="Center"
+                                ItemStyle.Font.Italic="false"
+                                Text="Borrar"
+                                CommandName="delete"/>
+                        </com:XActiveDataGrid>
+                        
+                        </div>
+                    </com:TTableCell>
+                </com:TTableRow>
+                
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

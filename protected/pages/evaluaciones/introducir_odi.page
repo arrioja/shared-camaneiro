@@ -1,0 +1,41 @@
+<!--modulo de incluir odis en la evaluacion -->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Itroducir Codigo/Descripcion del O.D.I.</h1>
+    <table align="center" border="1">
+        <tr>
+            <td>descripcion</td>
+            <td>codigo</td>
+        </tr>
+        <tr>
+            <td>
+                <com:TTextBox ID="t_descripcion" textmode="MultiLine"/>
+            </td>
+            <td align="center">
+                <com:TTextBox ID="t_codigo"/>
+                <br></br>
+                <com:TButton ID="button1" Text="guardar" OnClick="guardar_datos"/>
+            </td>
+        </tr>
+    </table>
+    <hr align="center" width="50%"></hr>
+    <br></br>
+    <div align="center" class="div1">
+        <com:TDataGrid
+        ID="datagrid1"
+        GridLines="Both"
+        Caption="odis introducidos"
+        HeaderStyle.BackColor="black"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        ItemStyle.Font.Italic="true"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        AutoGenerateColumns="false"
+        OnDeleteCommand="eliminar">
+            <com:TBoundColumn ID="id" DataField="id" HeaderText="id"></com:TBoundColumn>
+            <com:TBoundColumn DataField="codigo" HeaderText="código"></com:TBoundColumn>
+            <com:TBoundColumn DataField="descripcion" HeaderText="descripcion"></com:TBoundColumn>
+            <com:TButtonColumn ID="borra" HeaderText="borrar" Text="borrar" CommandName="delete"></com:TButtonColumn>
+        </com:TDataGrid>
+    </div>
+</com:TContent>

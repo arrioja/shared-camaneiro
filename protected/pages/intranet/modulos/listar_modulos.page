@@ -1,0 +1,88 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="95%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+
+	OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    Caption="Listado de M&oacute;dulos del Sistema"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de M&oacute;dulos. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+		<com:TBoundColumn
+		ID="cod"
+		HeaderText="C&oacute;digo"
+		HeaderStyle.Width="80px"
+		DataField="codigo_modulo"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:TBoundColumn
+		ID="nombre_corto"
+		HeaderText="Nombre Corto"
+		DataField="nombre_corto"
+		/>
+
+		<com:TBoundColumn
+		ID="nombre"
+		HeaderText="Nombre Largo"
+		DataField="nombre_largo"
+		/>
+		<com:TBoundColumn
+		ID="archivo"
+		HeaderText="Archivo"
+		HeaderStyle.Width="76px"
+		DataField="archivo_php"
+		/>
+    <com:TEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:TButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+</com:TDataGrid>
+</div>
+
+</com:TContent>

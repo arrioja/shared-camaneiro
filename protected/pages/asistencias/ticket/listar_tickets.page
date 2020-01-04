@@ -1,0 +1,150 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="LTB"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Consulta de Tickets.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+           
+           
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Funcionario:"/>
+            </com:TTableCell>
+             <com:TTableCell ColumnSpan="3">
+                <com:TActiveDropDownList ID="drop_cedula"
+                    DataTextField="nombre"
+                    PromptText="Seleccione un Funcionario"
+                    PromptValue="X"
+                    ValidationGroup="2"
+                    OnCallback="consulta_tickets"
+                    DataValueField="cedula" >
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Año:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+             <com:TActiveDropDownList  ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    PromptText="Seleccione"
+                     OnCallback="consulta_tickets"
+                    PromptValue="X" >
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione."
+                    />
+
+            </com:TTableCell>
+ <com:TTableCell CssClass="color_b">
+                <com:TLabel Text="Mes:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_mes"
+                    PromptValue="X"
+                    PromptText="Seleccione"
+                    DataTextField="nombre"
+                OnCallback="consulta_tickets"
+                    DataValueField="mes">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                    <com:TRequiredFieldValidator
+                        ControlToValidate="drop_mes"
+                        InitialValue="X"
+                        Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+    </com:TTable>
+</fieldset>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="93%"
+    AllowPaging="false"
+
+
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+    HeaderStyle.Font.Size = "12px"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="Black"
+    ItemStyle.Font.Size = "12px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="formatear"
+    ForeColor="black"
+    Caption="Listado de Tickets Agregados o Disminuidos"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+               color:#FF0000;
+               height:100px;
+               font-weight:bold;
+               vertical-align:middle;
+               padding-top:40px;'>
+    No existen datos para generar el reporte.</div>"
+    >
+
+	
+<com:XActiveBoundColumn
+        ID="id"
+        DataField="id"
+        HeaderText="Codigo"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="20px" Visible="false"/>
+<com:XActiveBoundColumn
+        ID="cantidad"
+        DataField="cantidad"
+        HeaderText="Cantidad"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="20px"/>
+<com:XActiveBoundColumn
+        ID="tipo"
+        DataField="tipo"
+        HeaderText="Tipo"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="40px"/>
+<com:XActiveBoundColumn
+        ID="motivo"
+        DataField="motivo"
+        HeaderText="Motivo"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="500px"/>
+
+        <com:XActiveTemplateColumn
+		ID="detalle"
+		HeaderText="Acción"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="100px"
+		>
+            <prop:ItemTemplate>
+                <com:TActiveLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img src='imagenes/iconos/rechazar.png' border='0' />" ToolTip="Eliminar" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de Eliminarlo?')) return false;"  OnClick="Page.eliminar_click"/>
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+
+</com:XActiveDataGrid>
+
+<br>
+<div class="notas_y_leyendas">
+</div>
+</div>
+</com:TContent>

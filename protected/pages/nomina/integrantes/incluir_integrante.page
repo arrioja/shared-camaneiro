@@ -1,0 +1,230 @@
+<com:TContent ID="cuerpo">
+<style type="text/css">
+<!--
+.acomplete { position: relative; z-index: 5; background-color: #EDF5FF; border: 1px solid #243356; }
+.acomplete ul, .acomplete li { margin: 0px; padding: 0px; list-style: none; color: #333; }
+.acomplete li { padding: 4px; border-top: 1px solid #ccc; }
+.acomplete .selected { background-color: #ffc; }
+-->
+</style>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Inclusi&oacute;n de Personas en N&oacute;mina.</legend>
+
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                        Persona
+                        <com:TDropDownList
+                            ID="drop_persona"
+                            PromptText="seleccione"
+                            AutoPostBack="true"
+                            DataTextField="nombre"
+                            OnSelectedIndexChanged="validar_cedula"
+                            DataValueField="cedula"
+                             ValidationGroup="1">
+                        </com:TDropDownList>
+                    </com:TTableCell>
+                </com:TTableRow>
+
+              <com:TTableRow>
+                <com:TTableCell ColumnSpan="4" >&nbsp; </com:TTableCell>
+              </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b"><b>Datos Cargo</b></com:TTableCell>
+                </com:TTableRow>
+
+
+          <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Denominación:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+               <com:TAutoComplete
+                        ID="txt_denominacion"
+                        OnSuggest="cargo_sugeridos"
+                        OnSuggestionSelected="cargo_selecionado"
+                        Separator=","
+                        ResultPanel.CssClass="acomplete"
+                        Suggestions.DataKeyField="id" Columns="40" >
+
+                            <prop:Suggestions.ItemTemplate>
+                            <li><%# $this->Data['nombre'] %></li>
+                            </prop:Suggestions.ItemTemplate>
+                        </com:TAutoComplete>
+<com:TActiveLabel ID="lbl_denominacion"   Display="Hidden" />
+                <com:TRequiredFieldValidator ID="val_denominacion"
+                    ControlToValidate="txt_denominacion"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+<com:TTableRow BorderWidth="1">
+                        <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+               <com:TLabel Text="Condicion:" />
+            </com:TTableCell>
+            <com:TTableCell >
+                <com:TActiveDropDownList ID="drop_condicion">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Fijo" Text="Fijo" />
+                  <com:TListItem Value="Contratado" Text="Contratado" />
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_condicion"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic" ValidationGroup="2"/>
+
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Resolucion o Contrato Nº:" />
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveTextBox ID="txt_res_con" Columns="6" />
+                <com:TRequiredFieldValidator ID="val_res_con"
+                    ControlToValidate="txt_res_con"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+
+        </com:TTableRow>
+
+
+          <com:TTableRow BorderWidth="1">
+
+<com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Fecha Ingreso:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDatePicker ID="txt_fecha_in" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    OnCallback="cargar_dir"
+                    FromYear="1969"
+                    UpToYear="<%= @date('Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_in"
+                    ControlToValidate="txt_fecha_in"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Ubicacion:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+           <com:TActiveDropDownList
+                            ID="drop_ubicacion"
+                            AutoPostBack="true"
+                            DataTextField="nombre"
+                            DataValueField="id"
+                             ValidationGroup="1">
+                                  <com:TListItem Value="N/A" Text="Seleccione" />
+                        </com:TActiveDropDownList>
+
+            </com:TTableCell>
+
+        </com:TTableRow>
+
+
+
+ <com:TTableRow>
+    <com:TTableCell ColumnSpan="4" >&nbsp; </com:TTableCell>
+  </com:TTableRow>
+
+  <com:TTableRow>
+    <com:TTableCell ColumnSpan="4" CssClass="color_b"><b>Datos Nomina</b></com:TTableCell>
+  </com:TTableRow>
+
+ <com:TTableRow>
+ <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Codigo:"/>
+            </com:TTableCell>
+<com:TTableCell>
+               <com:TTextBox ID="txt_codigo" Columns="4"/>
+ <com:TRequiredFieldValidator ID="val_codigo"
+                    ControlToValidate="txt_codigo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+        <!--solo enteros-->
+        <com:TDataTypeValidator
+            ControlToValidate="txt_codigo"
+            DataType="Integer"
+            Text="S&oacute;lo Enteros"
+            Display="Dynamic"
+            ValidationGroup="2"/>
+        <!--solo 4 digitos para el código -->
+        <com:TRegularExpressionValidator
+            ControlToValidate="txt_codigo"
+            RegularExpression="\d{4}"
+            Text="el c&oacute;digo debe ser de 4 d&iacute;gitos"
+            Display="Dynamic"
+            ValidationGroup="2"/>
+        <!--verifica en la bd por el codigo-->
+        <com:TCustomValidator ControlToValidate='txt_codigo'
+              OnServerValidate='check_codigo'
+              Text='C&oacute;digo Existente, Por Favor C&aacute;mbielo!'
+              Display='Dynamic'
+              ValidationGroup="2"/>
+            </com:TTableCell>
+
+ <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Años de Servicio:"/>
+            </com:TTableCell>
+         <com:TTableCell>
+<com:TTextBox ID="txt_anos" Columns="10"/>
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_anos"
+            ErrorMessage="Requerido"
+            Display="Dynamic"
+            ValidationGroup="2"/>
+            <com:TDataTypeValidator
+            ControlToValidate="txt_anos"
+            DataType="Integer"
+            Text="S&oacute;lo Enteros"
+            Display="Dynamic"
+            ValidationGroup="2"/>
+         </com:TTableCell>
+ </com:TTableRow>
+
+
+<com:TTableRow>
+ <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Pago en Banco:"/>
+            </com:TTableCell>
+<com:TTableCell>
+ <com:TDropDownList ID="cmb_pago">
+            <com:TListItem Text="S&iacute;" Value="1" />
+            <com:TListItem Text="No" Value="0" />
+        </com:TDropDownList>
+</com:TTableCell>
+ <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Tipo de Nomina:"/>
+            </com:TTableCell>
+<com:TTableCell>
+
+ <com:TDropDownList ID="cmb_nomina"
+        DataValueField="tipo_nomina"
+        DataTextField="tipo_nomina"
+        />
+</com:TTableCell>
+ </com:TTableRow>
+
+
+<com:TTableRow>
+    <com:TTableCell ColumnSpan="4"  HorizontalAlign="Right">
+        <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="incluir"
+                    Enabled="False"
+                    ValidationGroup="2"/></com:TTableCell>
+  </com:TTableRow>
+
+            </com:TTable>
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+</fieldset>
+</div>
+</com:TContent>
+

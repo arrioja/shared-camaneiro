@@ -1,0 +1,185 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="LTB"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Inclusi&oacute;n de Personas.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both"  >
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="C&eacute;dula:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_cedula" Columns="10" AutoPostBack="false"/>
+                <com:TButton Text="Comprobar" ValidationGroup="1"/>
+                <com:TCustomValidator
+                    ControlToValidate="txt_cedula"
+                    ValidationGroup="1"
+                    OnServerValidate="validar_cedula"
+                    FocusOnError="true"
+                    Text="La C&eacute;dula existe." />
+                <com:TRequiredFieldValidator ID="val_cedula"
+                    ControlToValidate="txt_cedula"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Nombre:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_nombre" 
+                    Columns="50"
+                    ValidationGroup="1"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_nombre"
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Apellido:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_apellido"
+                    ValidationGroup="1"
+                    Columns="50"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_apellido"
+                    ControlToValidate="txt_apellido"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Fecha Nacimiento:" />
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDatePicker ID="txt_fecha_nac" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    FromYear="1930"
+                    UpToYear="<%= @date('Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_nac"
+                    ControlToValidate="txt_fecha_nac"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b" Visible="False">
+                <com:TLabel Text="Imagen:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+              
+            <com:TFileUpload OnFileUpload="fileUploaded" Visible="False" />
+            <com:TActiveButton Text="Upload" Visible="False"/>
+            <com:TLabel ID="Result" />
+            </com:TTableCell>
+        </com:TTableRow>
+  <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Lugar Nacimiento:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_lugar_nac" Columns="50"/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right"  CssClass="color_b">
+                <com:TLabel Text="Sexo:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="drop_sexo"  ValidationGroup="1">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Masculino" Text="Masculino" />
+                  <com:TListItem Value="Femenino" Text="Femenino" />
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_sexo"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic"
+                    />
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right"  CssClass="color_b">
+                <com:TLabel Text="Estado Civil:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="drop_estado_civil"  ValidationGroup="1">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="SOLTERO" Text="Soltero(a)" />
+                  <com:TListItem Value="CASADO" Text="Casado(a)" />
+                  <com:TListItem Value="DIVORCIADO" Text="Divorciado(a)" />
+                  <com:TListItem Value="VIUDO" Text="Viudo(a)" />
+                  <com:TListItem Value="CONCUBINATO" Text="Contubinato" />
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_estado_civil"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Profesi&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_profesion" Columns="30"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Grado de Instrucci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_grado_instruccion" Columns="30"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Tel&eacute;f. Hab.:" />
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:MaskedTextBox ID="txt_telefono_hab" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Tel&eacute;f. Cel:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:MaskedTextBox ID="txt_telefono_cel" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Direcci&oacute;n. Hab.:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_direccion" TextMode="MultiLine" Rows="6" Columns="80">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_limpiar"
+                    Text="Limpiar"
+                    OnClick="btn_limpiar_click"/>
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                   
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

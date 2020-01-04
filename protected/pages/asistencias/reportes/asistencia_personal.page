@@ -1,0 +1,182 @@
+<com:TContent ID="cuerpo">
+
+<com:MensajeDiv ID="cargando"/>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+      
+    <legend >Reporte de Asistencia Personal.</legend>
+  <div align="center">
+    <com:TTable BorderWidth="1" GridLines="Both"  >
+        <com:TTableRow BorderWidth="1"  >
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right" visible="false">
+                <com:TLabel Text="C&eacute;dula:"  />
+            </com:TTableCell>
+            <com:TTableCell visible="false">
+                <com:TLabel ID="lbl_cedula""/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Desde:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDatePicker ID="txt_fecha_desde"  Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    FromYear="2007"
+                    UpToYear="<%= @date('Y')+1 %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_desde"
+                    ControlToValidate="txt_fecha_desde"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+
+            </com:TTableCell>
+
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Hasta:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDatePicker ID="txt_fecha_hasta"  Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    FromYear="2007"
+                    UpToYear="<%= @date('Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_hasta"
+                    ControlToValidate="txt_fecha_hasta"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+
+            </com:TTableCell>
+
+
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Consultar"
+                    OnClick="consulta_asistencia">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_asistencia">
+                </com:TButton> 
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</div>
+</br>
+<div align="Center">
+<com:XActiveDataGrid
+	ID="DataGrid"
+	Width="80%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	OnDeleteCommand="eliminar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="nuevo_item"
+    ForeColor="black"
+    Caption="Reporte de Asistencia Diaria"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+               color:#FF0000;
+               height:100px;
+               font-weight:bold;
+               vertical-align:middle;
+               padding-top:40px;'>
+    No existen datos para generar el reporte.</div>"
+    >
+
+	<com:XActiveBoundColumn
+		ID="fecha"
+		HeaderText="Fecha"
+		DataField="fecha"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+        ID="entrada"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="entrada"
+        HeaderText="Entrada"/>
+
+	<com:XActiveBoundColumn
+        ID="salida"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="salida"
+        HeaderText="Salida"/>
+
+	<com:XActiveBoundColumn
+        ID="observacion"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="observacion"
+        Visible = "False"
+        HeaderText="Observacion"/>
+
+</com:XActiveDataGrid>
+
+<br>
+<br>
+<com:TActiveRepeater ID="Repeater" EnableViewState="false">
+    <prop:HeaderTemplate>
+        <table width="100%" border="1" align="center" cellpadding="3" cellspacing="0">
+           <tr class="titulos_formularios" >
+             <td align = "center">
+                 <com:TLabel id="lbl_encabezado" Text="Observaciones a la Asistencia"/>
+             </td>
+           </tr>
+
+    </prop:HeaderTemplate>
+    <prop:ItemTemplate>
+           <tr>
+             <td class="datos_formularios"><div align="justify">
+                <com:TLabel Font.Bold = "true" Text="C&oacute;digo:<%#$this->Data['codigo'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Desde el: <%#$this->Data['fecha_desde'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Hasta el: <%#$this->Data['fecha_hasta'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" de: <%#$this->Data['hora_desde'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" a: <%#$this->Data['hora_hasta'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Tipo: <%#$this->Data['descripcion_tipo_justificacion'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Falta: <%#$this->Data['descripcion_falta'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Motivo:"/> <com:TLabel Text=" <%#$this->Data['observaciones'] %>" />
+                <com:TLabel Font.Bold = "true" Text=" Desc Ticket:"/> <com:TLabel Text=" <%#$this->Data['descuenta_ticket'] %>" />
+             </div></td>
+           </tr>
+    </prop:ItemTemplate>
+    <prop:FooterTemplate>
+        </table>
+    </prop:FooterTemplate>
+</com:TActiveRepeater>
+<br>
+<br>
+    <com:TActiveImage ID="grafico1" ImageUrl=""></com:TActiveImage>
+<br>
+<br>
+    <com:TActiveImage ID="grafico2" ImageUrl=""></com:TActiveImage>
+<br>
+<br>
+    <com:TActiveImage ID="grafico3" ImageUrl=""></com:TActiveImage>
+<br>
+<br>
+    <com:TActiveImage ID="grafico4" ImageUrl=""></com:TActiveImage>
+<br>
+<br>
+    <com:TActiveImage ID="grafico5" ImageUrl=""></com:TActiveImage>
+
+</div >
+</fieldset>
+  
+</div>
+</com:TContent>

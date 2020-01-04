@@ -1,0 +1,51 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <br></br>
+        <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AutoGenerateColumns="false"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        Caption="Listado de Consumibles que pueden Devolverse"
+        ForeColor="black"
+        BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="id"
+            DataField="id"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            HeaderText="idvinculo"
+            DataField="idvinculo"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            HeaderText="Descripcion"
+            DataField="descripcion"/>
+            <com:XActiveBoundColumn
+            ID="cantidad"
+            HeaderText="Cantidad"
+            DataField="cantidad"/>            
+            <com:XActiveBoundColumn
+            HeaderText="Dirección"
+            DataField="nombre_completo"/>
+            <com:XActiveBoundColumn
+            HeaderText="Fecha Entrega"
+            DataField="f_entrega"/>
+            <com:XActiveBoundColumn
+            HeaderText="costo"
+            DataField="costo"/>            
+            <com:XActiveTemplateColumn HeaderText="Devolver">
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id'], $this->Parent->DataItem['costo'], $this->Parent->DataItem['cantidad'], $this->Parent->DataItem['idvinculo']) %>" Text="devolver" OnClick="page.devol"></com:TLinkButton>
+            </prop:ItemTemplate>
+            </com:XActiveTemplateColumn>
+        </com:XActiveDataGrid>
+    </div>
+</com:TContent>

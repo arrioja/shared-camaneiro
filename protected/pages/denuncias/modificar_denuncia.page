@@ -1,0 +1,66 @@
+<com:TContent ID="cuerpo">
+    <div align="center">        
+        <fieldset Align="Center" width="80%">
+            <legend>Modificar Actuación</legend>
+            <com:XActiveDataGrid
+            ID="dg1"
+            Width="90%"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            OnItemDataBound="nuevo_item"
+            AutoGenerateColumns="false"
+            Caption="Listado de Actuaciones"
+            ForeColor="black"
+            BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="id"
+            DataField="id"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            ID="numero"
+            HeaderText="numero"
+            DataField="numero"/>
+            <com:XActiveBoundColumn
+            id="fecha"
+            HeaderText="fecha"
+            DataField="fecha"/>
+            <com:XActiveBoundColumn
+            HeaderText="denunciantes"
+            DataField="denunciantes"/>
+            <com:XActiveBoundColumn
+            HeaderText="motivo"
+            DataField="motivo"/>
+            <com:XActiveBoundColumn
+            HeaderText="ubicacion"
+            DataField="ubicacion"/>
+            <com:XActiveBoundColumn
+            HeaderText="organismos"
+            DataField="organismos"/>
+            <com:XActiveBoundColumn
+            HeaderText="consignados"
+            DataField="documentos_consignados"/>
+            <com:XActiveBoundColumn
+            HeaderText="limitaciones"
+            DataField="limitaciones"/>
+            <com:XActiveBoundColumn
+            HeaderText="estado"
+            DataField="estado"/>
+            <com:XActiveBoundColumn
+            HeaderText="observacion"
+            DataField="observacion"/>
+            <com:XActiveTemplateColumn HeaderText="editar">
+                <prop:ItemTemplate>
+                    <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="editar" OnClick="page.editar_seleccion"></com:TLinkButton>
+                </prop:ItemTemplate>
+            </com:XActiveTemplateColumn>
+        </com:XActiveDataGrid>
+        </fieldset>
+    </div>
+</com:TContent>

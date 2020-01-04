@@ -1,0 +1,220 @@
+<%@ Title="N&oacute;mina - Insertar Nueva Cuenta Bancaria" %>
+
+<com:TContent ID="cuerpo">
+<div align="center"><com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" /></div>
+<h1 align="center">Cuentas Bancarias</h1>
+<!--<com:TValidationSummary
+	Display="Dynamic"
+	ValidationGroup="constante" />-->
+<table align="center" border="1" width="60%" >
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right" class="titulos_formularios">
+        <span>Nombre del Banco:</span>
+     </td>
+     <td HorizontalAlign="Left">
+  <com:TDropDownList ID="drop_bancos"
+                    DataTextField="nombre"
+                    DataValueField="id"
+                    AutoPostBack="True"
+                    PromptText="Seleccione un Banco"
+                    ValidationGroup="55"
+                    OnSelectedIndexChanged="carga_cuentas_bancarias"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_bancos"
+                    InitialValue="X"
+                    ErrorMessage="Seleccione un Banco"
+                    FocusOnError="True"
+                    Display="Dynamic"/>
+     </td>
+ </tr>
+ <tr BorderWidth="1">
+<td  Align="center" class="titulos_formularios">
+    Tipo de Cuenta:
+</td>
+     <td  Align="Left">
+
+        <com:TDropDownList ID="drop_tipo_cuenta">
+            <com:TListItem Text="AHORRO" Value="AHORRO" /><!--HACERLO CONTRA UNA bd-->
+            <com:TListItem Text="CORRIENTE" Value="CORRIENTE" />
+        </com:TDropDownList>
+     </td>
+</tr>
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right" class="titulos_formularios">
+        <span>N&uacute;mero:</span>
+     </td>
+     <td HorizontalAlign="Left">
+         <com:TTextBox ID="txt_numero"  Columns="25"/>
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_numero"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+     </td>
+    <com:TRegularExpressionValidator
+            ControlToValidate="txt_numero"
+            RegularExpression="^[0-9]+$"
+            Text="debe contener s&oacute;lo Números"
+            Display="Dynamic"/>
+ </tr>
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right" class="titulos_formularios">
+        <span>Fecha de Apertura:</span>
+     </td>
+     <td HorizontalAlign="Left">
+         <com:TDatePicker ID="txt_fecha_apertura"  Columns="10" DateFormat="dd/MM/yyyy" Culture="es"/>
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_fecha_apertura"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+     </td>
+ </tr>
+
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right" class="titulos_formularios">
+        <span>Saldo:</span>
+     </td>
+     <td HorizontalAlign="Left">
+         <com:TTextBox ID="txt_saldo"  Columns="10"/>
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_saldo"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+     </td>
+ </tr>
+
+ <tr BorderWidth="1">
+     <td  Align="center" colspan="2">
+        <com:TButton Text="Guardar" OnClick="guardar_cuenta" />
+        <com:TButton Text="Cancelar" ValidationGroup="55" OnClick="cancelar"/>
+        
+     </td>
+</tr>
+
+</table>
+<div align="center">
+<com:XActiveDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="24"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+    OnItemDataBound="formatear"
+    Caption="Listado de Cuentas Bancarias"
+    ShowFooter="true"
+    EmptyTemplate="<div style='font-size:14px;
+                                           color:#FF0000;
+                                           height:100px;
+                                           font-weight:bold;
+                                           vertical-align:middle;
+                                           align:center;
+                                           padding-top:20px;'>
+                                No hay Cuentas Bancarias incluídas.</div>"
+  >
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+
+		<com:XActiveBoundColumn
+		ID="id_banco"
+		HeaderText="id Banco"
+		DataField="cedula"
+		HeaderStyle.Width="80px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="numero_cuenta"
+		HeaderText="Número de Cuenta"
+		HeaderStyle.Width="200px"
+		DataField="nombres"
+		ItemStyle.HorizontalAlign="Left"
+        ReadOnly="True"
+		/>
+
+        <com:XActiveBoundColumn
+		ID="fecha_apertura"
+		HeaderText="Apellidos"
+		HeaderStyle.Width="200px"
+		DataField="fecha_apertura"
+		ItemStyle.HorizontalAlign="Center"
+        ReadOnly="True"
+		/>
+        <com:XActiveBoundColumn
+		ID="tipo_cuenta"
+		HeaderText="Tipo de Cuenta"
+		HeaderStyle.Width="30px"
+		DataField="tipo_cuenta"
+		ItemStyle.HorizontalAlign="Center"
+		/>
+        <com:XActiveBoundColumn
+		ID="saldo"
+		HeaderText="Saldo"
+		HeaderStyle.Width="30px"
+		DataField="saldo"
+		ItemStyle.HorizontalAlign="Center"
+		/>
+        <com:XActiveTemplateColumn
+		ID="banco"
+		HeaderText="Banco"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>"   Text="<img src='imagenes/iconos/banco.png' border='0' />" OnClick="Page.go" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+        <com:XActiveTemplateColumn
+		ID="pagos"
+		HeaderText="Pagos"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['cedula'] %>"   Text="<img src='imagenes/iconos/money.png' border='0' />" OnClick="Page.pagos" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:XActiveButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

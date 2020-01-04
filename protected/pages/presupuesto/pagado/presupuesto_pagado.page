@@ -1,0 +1,62 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br></br>
+    <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        PagerStyle.HorizontalAlign="Center"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        AutoGenerateColumns="false"
+        ForeColor="black"
+        BorderColor="black"
+	>        
+        <com:XActiveBoundColumn
+		ID="umero"
+		HeaderText="numero"
+		DataField="numero"
+		/>
+        <com:XActiveBoundColumn
+		ID="fecha"
+		HeaderText="fecha"
+		DataField="fecha"
+		/>
+        <com:XActiveBoundColumn
+		ID="beneficiario"
+		HeaderText="beneficiario"
+		DataField="nombre"
+		/>
+        <com:XActiveBoundColumn
+		ID="total"
+		HeaderText="total"
+		DataField="monto_total"
+		/>
+        <com:XActiveBoundColumn
+		ID="pendiente"
+		HeaderText="pendiente"
+		DataField="monto_pendiente"
+		/>
+        <com:XActiveBoundColumn
+		ID="reverso"
+		HeaderText="reverso"
+		DataField="monto_reversos"
+		/>
+        <com:XActiveTemplateColumn HeaderText="opcion">
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id'], $this->Parent->DataItem['numero']) %>" Text="pagar" OnClick="page.pagar_item"></com:TLinkButton>
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+    </com:XActiveDataGrid>
+<!--****************************************************** -->
+    
+<!--****************************************************** -->
+    
+</div>
+</com:TContent>

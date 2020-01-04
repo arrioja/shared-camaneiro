@@ -1,0 +1,184 @@
+<!--modulo que calcula la evaluacion a una determinada persona -->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Calculo de Evaluacion</h1>
+    <!--muestra la tabla con los controles de seleccion de datos-->
+    <table align="center" border="1">
+        <tr>            
+            <td>Cedula del Evaluador</td>
+            <td>Cedula del Supervisor</td>            
+            <td>Cedula del Evaluado</td>
+            <td>tipo empleado</td>
+            <td>codigo de evaluacion</td>
+            
+        </tr>
+        <tr>            
+            <td>
+                <com:TTextBox
+                ID="text_ced_evaluador"
+                ReadOnly="true">
+                </com:TTextBox>
+            </td>
+            <td>
+                <com:TDropDownList
+                ID="drop_ced_supervisor"
+                PromptText="Cedula"
+                DataTextField="cedula"
+                DataValueField="cedula">
+                </com:TDropDownList>
+            </td>            
+            <td>
+                <com:TDropDownList
+                ID="drop_ced_evaluado"
+                PromptText="Cedula"
+                DataTextField="cedula"
+                DataValueField="cedula"
+                AutoPostBack="true"
+                OnTextChanged="pasar_cedula">
+                </com:TDropDownList>
+            </td>
+            <td>
+                <com:TTextBox
+                ID="t_tipoempleado"
+                ReadOnly="true">
+                </com:TTextBox>
+            </td>
+            <td>
+                <com:TDropDownList
+                ID="drop_codigo"
+                PromptText="Evaluación"
+                DataTextField="codigo"
+                DataValueField="codigo"
+                AutoPostBack="true"
+                OnTextChanged="cargar_datos_odi">
+                </com:TDropDownList>
+            </td>
+            
+        </tr>
+    </table>
+    <br></br>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <com:TDataGrid
+                Caption="evaluacion de O.D.I."
+                ID="datagrid_odi"
+                GridLines="Both"
+                HeaderStyle.BackColor="black"
+                HeaderStyle.ForeColor="white"
+                ItemStyle.BackColor="#BFCFFF"
+                ItemStyle.BorderColor="white"
+                ItemStyle.Font.Italic="true"
+                AlternatingItemStyle.BackColor="#E6ECFF"
+                AutoGenerateColumns="false"
+                OnEditCommand="editar"
+                OnCancelCommand="cancelar"
+                OnUpdateCommand="guardar">
+                    <com:TBoundColumn ID="id" HeaderText="id" DataField="id" ReadOnly="true" Visible="false"/>
+                    <com:TBoundColumn ID="descripcion" HeaderText="objetivos de desempeño individual (O.D.I.)" DataField="descripcion" ReadOnly="true"/>
+                    <com:TBoundColumn ID="peso" HeaderText="peso" DataField="peso_odi" ReadOnly="true"/>
+                    <com:TDropDownListColumn ID="desempeno" HeaderText="desempeño" DataTextField="promedio">
+                        <com:TListItem Value="0"/>
+                        <com:TListItem Value="1"/>
+                        <com:TListItem Value="2"/>
+                        <com:TListItem Value="3"/>
+                        <com:TListItem Value="4"/>
+                        <com:TListItem Value="5"/>
+                    </com:TDropDownListColumn>
+                    <com:TBoundColumn ID="pesoxrango" HeaderText="pesoXrango" DataField="pesoxrango" ReadOnly="true"/>
+                    <com:TEditCommandColumn ID="opciones" HeaderText="opciones" UpdateText="guardar" EditText="editar" CancelText="cancelar"/>
+                </com:TDataGrid>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <com:TButton  ID="button1" Text="guardar" OnClick="vaciartemp"></com:TButton>
+                <com:TButton  ID="button2" Text="competencias" OnClick="evaluar_competencias" Enabled="false"></com:TButton>
+            </td>
+        </tr>
+    </table>
+    <br></br>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <com:TDataGrid
+                ID="datagrid_competencia"
+                Caption="evaluacion de competencias"
+                GridLines="Both"
+                HeaderStyle.BackColor="black"
+                HeaderStyle.ForeColor="white"
+                ItemStyle.BackColor="#BFCFFF"
+                ItemStyle.BorderColor="white"
+                ItemStyle.Font.Italic="true"
+                AlternatingItemStyle.BackColor="#E6ECFF"
+                AutoGenerateColumns="false"
+                OnEditCommand="editar2"
+                OnCancelCommand="cancelar2"
+                OnUpdateCommand="guardar2">
+                    <com:TBoundColumn ID="id_comp" HeaderText="id" DataField="id" ReadOnly="true" Visible="false"/>
+                    <com:TBoundColumn ID="desc_comp" HeaderText="competencia" DataField="descripcion" ReadOnly="true"/>
+                    <com:TBoundColumn ID="peso_comp" HeaderText="peso" DataField="peso_competencia"/>
+                    <com:TDropDownListColumn ID="desem_comp" HeaderText="desempeño" DataTextField="desempeno">
+                        <com:TListItem Value="0"/>
+                        <com:TListItem Value="1"/>
+                        <com:TListItem Value="2"/>
+                        <com:TListItem Value="3"/>
+                        <com:TListItem Value="4"/>
+                        <com:TListItem Value="5"/>
+                    </com:TDropDownListColumn>
+                    <com:TBoundColumn ID="pesoxrango_comp" HeaderText="pesoXrango" DataField="pesoxrango" ReadOnly="true"/>
+                    <com:TEditCommandColumn ID="opciones2" HeaderText="opciones" UpdateText="guardar" EditText="editar" CancelText="cancelar"/>
+                </com:TDataGrid>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <com:TButton  ID="button3" Text="guardar" OnClick="vaciartemp2" Enabled="false"></com:TButton>
+                <com:TButton  ID="button4" Text="calificacion" OnClick="calificacion" Enabled="false"></com:TButton>
+            </td>
+        </tr>
+    </table>
+    <br></br>
+    <table align="center" border="1">
+        <tr>
+            <td align="center" colspan="2">calificaciones</td>
+        </tr>
+        <tr>
+            <td>objetivos desempeño individual</td>
+            <td>
+                <com:TTextBox ID="ttotalodi" ReadOnly="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>competencias</td>
+            <td>
+                <com:TTextBox ID="ttotalcompetencia" ReadOnly="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>total</td>
+            <td>
+                <com:TTextBox ID="ttotal" ReadOnly="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">rango de actuación</td>            
+        </tr>
+        <tr>
+            <td colspan="2"><com:TTextBox ID="rangoactuacion" Width="410px" ReadOnly="true"/></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">bservaciones</td>
+        </tr>
+        <tr>
+            <td colspan="2"><com:TTextBox ID="tobservacion" TextMode="MultiLine" Width="410px"/></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <com:TButton  ID="button5" Text="guardar" OnClick="guardarnotas" Enabled="false"></com:TButton>
+            </td>
+        </tr>        
+    </table>
+    <com:TClientScript ID="alerta" Visible="False">
+        alert("error")
+    </com:TClientScript>
+</com:TContent>

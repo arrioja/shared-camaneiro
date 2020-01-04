@@ -1,0 +1,95 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir Día no Laborable.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Día:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="drop_dia">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Si" Text="Si" />
+                  <com:TListItem Value="No" Text="No" />
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_dia"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic"
+                    />
+            </com:TTableCell>
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Mes:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="drop_mes">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Si" Text="Si" />
+                  <com:TListItem Value="No" Text="No" />
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_mes"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic"
+                    />
+            </com:TTableCell>
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Año:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="drop_ano">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Si" Text="Si" />
+                  <com:TListItem Value="No" Text="No" />
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Descripcion:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TTextBox ID="txt_descripcion"
+                    Columns="60"
+                    MaxLength="50"/>
+                <com:TRequiredFieldValidator ID="val_descripcion"
+                    ControlToValidate="txt_descripcion"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                <com:TCustomValidator
+                    ControlToValidate="txt_descripcion"
+                    OnServerValidate="verifica_fecha"
+                    Display="Dynamic"
+                    FocusOnError="true"
+                    Text="La Fecha Seleccionada no es válida." />
+                <com:TCustomValidator
+                    ControlToValidate="txt_descripcion"
+                    OnServerValidate="verifica_existencia"
+                    Display="Dynamic"
+                    FocusOnError="true"
+                    Text="La Fecha ya existe en la Base de Datos." />
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

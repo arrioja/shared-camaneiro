@@ -1,0 +1,116 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+    <br>
+ <fieldset Align="Center" width="80%">
+    <legend>Listado de Artículos</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>          
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    
+                    Text="Imprimir"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="90%"
+    AllowPaging="true"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+    PageSize="20"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="nuevo_item"
+    OnEditCommand="editItem"
+    OnUpdateCommand="saveItem"
+    OnCancelCommand="cancelItem"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de compromisos al presupuesto de gastos. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+		<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="Cod Art&iacute;culo"
+		DataField="cod"
+        HeaderStyle.Width="90px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripcion"
+        HeaderStyle.Width="500px"
+        ItemStyle.HorizontalAlign="Center"
+		DataField="descripcion"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="tipo"
+		HeaderText="Tipo"
+		DataField="tipo"
+        HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="precio"
+		HeaderText="Precio"
+		DataField="precio"
+        HeaderStyle.Width="140px"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+        <com:XActiveTemplateColumn
+        ID="detalle"
+        HeaderText="Acciones"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TActiveLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>"  Text="<img src='imagenes/iconos/link.png' border='0' />" OnClick="Page.actualiza_listado2" ToolTip="Vincular a C&oacute;digo Presupuestario"/>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img alt='Ver' src='imagenes/iconos/imprimir.png' border='0' />" OnClick="Page.imprimir_item" />
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+</com:XActiveDataGrid>
+
+<br>
+
+</div>
+
+</com:TContent>

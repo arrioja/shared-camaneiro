@@ -1,0 +1,24 @@
+<!--modulo que grafica los tipos de actuaciones para una cedula dada  -->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Estadisticas</h1>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <com:TDropDownList
+                ID="drop_cedula"
+                PromptText="cedula"
+DataTextField="cedula"
+                DataValueField="cedula"
+                AutoPostBack="true"
+                OnTextChanged="buscar_datos"
+                />
+            </td>
+        </tr>
+    </table>
+    <div align="center">
+        <com:TActiveImage ID="grafico" ImageUrl="" Height="128" Width="128"></com:TActiveImage>
+        <com:TButton
+        Text="Imprimir"
+        OnClick="imprimir"/>
+    </div>
+</com:TContent>

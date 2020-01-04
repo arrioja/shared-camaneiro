@@ -1,0 +1,129 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+<com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+    <com:TTableRow BorderWidth="1" >
+        <com:TTableCell CssClass="encabezado_formularios" ColumnSpan="2">
+            Usuarios y los Grupos a los que pertenece.
+        </com:TTableCell>
+    </com:TTableRow>
+
+    <com:TTableRow BorderWidth="1">
+        <com:TTableCell CssClass="titulos_formularios">
+            <com:TLabel Text="Usuario:"/>
+        </com:TTableCell>
+        <com:TTableCell CssClass="datos_formularios">
+            <com:TActiveDropDownList ID="drop_usuarios"
+                DataTextField="nombre_completo"
+                AutoPostBack="true"
+                PromptText="Seleccione un Usuario"
+                PromptValue="X"
+                OnCallback="actualiza_listado"
+                ValidationGroup="2"
+                DataValueField="login" >
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+            </com:TActiveDropDownList>
+            <com:TRequiredFieldValidator
+                ControlToValidate="drop_usuarios"
+                InitialValue="X"
+                Text="Seleccione." />
+        </com:TTableCell>
+    </com:TTableRow>
+</com:TTable>
+
+<com:XActiveDataGrid
+	ID="DataGrid_tiene"
+	Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id2"
+	OnDeleteCommand="eliminar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Grupos a los cuales PERTENECE"
+    BorderColor="black">
+
+	<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="C&oacute;digo"
+		HeaderStyle.Width="100px"
+		DataField="codigo"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+        ID="nombre"
+        HeaderStyle.Width="80%"
+        DataField="nombre"
+        HeaderText="Nombre del Grupo"/>
+
+	<com:XActiveButtonColumn
+        HeaderText="Acci&oacute;n"
+        HeaderStyle.Width="50px"
+        ID="quitar_column"
+        ItemStyle.HorizontalAlign="Center"
+        Text="Quitar"
+        CommandName="delete"/>
+
+</com:XActiveDataGrid>
+
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid_no_tiene"
+	Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#FFBFBF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="codigo"
+    OnDeleteCommand="agregar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Grupos a los cuales NO PERTENECE"
+    BorderColor="black">
+    
+
+	<com:XActiveBoundColumn
+		ID="cod2"
+		HeaderText="C&oacute;digo"
+		HeaderStyle.Width="100px"
+		DataField="codigo"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+        ID="nombre2"
+        HeaderStyle.Width="80%"
+        DataField="nombre"
+        HeaderText="Nombre del Grupo"/>
+
+	<com:XActiveButtonColumn
+        HeaderText="Acci&oacute;n"
+        HeaderStyle.Width="50px"
+        ID="agregar_column"
+        ItemStyle.HorizontalAlign="Center"
+        Text="Agregar"
+        CommandName="delete"/>
+
+</com:XActiveDataGrid>
+
+
+
+</div>
+
+</com:TContent>

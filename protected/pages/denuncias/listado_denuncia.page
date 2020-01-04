@@ -1,0 +1,104 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <com:MensajeDiv ID="LTB"/>
+        <fieldset Align="Center" width="80%">
+            <legend>Listado de Actuaciones</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Año"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TActiveDropDownList
+                        ID="ddl1"
+                        PromptValue="X"
+                        PromptText="Seleccione"
+                        DataTextField="ano"
+                        DataValueField="ano"
+                        OnCallback="listar"/>
+                        <com:TRequiredFieldValidator
+                        ControlToValidate="ddl1"
+                        InitialValue="X"
+                        Text="seleccione"
+                        ValidationGroup="1" />                        
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Tipo de Actuacion"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TActiveDropDownList
+                        ID="ddl2"
+                        PromptValue="X"
+                        PromptText="Seleccione"
+                        DataTextField="tipo"
+                        DataValueField="tipo"
+                        OnCallback="listar"/>                                             
+                    </com:TTableCell>
+                </com:TTableRow>                
+            </com:TTable>
+        </fieldset>
+        <div class="div3">
+        <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        OnItemDataBound="nuevo_item"
+        AutoGenerateColumns="false"        
+        Caption="Listado de Actuaciones"
+        ForeColor="black"
+        BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="id"
+            DataField="id"
+            visible="false"/>
+            <com:XActiveBoundColumn
+            ID="numero"
+            HeaderText="numero"
+            DataField="numero"/>
+            <com:XActiveBoundColumn
+            id="fecha"
+            HeaderText="fecha"
+            DataField="fecha"/>
+            <com:XActiveBoundColumn
+            HeaderText="tipo"
+            DataField="tipo"/>
+            <com:XActiveBoundColumn
+            HeaderText="denunciantes"
+            DataField="denunciantes"/>
+            <com:XActiveBoundColumn
+            HeaderText="motivo"
+            DataField="motivo"/>
+            <com:XActiveBoundColumn
+            HeaderText="ubicacion"
+            DataField="ubicacion"/>
+            <com:XActiveBoundColumn
+            HeaderText="organismos"
+            DataField="organismos"/>
+            <com:XActiveBoundColumn
+            HeaderText="consignados"
+            DataField="documentos_consignados"/>
+            <com:XActiveBoundColumn
+            HeaderText="limitaciones"
+            DataField="limitaciones"/>
+            <com:XActiveBoundColumn
+            HeaderText="estado"
+            DataField="estado"/>
+            <com:XActiveBoundColumn
+            HeaderText="observacion"
+            DataField="observacion"/>
+        </com:XActiveDataGrid>
+        <br></br>
+        <com:TButton ToolTip="Use hoja oficio para imprimir este listado" Text="Imprimir" ValidationGroup="1" OnClick="imprimir"/>
+        </div>
+    </div>
+</com:TContent>

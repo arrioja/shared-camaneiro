@@ -1,0 +1,16 @@
+div.MessagePanel {
+    text-align: center;
+    font-weight: bold;
+    width: 98%;
+    background-color: #FFFFF0;
+    border: 1px solid #B9CFD8;
+    margin-bottom: 10px;
+}
+div.MessagePanel .SuccessMessage {
+    color: green;
+/*    background: #A0F483;*/
+}
+div.MessagePanel .ErrorMessage {
+    color: red;
+/*    background: #FF0000;*/
+}

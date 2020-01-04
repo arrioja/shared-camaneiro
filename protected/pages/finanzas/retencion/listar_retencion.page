@@ -1,0 +1,85 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+ <fieldset Align="Center">
+    <legend>Listado de Retenciones.</legend>
+        <com:TTable BorderWidth="1" GridLines="Both" Width="95%">
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Año:"/>
+                </com:TTableCell>
+                    <com:TTableCell ColumnSpan="3"  HorizontalAlign="Left" >
+                        <com:TActiveDropDownList ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    AutoPostBack="true"
+                    OnCallback="actualiza_listado"
+                    PromptText="Seleccione"
+                    PromptValue="X"/>
+          
+
+                    </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                    <com:TButton ID="btn_imprimir"
+                        Text="Imprimir"
+                        OnClick="imprimir_listado">
+                    </com:TButton>
+                </com:TTableCell>
+            </com:TTableRow>
+        </com:TTable>
+</fieldset>
+            <com:XActiveDataGrid
+                    ID="DataGrid"
+                    Width="93%"
+                    CellPadding="0"
+                    CellSpacing="0"
+                    GridLines="Both"
+                    HeaderStyle.BackColor="#29166F"
+                    HeaderStyle.ForeColor="white"
+                    ItemStyle.BackColor="#BFCFFF"
+                    ItemStyle.BorderColor="white"
+                    DataKeyField="id"
+                    AlternatingItemStyle.BackColor="#E6ECFF"
+                    AutoGenerateColumns="false"
+                    OnItemDataBound="nuevo_item"
+                    ForeColor="black"
+                    BorderColor="black"
+                    Caption=""
+                    EmptyTemplate="<div style='font-size:14px;
+                                           color:#FF0000;
+                                           height:100px;
+                                           font-weight:bold;
+                                           vertical-align:middle;
+                                           align:center;
+                                           padding-top:20px;'>
+                                No hay Retenciones</div>"
+                    >
+                        <com:XActiveBoundColumn
+                        ID="nombre"
+                        HeaderText="Nombre"
+                        HeaderStyle.Width="40"
+                        DataField="descripcion"
+                        ItemStyle.HorizontalAlign="Left"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="codigo"
+                        HeaderText="C&oacute;digo"
+                        HeaderStyle.Width="30"
+                        DataField="codigo"
+                        ItemStyle.HorizontalAlign="Center"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="saldo"
+                        HeaderText="Saldo Actual"
+                        HeaderStyle.Width="30"
+                        DataField="saldo"
+                        ItemStyle.HorizontalAlign="Right"
+                        />
+                </com:XActiveDataGrid>
+
+
+</div>
+
+</com:TContent>

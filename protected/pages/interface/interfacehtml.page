@@ -1,0 +1,8 @@
+<com:TContent ID="cuerpo">
+    <com:THtmlArea ID="html1"/>
+    <com:TFileUpload ID="fu1" OnFileUpload="cargar"/>
+    <com:TButton ID="b1" Text="..."/>
+    <div align="center" class="div2">
+        <com:TTextBox ID="t1" TextMode="MultiLine" Rows="8" Columns="40"></com:TTextBox>
+    </div>
+</com:TContent>

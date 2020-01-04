@@ -1,0 +1,35 @@
+/* Este es el contenedor al que le pondremos bordes redondos */
+div.round{
+   width:300px;
+   height:auto;
+   background:#ECF5FF;
+}
+/* En este contenedor va todo lo que queremos mostrar. No le damos margen vertical puesto ese lo generarán los span del borde */
+div.contenido{
+   margin:0 10px;
+}
+/* Generamos los estilos de las span, los cuales contendrán las imágenes GIF */
+span.top, span.bottom{
+   width:100%;
+   height:6px; /* El alto debe ser la mitad de alto de la imagen GIF */
+   display:block;
+}
+/* A continuación viene el verdadero truco, la posición de las imágenes de fondo es importante*/
+span.top {
+   background:url(LC.gif) top left no-repeat;
+}
+span.bottom{
+   background:url(LC.gif) bottom left no-repeat;
+}
+span.top span, span.bottom span{
+   width:6px; /* De acuerdo al tamaño de la imagen GIF */
+   height:6px; /*De acuerdo al tamaño de la imagen GIF */
+   float:right;
+   font-size:6px; /* Esto es para IE6, que no respeta el height del span si el tamaño de letra es mayor a este  */
+}
+span.top span{
+   background:url(RC.gif) top right no-repeat;
+}
+span.bottom span{
+   background:url(RC.gif) bottom right no-repeat;
+}

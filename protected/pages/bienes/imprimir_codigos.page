@@ -1,0 +1,26 @@
+<com:TContent ID="cuerpo">
+    <com:MensajeDiv ID="LTB"/>
+
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Impresi&oacute;n manual de C&oacute;digo de Barras.</legend>
+    <table Width="70%" aling="center" border="1">
+        <tr><td align="center">
+                <com:TActiveTextBox ID="txt_codigo"
+                    Columns="20"
+                    ValidationGroup="1"
+                    />
+        </td>
+                <td align="center">
+                <com:TButton ID="btn_crear"
+                    Text="Imprimir Código"
+                    OnClick="imprimir"
+                    >
+                    </com:TButton>
+            </td>
+            
+        </tr>
+    </table>
+</fieldset>
+</div>
+</com:TContent>

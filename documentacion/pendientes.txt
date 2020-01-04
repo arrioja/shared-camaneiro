@@ -1,0 +1,127 @@
+*.-En el Sistema de presupuesto 
+
+    + Incluir marcas en rojo a aquellas ordenes de compra, pago o servicio que se
+      encuentren anuladas, tanto en pantalla como en los reportes impresos.
+    +.- listar_compromiso:
+            +no imprime la orden porque el articulo no esta incluido en la tabla articulo.
+            (articulos_compromisos.articulo no coincide con articulos articulos.cod)
+            +Existen referencias en la tabla articulos_compromisos a articulos CORREGIR
+    +.-Revisar en la parte de Nomina un Control quer vaya filtrando a medida que vayas tecleando (para realizar
+        validaciones).
+    +.-Crear el registro de transferencias bancarias: guiandose con la pantalla movimientos.incluir_traslado(es
+    mejor crear la pantalla de movimientos bancarios, dejar que el usuario seleccione el tipo de movimiento(preguntar a janet coll))
+    +.-Pantalla presupuesto.gastos.detalle_presupuesto:en la impresion del reporte del cheque incluir motivo. Y poner en rojo aquellas ordenes anuladas.
+   
+    +.-Verificar saldo de en la tabla banco_cuentas: que se este actualizando.
+    +.-Realizar Pantalla Conciliacion bancaria: que muestre movimientos bancarios realizados en un mes 
+       dado: en este se puedan anular movimientos e imprimir registros de conciliacion.
+
+*.- En el archivo asistencias.establecer_horario:
+    + Incluir un listado con los horarios que han sido establecidos, y diferenciar por color
+      los que sean anteriores, y actuales (lo mismo para los normales y especiales)
+    + Incluir la posibilidad de que el usuario pueda ingreser las fechas de vigencia de los
+      mismos y que pueda decidir cual es especial y cual no; ésto hace necesario que se
+      validen los rangos de fechas de vigencias incluidas para que no coincidan con los que
+      se encuentran en la base de datos.
+
+*.- En todo el sistema:
+    + Buscar donde se use la función verificar_existencia_doble y sustituirla por
+      verificar_existencia, y luego de haberlo hecho, comentar la función verificar_existencia_doble
+      y probar el sistema por un tiempo a ver si no da errores, luego de comprobarlo,
+      eliminar verificar_existencia_doble del archivo db/funciones.php
+    + Realizar un parser en el cual la fecha pasada como parámetro sea convertida en un formato
+      estandar (aaaa-mm-dd) porque tengo muchas funciones que trabajan con fechas y varias la
+      solicitan en un formato o las otras en el otro formato.
+
+*.- En fechas.php,
+    + Hacer que la función es_feriado tome en cuenta el codigo de la organizacion, y lo mismo en
+      asistencia_cedula, asistencia semanal y asistencia diaria porque ahi consulto
+      para traerme un arreglo y que el sistema trabaje mas
+      rapido.
+
+*.- En Reporte de Asistencias Semanales,
+    + Se puede optimizar el mismo, ya que tanto la impresión como el formateo en
+      pantalla usan el mismo bloque de codigos, pero llamando a diferentes campos; es posible
+      hacer una rutina repetitiva que llame la misma sección de código usando arreglos con los
+      nombres de los campos:  elun, slun, emar, smar   y así.
+
+*.- En Reporte de Asistencia Diaria y Semanal
+    + Que el Listado de Direcciones sea de acuerdo al nivel de vista que tenga el usuario, ver
+      como ejemplo el listado de memoranda.
+
+*.- En Listado de Tipos de Justificaciones y Tipos de Faltas a la Asistencia
+    + Añadir funcionalidades de edición y borrado de datos tal cual tiene el listado de dias
+      no laborables, y hacer que se comporten tipo AJAX con el control xactivedatagrid.
+
+*.- LOGS del sistema:
+    + Añadir logs cuando se modifican o eliminan datos en los listados de Módulos del sistema,
+      días no laborables, Tipos de Justificaciones y Tipos de Faltas a la Asistencia.
+
+*.- En el Listado de Vacaciones por Direcciones
+    + Hacer que no se muestren los empleados que ya no estan trabajando en la institución y que
+      se muestren sólo aquellos que pertenezcan a la misma organización a la que pertenece el usuario.
+
+*.- En Asistencias->Reportes-> reporte de Horas acumuladas
+    + Hacerle la Impresión.
+
+*.- En Asistencias->Solicitar Vacaciones
+    + Hacer que la fecha de la columna "disponible desde" se muestre en formato dd/mm/aaaa
+
+*.- En Intranet->Usuarios->Incluir
+    + He realizado unas modificaciones a la funcion "verificar_cedula" de "Solicitar Vacaciones"
+      que seria bueno incorporar a Incluir usuario en la intranet, ya que he mejorado lo
+      que es el proceso de verificar si existe o no la cedula y ademas muestro un mensaje
+      usando el control que se creo para mostrar mensajes.
+    + Seria bueno que estos mensajes en el div flotante tambien se guarden en la base de datos
+      de mensajes para que sean mas mantenibles.
+
+
+
+
+Listado de Módulos que faltan por hacer en el Sistema:
+
+    Asistencia:
+        Reporte de Asistencia Propia del usuario.
+        Reporte de Entrada y Salida intrahorario.       
+        Consultar Vacacion propia.       
+        Solicitud Permiso propio
+        Solicitud Permiso Cedula.
+        Aprobar/Rechazar Permisos.
+        Justificación individual
+        Justificación Grupal
+        Procesar Archivo TXT (cuando venga del Biometrico).
+
+    Control de Gestión.
+        Incluir Plan Estrategico Organizacion
+        Listar Plan est Org
+        Incluir y Listar Obj Estrategicos Organizacion
+        Incluir y Listar Plan Estrategico Direccion
+        Incluri y Listar Objetivo estrategico de Direccin
+        y todos los demas.
+
+    Actuaciones Fiscales
+        Incluir y listar Organiz y entes
+        Incluir y Listar Actuaciones Fiscales
+
+    DJP * esto tengo que ver si lo dejo hasta aqui pq la cgr tiene su propio sistema
+        Incluir
+        Consulta
+        Estadisticas
+
+    
+
+
+
+
+
+Para ser incluido:
+"se realizó la página que permite determinar cuales son los
+> funcionarios que se encuentran sujetos al control de asistencias y los que
+> no; le falta sólo añadir registro de log cuando se actualicen los datos.
+> Adicionalmente, se incluyó en el Home una tabla invisible para ajustar el
+> texto y como preparación a unas características adicionales que se
+> incluirán en el futuro, como por ejemplo, vínculos a las últimas páginas
+> visitadas, info de el último login de la persona, uno que otro gráfico de
+> su interés y si es posible, notificaciones importantes que debe saber el
+> usuario al momento de logearse."
+

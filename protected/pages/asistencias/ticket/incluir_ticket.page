@@ -1,0 +1,136 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir o Disminuir Tickets</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Funcionario(a):"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TActiveDropDownList ID="drop_funcionario"
+                    DataTextField="nombre"
+                    PromptText="Seleccione"
+                    PromptValue="X"
+                    ValidationGroup="2"
+                    DataValueField="cedula"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_funcionario"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Año:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+             <com:TActiveDropDownList  ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    PromptText="Seleccione"
+                    PromptValue="X" >
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione."
+                    />
+
+            </com:TTableCell>
+ <com:TTableCell CssClass="color_b">
+                <com:TLabel Text="Mes:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_mes"
+                    PromptValue="X"
+                    PromptText="Seleccione"
+                    DataTextField="nombre"
+                    DataValueField="mes">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                    <com:TRequiredFieldValidator
+                        ControlToValidate="drop_mes"
+                        InitialValue="X"
+                        Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+       
+
+ <com:TTableRow BorderWidth="1">
+   <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Tipo:"/>
+            </com:TTableCell>
+
+ <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_tipo"
+                    PromptValue="X"
+                    PromptText="Seleccione"
+                    DataTextField="nombre"
+                    DataValueField="tipo">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                    <com:TRequiredFieldValidator
+                        ControlToValidate="drop_tipo"
+                        InitialValue="X"
+                        Text="Seleccione." />
+            </com:TTableCell>
+
+
+ <com:TTableCell CssClass="color_b">
+                <com:TLabel Text="Cantidad:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_cantidad"
+                    PromptValue="X"
+                    PromptText="Seleccione"
+                    DataTextField="nombre"
+                    DataValueField="cantidad"/> 
+                    <com:TRequiredFieldValidator
+                        ControlToValidate="drop_cantidad"
+                        InitialValue="X"
+                        Text="Seleccione." />
+            </com:TTableCell>
+
+
+ </com:TTableRow>
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b">
+                <com:TLabel Text="Motivo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_motivo" TextMode="MultiLine" Rows="4" Columns="60">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+
+</fieldset>
+</div>
+</com:TContent>

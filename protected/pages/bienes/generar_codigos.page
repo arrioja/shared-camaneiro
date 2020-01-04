@@ -1,0 +1,78 @@
+<com:TContent ID="cuerpo">
+    <com:MensajeDiv ID="LTB"/>
+
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Inclusi&oacute;n de Grupo.</legend>
+    <table Width="70%" aling="center" border="1">
+        <tr>
+                <td align="center">
+                <com:TButton ID="btn_crear"
+                    Text="Generar Códigos"
+                    OnClick="generar"
+                    >
+                    </com:TButton>
+            </td>
+            
+        </tr>
+    </table>
+    <com:XActiveDataGrid
+    Caption="Codigos de Barra"
+	ID="DataGrid"
+	AllowPaging="false"
+	Width="30%"
+	PageSize="24"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="indice"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>
+                No ha creado aún los códigos de barra.</div>">
+>
+
+
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+
+		<com:XActiveBoundColumn
+		ID="indices"
+		HeaderText="C&oacute;digos"
+		DataField="indice"
+		HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+
+		/>
+
+</com:XActiveDataGrid>
+    <table Width="70%" aling="center" border="1">
+        <tr>
+                <td align="center">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir Códigos"
+                    OnClick="imprimir"
+                     
+                    >
+                    </com:TButton>
+            </td>
+            
+        </tr>
+    </table>
+
+</fieldset>
+</div>
+</com:TContent>

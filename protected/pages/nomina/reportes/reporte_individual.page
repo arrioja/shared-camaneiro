@@ -1,0 +1,38 @@
+<%@ Title="Reporte Individual" %>
+<com:TContent ID="cuerpo">
+<br/>
+<div align="center">
+<table  border="1">
+<tr><td class="formtd" colspan="2"><com:TLabel Text="Introduzca una C&eacute;dula para el Reporte"/></td></tr>
+      <tr><td>
+          <com:TAutoComplete ID="cedula"  OnSuggest="buscar_cedula">
+              <prop:Suggestions.ItemTemplate >
+                 <li class="autocompletar"><%# $this->Data['cedula'] %></li>
+              </prop:Suggestions.ItemTemplate>
+
+        </com:TAutoComplete>
+                <com:TRequiredFieldValidator
+                ControlToValidate="cedula"
+                Text="Requerido!!."
+                Display='Dynamic'
+                ValidationGroup="1"/>
+              <com:TCustomValidator ControlToValidate='cedula'
+              OnServerValidate='verificar_cedula'
+              Text='No hay registros de N&oacute;mina para la C&eacute;dula introducida'
+              Display='Dynamic'
+              ValidationGroup="1"/>
+
+    <td aling="center">
+        <div align="center"><com:TButton BorderWidth="0" ID="btn_volver"
+                    Text="Mostrar"
+                    OnClick="mostrar"
+                    ValidationGroup="1"
+                    />
+                    </div>
+    </td>
+    </tr>
+</table>
+</div>
+
+
+</com:TContent>

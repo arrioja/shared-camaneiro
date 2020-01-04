@@ -1,0 +1,218 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="80%">
+    <legend>Consulta Integral del Plan Operativo Anual.</legend>
+        <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Organizaci&oacute;n:"/>
+                </com:TTableCell>
+                <com:TTableCell ColumnSpan="3">
+                    <com:TLabel ID="lbl_organizacion" Text=""/>
+                </com:TTableCell>
+            </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Plan Estratégico"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_plan"
+                    DataTextField="nombre"
+                    DataValueField="cod_plan_estrategico"
+                    AutoPostBack="true"
+                    OnCallback="actualizar_listado_plan_operativo"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_plan"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Plan Operativo"/>
+                <com:TActiveLabel ID="lbl_cod_plan_estrategico" Visible = "false" Text=""/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_plan_operativo"
+                    DataTextField="nombre"
+                    DataValueField="cod_plan_operativo"
+                    AutoPostBack="true"
+                    OnCallback="actualizar_listado"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_plan_operativo"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_direcciones"
+                    DataTextField="nombre"
+                    PromptText="Seleccione"
+                    PromptValue="X"
+                    AutoPostBack="true"
+                    CausesValidation="false"
+                    ValidationGroup="2"
+                    OnCallback="actualizar_listado"
+                    DataValueField="codigo" >
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_direcciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+        
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        </com:TTable>
+
+        <br>
+
+        <com:TActiveRepeater 
+            ID="Repeater"
+            OnItemDataBound="actualizar_listado_2do_nivel"
+            OnItemCreated="Item_created_repeater1"
+            EnableViewState="false">
+            <prop:HeaderTemplate>
+                <com:TTable BorderWidth="1" GridLines="Both" Width="95%">
+                    <com:TTableRow HorizontalAlign="Center" BackColor="#29166F">
+                        <com:TTableCell  Width="86%">
+                            <com:TLabel Font.Bold="True" ForeColor="White" Text="Objetivo Operativo"/>
+                        </com:TTableCell>
+                        <com:TTableCell Width="14%">
+                            <com:TLabel Font.Bold="True" ForeColor="White" Text="Avance"/>
+                        </com:TTableCell>
+                    </com:TTableRow>
+                </com:TTable>
+            </prop:HeaderTemplate>
+
+            <prop:ItemTemplate>
+                <com:TTable BorderWidth="1" GridLines="Horizontal" Width="95%">
+                    <com:TTableRow ID="Row">
+                        <com:TTableCell CssClass="datos_formularios">
+                            <com:TLabel Visible="False" ID="cod_obj_ope" Text="<%#$this->Data['cod_objetivo_operativo'] %>"/>
+                            <com:TLabel  Width="86%"  ID="nomb_obj" Text="<%#$this->Data['nombre'] %>"/>
+                        </com:TTableCell>
+                        <com:TTableCell HorizontalAlign="Center" Width="14%" >
+                            <com:TLabel ID="porcentaje_obj" Text="<%#$this->Data['porcentaje_completo'] %> %"/>
+                        </com:TTableCell>
+                    </com:TTableRow>
+
+
+
+                    <com:TTableRow>
+                        <com:TTableCell ColumnSpan="2" CssClass="datos_formularios">
+
+
+
+                            <com:TActiveRepeater
+                                ID="Repeater2"
+                                OnItemCreated="Page.Item_created_repeater2"
+                                OnItemDataBound="Page.actualizar_listado_3er_nivel"
+                                EnableViewState="false">
+                                <prop:HeaderTemplate>
+
+                                </prop:HeaderTemplate>
+
+                                <prop:ItemTemplate>
+                                    <com:TTable BorderWidth="1" GridLines="Horizontal" Width="100%">
+                                        <com:TTableRow ID="Row2">
+                                            <com:TTableCell Width="3%" CssClass="datos_formularios">
+                                            </com:TTableCell>
+                                            <com:TTableCell CssClass="datos_formularios">
+                                                <com:TLabel Visible="False" ID="cod_obj_espe" Text="<%#$this->Data['cod_objetivo_especifico'] %>"/>
+                                                <com:TLabel  Width="83%"  ID="nomb_obj2" Text="<%#$this->Data['nombre'] %>"/>
+                                            </com:TTableCell>
+                                            <com:TTableCell HorizontalAlign="Center" Width="14%%">
+                                                <com:TLabel ID="porcentaje_obj2"Text="<%#$this->Data['porcentaje_completo'] %>%"/>
+                                            </com:TTableCell>
+                                        </com:TTableRow>
+
+                                        <com:TTableRow>
+                                            <com:TTableCell ColumnSpan="3" CssClass="datos_formularios">
+
+
+                                                <com:TActiveRepeater
+                                                    ID="Repeater3"
+                                                    OnItemCreated="Page.Item_created_repeater3"
+                                                    EnableViewState="false">
+                                                    <prop:HeaderTemplate>
+
+                                                    </prop:HeaderTemplate>
+
+                                                    <prop:ItemTemplate>
+                                                        <com:TTable BorderWidth="1" GridLines="Horizontal" Width="100%">
+                                                            <com:TTableRow ID="Row3">
+                                                                <com:TTableCell Width="3%" CssClass="datos_formularios">
+                                                                </com:TTableCell>
+                                                                <com:TTableCell Width="3%" CssClass="datos_formularios">
+                                                                </com:TTableCell>
+                                                                <com:TTableCell CssClass="datos_formularios">
+                                                                    <com:TLabel  Width="80%"  ID="nomb_obj3" Text="<%#$this->Data['nombre'] %>, <%#$this->Data['dias'] %> dias, del <%#cambiaf_a_normal($this->Data['fecha_inicio']) %> al <%#cambiaf_a_normal($this->Data['fecha_fin']) %>"/>
+                                                                </com:TTableCell>
+                                                                <com:TTableCell HorizontalAlign="Center" Width="14%">
+                                                                    <com:TLabel ID="porcentaje_obj3"Text="<%#$this->Data['estatus'] %>"/>
+                                                                </com:TTableCell>
+                                                            </com:TTableRow>
+                                                        </com:TTable>
+                                                    </prop:ItemTemplate>
+
+                                                    <prop:FooterTemplate>
+                                                    </prop:FooterTemplate>
+                                                </com:TActiveRepeater>
+
+
+                                             </com:TTableCell>
+                                        </com:TTableRow>
+
+                                    </com:TTable>
+                                </prop:ItemTemplate>
+
+                                <prop:FooterTemplate>
+                                </prop:FooterTemplate>
+                            </com:TActiveRepeater>
+
+
+
+
+                        </com:TTableCell>
+                    </com:TTableRow>
+
+
+
+                </com:TTable>
+            </prop:ItemTemplate>
+
+            <prop:FooterTemplate>
+                <br><br>
+            </prop:FooterTemplate>
+        </com:TActiveRepeater>
+
+
+</fieldset>
+</div>
+
+</com:TContent>

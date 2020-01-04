@@ -1,0 +1,216 @@
+<com:TContent ID="cuerpo">
+    <h2>Integrantes Constantes</h2>
+
+<div align="center">
+
+<table Border="1" GridLines="Both" Width="60%">
+
+    <tr >
+        <td width="20%"Align="Right" class="formtd">
+            <com:TLabel Text="Constantes:"/>
+        </td>
+        <td class="formcampo">
+            <com:TActiveDropDownList ID="drop_constantes"
+                DataTextField="descripcion"
+                AutoPostBack="true"
+                PromptText="Seleccione una Constante"
+                PromptValue="-1"
+                OnCallback="actualiza_listado"
+                ValidationGroup="2"
+                DataValueField="cod" >
+                <prop:ClientSide
+                    OnLoading="Element.show('loading')"
+                    OnComplete="Element.hide('loading')"/>
+            </com:TActiveDropDownList>
+            <com:TRequiredFieldValidator
+                ControlToValidate="drop_constantes"
+                InitialValue="X"
+                Text="Seleccione."
+                Display="Dynamic"
+                />
+        </td>       
+</table>
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+            </div>
+
+<div align="center">
+<com:XActiveDataGrid
+	ID="DataGrid_prueba"
+	Width="90%"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="black"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+
+    OnItemCreated="itemCreated3"
+	OnEditCommand="editItem3"
+	OnUpdateCommand="saveItem3"
+	OnCancelCommand="cancelItem3"
+	OnDeleteCommand="deleteItem3"
+
+    Caption="Listado de Integrantes con la Constante Asignada"
+    ShowFooter="true"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>No existen datos para el listado de constantes asignadas <br>">
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+
+	<com:XActiveBoundColumn
+		ID="cedula3"
+		HeaderText="C&eacute;dula"
+		HeaderStyle.Width="110px"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+
+
+        />
+
+	<com:XActiveBoundColumn
+        ID="nombres3"
+        HeaderStyle.Width="200px"
+        DataField="nombres"
+        HeaderText="Nombres"
+        />
+	<com:XActiveBoundColumn
+        ID="cod"
+        HeaderStyle.Width="50px"
+        DataField="cod"
+        HeaderText="Cod"
+        Visible="False"
+        />
+	<com:XActiveBoundColumn
+        ID="apellidos3"
+        HeaderStyle.Width="200px"
+        DataField="apellidos"
+        HeaderText="Apellidos"
+        />
+	<com:XActiveBoundColumn
+        ID="monto3"
+        HeaderStyle.Width="200px"
+        DataField="monto"
+        HeaderText="Monto"
+        DataFormatString="BsF %.2f"
+        ItemStyle.HorizontalAlign="Center"
+        />
+	<com:XActiveBoundColumn
+        ID="global"
+        HeaderStyle.Width="50px"
+        DataField="global"
+        HeaderText="Global"
+        Visible="False"
+        />
+	<com:XActiveEditCommandColumn
+        ID="editar3"
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:XActiveButtonColumn
+		ID="Borrar3"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+        Visible="False"
+		/>
+        <com:XActiveTemplateColumn
+		ID="eliminar"
+		HeaderText="Eliminar"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="delete"  CommandParameter="<%#$this->Page->createMultiple($this, array('id','cedula'))%>" Text="<img src='imagenes/iconos/delete.png' border='0' />" ToolTip="Eliminar la Constante"  OnClick="Page.eliminar" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro?')) return false;" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+</com:XActiveDataGrid>
+</div>
+
+
+<div align="center">
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid_no_tienen"
+	Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#FFBFBF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="cedula"
+    OnDeleteCommand="agregar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Integrantes que NO TIENEN asignada la constante"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Integrantes que NO TIENEN asignada la constante <br><br>
+                No existen datos suficientes para realizar el listado.</div>">
+
+
+	<com:XActiveBoundColumn
+		ID="cedula2"
+		HeaderText="C&eacute;dula"
+		HeaderStyle.Width="110px"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+        />
+
+	<com:XActiveBoundColumn
+        ID="nombres2"
+        HeaderStyle.Width="200px"
+        DataField="nombres"
+        HeaderText="Nombres"
+        ReadOnly="true"/>
+	<com:XActiveBoundColumn
+        ID="apellidos2"
+        HeaderStyle.Width="200px"
+        DataField="apellidos"
+        HeaderText="Apellidos"
+        ReadOnly="true"/>
+	<com:XActiveButtonColumn
+        HeaderText="Acci&oacute;n"
+        HeaderStyle.Width="50px"
+        ID="agregar_column2"
+        ItemStyle.HorizontalAlign="Center"
+        Text="Agregar"
+        CommandName="delete"/>
+
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

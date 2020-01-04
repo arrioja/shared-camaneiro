@@ -1,0 +1,657 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Expedientes</legend>
+            <com:TTabPanel ID="tp1">
+               <com:TTabView ID="v1" Caption="General">
+                  <com:TDropDownList ID="ddl1" DataTextField="nombres" DataValueField="cedula" AutoPostBack="true" OnSelectedIndexChanged="buscar"></com:TDropDownList>
+                   <com:TTable Width="100%" BorderWidth="1" GridLines="Both">                   
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Nombre(s):</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t1" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios" ColumnSpan="2">Foto</com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Apellido(s):</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t2" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell RowSpan="9" ColumnSpan="2" HorizontalAlign="Center">
+                            <com:TImage ID="i1"></com:TImage>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Cedula:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t3" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Edo. Civil:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t4" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">F. Nacimiento:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t5" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">L. Nacimiento:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t6" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">G. Instrucción:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t7" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Profesión:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t8" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">D. Habitación:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t9" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Teléfono(s):</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t10" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Ubicación Administrativa:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t11" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios">Denominación del Cargo:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t12" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Tipo de Nombramiento:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t13" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios">F. de Nombramiento:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t14" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>                      
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Contratado:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t15" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios">Nº Contrato:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t16" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>                      
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Vigencia:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t17" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios">Cod. Nómina:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t18" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>                      
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">sueldo Básico:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t19" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios">Otras Asignaciones:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t20" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>                      
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Cod. del R.A.C.:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t21" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios">Lugar de Trabajo:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t22" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>                      
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">F. Ingreso:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t23" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios">F. Elaboración de la Ficha:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t24" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>                      
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">F. Egreso:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t25" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                         <com:TTableCell CssClass="titulos_formularios">Causa:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t26" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Observaciones:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t27" ReadOnly="true"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                    <com:TButton Text="Guardar" OnClick="agregar" ValidationGroup="grupo1"></com:TButton>                                    
+                     </com:TTable>
+                  </com:TTabView>
+                  <--***--!>
+                  <com:TTabView ID="v2" Caption="Curriculo y Anexos">
+                   <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg1"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"                        
+                        AutoGenerateColumns="false"
+                        Caption="curriculo / Anexos"
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item1"
+                        BorderColor="black">
+                           <com:XActiveBoundColumn
+                              HeaderText="id"
+                              DataField="id"
+                              visible="false"/>
+                           <com:XActiveBoundColumn
+                              ID="nombre"
+                              HeaderText="Nombre"
+                              DataField="nombre"/>
+                           <com:XActiveBoundColumn
+                              ID="fecha_inicio"
+                              HeaderText="Fecha Inicio"
+                              DataField="fecha_inicio"/>
+                           <com:XActiveBoundColumn
+                              ID="fecha_final"
+                              HeaderText="Fecha Final"
+                              DataField="fecha_final"/>
+                           <com:XActiveBoundColumn
+                              ID="horas"
+                              HeaderText="Horas"
+                              DataField="horas"/>
+                           <com:XActiveBoundColumn
+                              ID="tipo"
+                              HeaderText="Tipo"
+                              DataField="tipo"/>
+                           <com:XActiveBoundColumn
+                              ID="ponente_participante"
+                              HeaderText="Ponente / Participante"
+                              DataField="ponente_participante"/>                           
+                           <com:THyperLinkColumn 
+                              ID="imagen"
+                              DataNavigateUrlField="imagen"
+                              HeaderText="Documentos"
+                              Target="blank"/>
+                           <com:XActiveTemplateColumn HeaderText="Opción">
+                              <prop:ItemTemplate>
+                                  <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id'], $this->Parent->DataItem['cedula']) %>" Text="editar" OnClick="page.editar_curriculo_anexo"></com:TLinkButton>
+                              </prop:ItemTemplate>
+                           </com:XActiveTemplateColumn>
+                     </com:XActiveDataGrid>
+                   </div>
+                     <com:TButton Text="Agregar" OnClick="agregar_curriculo_anexo" ValidationGroup="grupo1"></com:TButton>                     
+                  </com:TTabView>
+                  <--***--!>
+                  <com:TTabView ID="v3" Caption="Vacaciones">
+                   <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg2"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"
+                        AutoGenerateColumns="false"
+                        Caption="Vacaciones"
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item0"
+                        BorderColor="black">
+                           <com:XActiveBoundColumn
+                              ID="periodo"
+                              HeaderText="periodo"
+                              DataField="periodo"/>
+                           <com:XActiveBoundColumn
+                              ID="anos"
+                              HeaderText="anos"
+                              DataField="anos"/>
+                           <com:XActiveBoundColumn
+                              ID="dias"
+                              HeaderText="dias"
+                              DataField="dias"/>
+                           <com:XActiveBoundColumn
+                              ID="disfrutados"
+                              HeaderText="disfrutados"
+                              DataField="disfrutados"/>
+                           <com:XActiveBoundColumn
+                              ID="pendientes"
+                              HeaderText="pendientes"
+                              DataField="pendientes"/>
+                           <com:XActiveBoundColumn
+                              ID="restados"
+                              HeaderText="restados"
+                              DataField="restados"/>
+                           <com:XActiveBoundColumn
+                              ID="disponible_desde"
+                              HeaderText="disponible_desde"
+                              DataField="disponible_desde"/>
+                           <com:XActiveTemplateColumn HeaderText="Detalle">
+                              <prop:ItemTemplate>
+                                  <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id']) %>" Text="ver" OnClick="page.detalle_vacacion"></com:TLinkButton>
+                              </prop:ItemTemplate>
+                           </com:XActiveTemplateColumn>
+                     </com:XActiveDataGrid>                                          
+                   </div>
+                  </com:TTabView>
+                  <--***--!>
+                  <com:TTabView ID="v4" Caption="Permisos">
+                     <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg3"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"
+                        AutoGenerateColumns="false"                        
+                        Caption="Permisos"
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item2"
+                        BorderColor="black">
+                           <com:XActiveBoundColumn
+                              ID="desde"
+                              HeaderText="desde"
+                              DataField="desde"/>
+                          <com:XActiveBoundColumn
+                              ID="hora_desde"
+                              HeaderText="hora_desde"
+                              DataField="hora_desde"/>
+                          <com:XActiveBoundColumn
+                              ID="hasta"
+                              HeaderText="hasta"
+                              DataField="hasta"/>
+                          <com:XActiveBoundColumn
+                              ID="hora_hasta"
+                              HeaderText="hora_hasta"
+                              DataField="hora_hasta"/>
+                          <com:XActiveBoundColumn
+                              ID="falta"
+                              HeaderText="falta"
+                              DataField="falta"/>
+                          <com:XActiveBoundColumn
+                              ID="tipo1"
+                              HeaderText="tipo"
+                              DataField="tipo"/>                     
+                     </com:XActiveDataGrid>
+                     </div>
+                  </com:TTabView>
+                  <--***--!>
+                  <com:TTabView ID="v5" Caption="Amonestaciones">
+                     <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg4"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"
+                        AutoGenerateColumns="false"
+                        Caption="Amonestaciones"
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item4"
+                        BorderColor="black">
+                           <com:XActiveBoundColumn
+                              ID="asunto"
+                              HeaderText="asunto"
+                              DataField="asunto"/>
+                           <com:XActiveBoundColumn
+                              ID="de"
+                              HeaderText="de"
+                              DataField="de"/>
+                           <com:XActiveBoundColumn
+                              ID="fecha"
+                              HeaderText="fecha"
+                              DataField="fecha"/>
+                           <com:XActiveBoundColumn
+                              ID="emisor"
+                              HeaderText="emisor"
+                              DataField="emisor"/>
+                           <com:XActiveBoundColumn
+                              ID="motivo"
+                              HeaderText="motivo"
+                              DataField="motivo"/>
+                           <com:THyperLinkColumn
+                              ID="documento3"
+                              DataNavigateUrlField="documento"
+                              HeaderText="Dcoumentos"
+                              Target="blank"/>
+                           <com:XActiveTemplateColumn HeaderText="Opción">
+                              <prop:ItemTemplate>
+                                  <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id'], $this->Parent->DataItem['cedula']) %>" Text="editar" OnClick="page.editar_amonestaciones"></com:TLinkButton>
+                              </prop:ItemTemplate>
+                           </com:XActiveTemplateColumn>
+                     </com:XActiveDataGrid>
+                     </div>
+                     <com:TButton Text="Agregar" OnClick="agregar_amonestacion" ValidationGroup="grupo1"></com:TButton>
+                  </com:TTabView>
+                  <--***--!>
+                  <com:TTabView ID="v6" Caption="Constancias">
+                  <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg5"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"
+                        AutoGenerateColumns="false"
+                        Caption="Constancias"
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item5"
+                        BorderColor="black">
+                           <com:THyperLinkColumn
+                              ID="correlativo"
+                              DataNavigateUrlField="ruta"
+                              HeaderText="correlativo"
+                              Target="blank"/>
+                           <com:XActiveBoundColumn
+                              ID="tipo2"
+                              HeaderText="tipo"
+                              DataField="tipo"/>
+                           <com:XActiveBoundColumn
+                              ID="fecha_constancia"
+                              HeaderText="fecha"
+                              DataField="fecha"/>
+                     </com:XActiveDataGrid>
+                     </div>
+                  </com:TTabView>
+                  <--***--!>
+                  <com:TTabView ID="v7" Caption="Nombramientos y Ptos de Cuenta">
+                      <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg6"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"
+                        AutoGenerateColumns="false"
+                        Caption=" Nombramientos"
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item6"
+                        BorderColor="black">
+                           <com:XActiveBoundColumn
+                              ID="de1"
+                              HeaderText="de"
+                              DataField="de"/>
+                           <com:XActiveBoundColumn
+                              ID="para"
+                              HeaderText="para"
+                              DataField="para"/>
+                           <com:XActiveBoundColumn
+                              ID="asunto1"
+                              HeaderText="asunto"
+                              DataField="asunto"/>
+                           <com:XActiveBoundColumn
+                              ID="fecha1"
+                              HeaderText="fecha"
+                              DataField="fecha"/>
+                           <com:THyperLinkColumn
+                              ID="documento4"
+                              DataNavigateUrlField="documento"
+                              HeaderText="Dcoumentos"
+                              Target="blank"/>
+                           <com:XActiveTemplateColumn HeaderText="Opción">
+                              <prop:ItemTemplate>
+                                  <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id'], $this->Parent->DataItem['cedula']) %>" Text="editar" OnClick="page.editar_nombramientos"></com:TLinkButton>
+                              </prop:ItemTemplate>
+                           </com:XActiveTemplateColumn>
+                     </com:XActiveDataGrid>
+                      </div>
+                     <com:TButton Text="Agregar" OnClick="agregar_nombramiento_pto_cta" ValidationGroup="grupo1"></com:TButton>
+                  </com:TTabView>
+                  <--***--!>
+                  <com:TTabView ID="v8" Caption="Jubilaciones y Pensiones">
+                   <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg7"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"
+                        AutoGenerateColumns="false"
+                        Caption=" Jubilación y Pensión"
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item7"
+                        BorderColor="black">
+                           <com:XActiveBoundColumn
+                              ID="fecha2"
+                              HeaderText="fecha"
+                              DataField="fecha"/>
+                           <com:XActiveBoundColumn
+                              ID="descripcion"
+                              HeaderText="descripcion"
+                              DataField="descripcion"/>
+                           <com:THyperLinkColumn
+                              ID="documento5"
+                              DataNavigateUrlField="documento"
+                              HeaderText="Dcoumentos"
+                              Target="blank"/>
+                            <com:XActiveTemplateColumn HeaderText="Opción">
+                              <prop:ItemTemplate>
+                                  <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id'], $this->Parent->DataItem['cedula']) %>" Text="editar" OnClick="page.editar_jubilacion"></com:TLinkButton>
+                              </prop:ItemTemplate>
+                           </com:XActiveTemplateColumn>
+                     </com:XActiveDataGrid>
+                   </div>
+                     <com:TButton Text="Agregar" OnClick="agregar_jubilacion_pension" ValidationGroup="grupo1"></com:TButton>
+                  </com:TTabView>
+                  <--***--!>
+                  <com:TTabView ID="v9" Caption="S.S.O">
+                   <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg8"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"
+                        AutoGenerateColumns="false"
+                        Caption="S.S.O."
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item8"
+                        BorderColor="black">
+                           <com:XActiveBoundColumn
+                              ID="fecha3"
+                              HeaderText="fecha"
+                              DataField="fecha"/>
+                           <com:XActiveBoundColumn
+                              ID="descripcion1"
+                              HeaderText="descripcion"
+                              DataField="descripcion"/>
+                           <com:THyperLinkColumn
+                              ID="documento6"
+                              DataNavigateUrlField="documento"
+                              HeaderText="Dcoumentos"
+                              Target="blank"/>
+                            <com:XActiveTemplateColumn HeaderText="Opción">
+                              <prop:ItemTemplate>
+                                  <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id'], $this->Parent->DataItem['cedula']) %>" Text="editar" OnClick="page.editar_sso"></com:TLinkButton>
+                              </prop:ItemTemplate>
+                           </com:XActiveTemplateColumn>
+                     </com:XActiveDataGrid>
+                   </div>
+                     <com:TButton Text="Agregar" OnClick="agregar_sso" ValidationGroup="grupo1"></com:TButton>
+                  </com:TTabView>
+                  <com:TTabView ID="v10" Caption="Varios">
+                   <div align="center" class="div5">
+                     <com:XActiveDataGrid
+                        ID="dg9"
+                        Width="90%"
+                        CellPadding="0"
+                        CellSpacing="0"
+                        GridLines="Both"
+                        HeaderStyle.BackColor="#29166F"
+                        HeaderStyle.ForeColor="white"
+                        ItemStyle.BackColor="#BFCFFF"
+                        ItemStyle.BorderColor="white"
+                        DataKeyField="id"
+                        AlternatingItemStyle.BackColor="#E6ECFF"
+                        AutoGenerateColumns="false"                        
+                        Caption="Varios"
+                        ForeColor="black"
+                        OnItemDataBound="nuevo_item9"
+                        BorderColor="black">
+                           <com:XActiveBoundColumn
+                              ID="fecha4"
+                              HeaderText="fecha"
+                              DataField="fecha"/>
+                           <com:XActiveBoundColumn
+                              ID="descripcion3"
+                              HeaderText="descripcion"
+                              DataField="descripcion"/>
+                           <com:THyperLinkColumn
+                              ID="documento7"
+                              DataNavigateUrlField="documento"
+                              HeaderText="Dcoumentos"
+                              Target="blank"/>
+                           <com:XActiveTemplateColumn HeaderText="Opción">
+                              <prop:ItemTemplate>
+                                  <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id'], $this->Parent->DataItem['cedula']) %>" Text="editar" OnClick="page.editar_varios"></com:TLinkButton>
+                              </prop:ItemTemplate>
+                           </com:XActiveTemplateColumn>
+                     </com:XActiveDataGrid>
+                     </div>
+                     <com:TButton Text="Agregar" OnClick="agregar_varios" ValidationGroup="grupo1"></com:TButton>
+                  </com:TTabView>
+                  <com:TTabView ID="v11" Caption="Cargos">
+                   <div align="center" class="div5">
+                      <com:XActiveDataGrid
+                            Width="100%"
+                            CellSpacing="0"
+                            CellPadding="2"
+                            ID="dg10"
+                            DataKeyField="id"
+                            AutoGenerateColumns="false"
+                            HeaderStyle.BackColor="#29166F"
+                            HeaderStyle.ForeColor="white"
+                            ItemStyle.BackColor="#BFCFFF"
+                            ItemStyle.BorderColor="white"
+                           	AlternatingItemStyle.BackColor="#E6ECFF"
+                            EditItemStyle.BackColor="lightyellow"                           
+                            EmptyTemplate="<div style='font-size:14px;
+                            color:#FF0000;
+                            font-weight:bold;
+                            vertical-align:middle;
+                            padding-top:40px;'>
+                            No existen Cargos.</div>">
+                            <com:XActiveBoundColumn
+                                HeaderText="id"
+                                DataField="id"
+                                visible="false"/>
+                                <com:XActiveBoundColumn
+                                ID="denominacion"
+                                HeaderText="Denominacion"
+                                DataField="denominacion"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveDropDownListColumn
+                                ID="condicion"
+                                HeaderText="Condición"
+                                DataTextField="condicion"
+                                ItemStyle.HorizontalAlign="Center">
+                                    <com:TListItem Value="Fijo" Text="Fijo" />
+                                    <com:TListItem Value="Contratado" Text="Contratado" />
+                                </com:XActiveDropDownListColumn>
+                                <com:XActiveBoundColumn
+                                ID="decreto_contrato"
+                                HeaderText="Decreto o Contrato Nº"
+                                DataField="decreto_contrato"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                ID="fecha_ini"
+                                HeaderText="Fecha de Inicio"
+                                DataField="fecha_ini"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                ID="fecha_fin"
+                                HeaderText="Fecha Fin"
+                                DataField="fecha_fin"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                ID="lugar_trabajo"
+                                Readonly="true"
+                                HeaderText="Ubicacion"
+                                DataField="lugar_trabajo"
+                                ItemStyle.HorizontalAlign="Center"/>
+                        </com:XActiveDataGrid>
+                   </div>                     
+                  </com:TTabView>
+                </com:TTabPanel>
+        </fieldset>
+    </div>
+</com:TContent>

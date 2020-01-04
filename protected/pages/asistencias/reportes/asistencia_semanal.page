@@ -1,0 +1,221 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Reporte de Asistencia Semanal.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Seleccione un Lunes:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDatePicker ID="txt_fecha_desde"  Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    FromYear="2007"
+                    UpToYear="<%= @date('Y')+1 %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_desde"
+                    ControlToValidate="txt_fecha_desde"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+                <com:TActiveCustomValidator
+                    ControlToValidate="txt_fecha_desde"
+                    OnServerValidate="es_lunes"
+                    Display="Dynamic"
+                    FocusOnError="true"
+                    Text="Debe Seleccionar un LUNES." />
+            </com:TTableCell>
+
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_direcciones"
+                    DataTextField="nombre"
+                    PromptText="Seleccione una Direcci&oacute;n"
+                    PromptValue="X"
+                    ValidationGroup="2"
+                    OnCallback="consulta_asistencia"
+                    DataValueField="codigo" >
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_direcciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Consultar"
+                    OnClick="consulta_asistencia">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+                 <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_asistencia">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+<com:XActiveDataGrid
+	ID="DataGrid"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+    HeaderStyle.Font.Size = "14px"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "13px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="nuevo_item"
+    ForeColor="black"
+    Caption="Reporte de Asistencia Diaria"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+               color:#FF0000;
+               height:100px;
+               font-weight:bold;
+               vertical-align:middle;
+               padding-top:40px;'>
+    No existen datos para generar el reporte.</div>"
+    >
+
+	<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="Cedula"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="70px"/>
+
+	<com:XActiveBoundColumn
+        ID="nombres"
+        DataField="nombres"
+        HeaderText="Nombres"
+		HeaderStyle.Width="250px"/>
+
+	<com:XActiveBoundColumn
+        ID="elun"
+        DataField="elun"
+        HeaderText="elun"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+	<com:XActiveBoundColumn
+        ID="slun"
+        DataField="slun"
+        HeaderText="slun"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="emar"
+        DataField="emar"
+        HeaderText="emar"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+	<com:XActiveBoundColumn
+        ID="smar"
+        DataField="smar"
+        HeaderText="smar"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="emie"
+        DataField="emie"
+        HeaderText="emie"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+	<com:XActiveBoundColumn
+        ID="smie"
+        DataField="smie"
+        HeaderText="smie"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="ejue"
+        DataField="ejue"
+        HeaderText="ejue"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+	<com:XActiveBoundColumn
+        ID="sjue"
+        DataField="sjue"
+        HeaderText="sjue"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="evie"
+        DataField="evie"
+        HeaderText="evie"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+	<com:XActiveBoundColumn
+        ID="svie"
+        DataField="svie"
+        HeaderText="svie"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+        
+</com:XActiveDataGrid>
+
+<br>
+<com:TActiveRepeater ID="Repeater" EnableViewState="false">
+    <prop:HeaderTemplate>
+        <table width="100%" border="1" align="center" cellpadding="3" cellspacing="0">
+           <tr class="titulos_formularios" >
+             <td align = "center">
+                 <com:TLabel id="lbl_encabezado" Text="Observaciones a la Asistencia"/>
+             </td>
+           </tr>
+
+    </prop:HeaderTemplate>
+    <prop:ItemTemplate>
+           <tr class="titulos_formularios" >
+             <td align = "left">
+                 <com:TLabel id="lbl_cedula_just" Text="<%#$this->Data['cedula_just'] %> / "/>
+                 <com:TLabel id="lbl_nombres" Text=" <%#$this->Data['nombres'] %>"/>
+                 <com:TLabel id="lbl_apellidos" Text=" <%#$this->Data['apellidos'] %>"/>
+             </td>
+           </tr>
+           <tr>
+             <td class="datos_formularios"><div align="justify">
+                <com:TLabel Font.Bold = "true" Text="C&oacute;digo:<%#$this->Data['codigo'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Desde el: <%#$this->Data['fecha_desde'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Hasta el: <%#$this->Data['fecha_hasta'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" de: <%#$this->Data['hora_desde'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" a: <%#$this->Data['hora_hasta'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Tipo: <%#$this->Data['descripcion_tipo_justificacion'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Falta: <%#$this->Data['descripcion_falta'] %>," />
+                <com:TLabel Font.Bold = "true" Text=" Motivo:"/> <com:TLabel Text=" <%#$this->Data['observaciones'] %>" />
+             </div></td>
+           </tr>
+    </prop:ItemTemplate>
+    <prop:FooterTemplate>
+        </table>
+    </prop:FooterTemplate>
+</com:TActiveRepeater>
+
+
+</div>
+</com:TContent>

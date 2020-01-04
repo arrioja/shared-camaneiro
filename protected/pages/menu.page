@@ -1,0 +1,6 @@
+<%@ MasterClass="Application.layouts.menu_izda.menu_izda_layout"%>
+<com:TContent ID="menu_iz2">
+<com:TSafeHtml>
+    <com:TLabel ID="menu"/>
+</com:TSafeHtml>
+</com:TContent>

@@ -1,0 +1,70 @@
+<%@ Title="N&oacute;mina - Administrar Conceptos" %>
+
+<com:TContent ID="cuerpo">
+
+<a href="<%= $this->Service->constructUrl('nomina.tipo_nomina.nuevo_tipo_nomina')%>">Crear Nuevo Tipo de N&oacute;mina</a>
+<br/>
+<br/>
+
+<div align="center">
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="500px"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+    HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    ToolTip="Administraci&oacute;n de Tipos de N&oacute;mina"
+	>
+
+
+		<com:TBoundColumn
+		ID="tipo_nomina"
+		HeaderText="Tipo de N&oacute;mina"
+		HeaderStyle.Width="260px"
+		DataField="tipo_nomina"
+		ItemStyle.HorizontalAlign="Center"
+		/>
+
+    <com:TEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:TButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+
+</com:TDataGrid>
+</div>
+
+
+</com:TContent>

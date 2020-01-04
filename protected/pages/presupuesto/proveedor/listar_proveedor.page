@@ -1,0 +1,97 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+<com:XActiveDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	OnEditCommand="editItem"
+	OnDeleteCommand="anularItem"
+    OnCancelCommand="cancelItem"
+    OnUpdateCommand="saveItem"
+    OnItemCreated="itemCreated"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    Caption="Listado de Proveedores (Personas Jur&iacute;dicas y Naturales)"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de Proveedores (Personas Jur&iacute;dicas y Naturales). <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+		<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="COD"
+		DataField="cod_proveedor"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="rif"
+		HeaderText="RIF"
+		DataField="rif"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="nombre"
+		HeaderText="Nombre"
+		DataField="nombre"
+		/>
+        <com:XActiveBoundColumn
+		ID="direccion"
+		HeaderText="Direcci&oacute;n"
+		DataField="direccion"
+        ItemStyle.HorizontalAlign="Left"
+		/>
+		<com:XActiveBoundColumn
+		ID="telefono1"
+		HeaderText="Telf 1"
+		DataField="telefono1"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="telefono2"
+		HeaderText="Telf 2"
+		DataField="telefono2"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+         <com:XActiveTemplateColumn
+		ID="ramo"
+		HeaderText="Agregar Ramo"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="100px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="delete"  CommandParameter="<%#$this->Page->createMultiple($this, array('cod_proveedor'))%>" Text="<img src='imagenes/iconos/link.png' border='0' />" ToolTip="Asignar Ramo"  OnClick="Page.asignar_ramo" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

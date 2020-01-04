@@ -1,0 +1,141 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+<fieldset Align="Center" width="80%">
+    <legend>Listar Memorandos</legend>
+<com:TTable BorderWidth="1" GridLines="Both" Width="100%">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_organizaciones"
+                    DataTextField="nombre"
+                    PromptText="Seleccione una Organizaci&oacute;n"
+                    PromptValue="X"
+                    OnCallback="actualiza_drops"
+                    ValidationGroup="1"
+                    DataValueField="codigo" />
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_organizaciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_direcciones"
+                    DataTextField="nombre"
+                    PromptText="Seleccione una Direcci&oacute;n"
+                    PromptValue="X"
+                    OnCallback="actualiza_listado"
+                    ValidationGroup="2"
+                    DataValueField="codigo" >
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_direcciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    OnCallback="actualiza_listado"
+                    PromptText="Seleccione"
+                    ValidationGroup="2"
+                    PromptValue="X">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+</com:TTable>
+</fieldset>
+            <com:XActiveDataGrid
+                ID="DataGrid"
+                Width="90%"
+                CellPadding="0"
+                CellSpacing="0"
+                GridLines="Both"
+                HeaderStyle.BackColor="#29166F"
+                HeaderStyle.ForeColor="white"
+                ItemStyle.BackColor="#BFCFFF"
+                ItemStyle.BorderColor="white"
+                DataKeyField="id"
+                AlternatingItemStyle.BackColor="#E6ECFF"
+                AutoGenerateColumns="false"
+                OnItemDataBound="nuevo_item"
+                Caption="Listado de Memoranda"
+                ForeColor="black"
+                BorderColor="black"
+                EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de Memoranda. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+                >
+                    <com:XActiveBoundColumn
+                    ID="nummemo"
+                    HeaderText="Num Memo"
+                    DataField="num_memo"/>
+                    <com:XActiveBoundColumn
+                    ID="fecha"
+                    HeaderText="Fecha"
+                    DataField="fecha"
+                    ItemStyle.HorizontalAlign="Center"
+                    ItemStyle.Width = "80px"
+                    />
+                    <com:XActiveBoundColumn
+                    ID="destinatario"
+                    HeaderText="Destinatario"
+                    DataField="destinatario"
+                    />
+                    <com:XActiveBoundColumn
+                    ID="asunto"
+                    HeaderText="Asunto"
+                    DataField="asunto"
+                    />
+                    <com:XActiveTemplateColumn ID="memo" HeaderText="memoranda">
+                    <prop:ItemTemplate>
+                        <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['num_memo'] %>" Text="adjuntar memo" OnClick="page.adjuntar"></com:TLinkButton>
+                    </prop:ItemTemplate>
+                    </com:XActiveTemplateColumn>
+                    <com:XActiveTemplateColumn ID="detalle" HeaderText="Detalle">
+                        <prop:ItemTemplate>
+                            <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['num_memo'] %>" Text="<img src='imagenes/iconos/detalle.png' border='0' />" OnClick="Page.ver_detalle" />
+                        </prop:ItemTemplate>
+                    </com:XActiveTemplateColumn>                    
+                    <com:XActiveBoundColumn
+                    ID="status"
+                    HeaderText="status"
+                    DataField="status"
+                    Visible = "false"
+                    />
+            </com:XActiveDataGrid>
+Leyenda:  los memos listados en ROJO, se encuentran anulados.
+</div>
+</com:TContent>

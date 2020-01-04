@@ -1,0 +1,91 @@
+<%@ Title="N&oacute;mina - Administrar Variables" %>
+
+<com:TContent ID="cuerpo">
+
+<h2>Administar Variables</h2>
+
+<a href="<%= $this->Service->constructUrl('nomina.variables.nueva_variable')%>">Crear Nueva Variable</a>
+<br/>
+<br/>
+
+<div align="center">
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+    HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+	>
+		<com:TBoundColumn
+		ID="cod"
+		HeaderText="COD"
+		DataField="cod"
+		HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+        <com:TBoundColumn
+		ID="abreviatura"
+		HeaderText="Abreviatura"
+		HeaderStyle.Width="80px"
+		DataField="abreviatura"
+		ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:TBoundColumn
+		ID="descripcion"
+		HeaderText="Descripci&oacute;n"
+		HeaderStyle.Width="260px"
+		DataField="descripcion"
+		ItemStyle.HorizontalAlign="Left"
+		/>
+		<com:TBoundColumn
+		ID="valor"
+		HeaderText="Valor"
+		HeaderStyle.Width="100px"
+		DataField="valor"
+		ItemStyle.HorizontalAlign="Right"
+		/>
+
+
+		<com:TEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:TButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+</com:TDataGrid>
+</div>
+
+
+</com:TContent>

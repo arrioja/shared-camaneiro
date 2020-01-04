@@ -1,0 +1,80 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Generar Constancia</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Buscar:</com:TTableCell>
+                    <com:TTableCell ColumnSpan="5">
+                        <com:TDropDownList ID="ddl1" DataTextField="nombre" DataValueField="cedula" AutoPostBack="true" OnSelectedIndexChanged="buscando"></com:TDropDownList>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Nombres</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t1" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Apellidos</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t2" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">fecha ingreso</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t3" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Cargo</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t4" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">sueldo basico</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t5" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">sueldo integral</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t6" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">tipo nomina</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t7" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Nº oficio</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t8"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">servicio desde</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t9"></com:TTextBox></com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">servicio hasta</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t10"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">jubilado desde</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t11"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">resolucion jubilacion</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t12"></com:TTextBox></com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">fecha resolucion</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t13"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">resolucion pension</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t14"></com:TTextBox></com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">fecha resolucion</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t15"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Tipo de Constancia</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDropDownList ID="ddl2" DataTextField="" DataValueField=""AutoPostBack="true">
+                            <com:TListItem Value="" Text="Seleccione"/>
+                            <com:TListItem Value="basica" Text="basica"/>
+                            <com:TListItem Value="integral" Text="integral"/>
+                            <com:TListItem Value="jubilado" Text="jubilado"/>
+                            <com:TListItem Value="pensionado" Text="pensionado"/>
+                        </com:TDropDownList>
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">iniciales</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t16"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                        <com:TButton Text="Generar Constancia" OnClick="generar" ValidationGroup="grupo1"></com:TButton>
+                    </com:TTableCell>                    
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

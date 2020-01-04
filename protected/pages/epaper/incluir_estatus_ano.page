@@ -1,0 +1,53 @@
+
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="80%">
+    <legend>Años Control de Documentos</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:TDropDownList ID="drop_ano"
+                    PromptText="Seleccione un a&ntilde;o"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="Estatus:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:TDropDownList ID="drop_estatus">
+                    <com:TListItem Text="Futuro" Value="FU" Selected="true"/>
+                </com:TDropDownList>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TButton ID="incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+  </fieldset>
+</div>
+</com:TContent>

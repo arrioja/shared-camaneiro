@@ -1,0 +1,21 @@
+<com:TContent ID="cuerpo">
+    <br></br>
+    <table border="1" align="center">
+        <tr>
+            <td>
+                cedula
+            </td>
+            <td>
+                tipo documento
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <com:TDropDownList ID="ddl1" PromptText="escoje" DataTextField="cedula"/>
+            </td>
+            <td>
+                <com:TDropDownList ID="ddl2" PromptText="escoje" DataTextField="concepto" OnTextChanged="llenarrtf" AutoPostBack="true"/>
+            </td>
+        </tr>        
+    </table>
+</com:TContent>

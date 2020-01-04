@@ -1,0 +1,72 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir mensaje en el sistema</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="T&iacute;tulo:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TActiveTextBox ID="txt_titulo"
+                    MaxLength="30"
+                    Columns="50"/>
+                <com:TRequiredFieldValidator ID="val_titulo"
+                    ControlToValidate="txt_titulo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="Im&aacute;gen:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TActiveTextBox ID="txt_imagen"
+                    MaxLength="30"
+                    Columns="50"/> (S&oacute;lo nombre)
+                <com:TRequiredFieldValidator ID="val_imagen"
+                    ControlToValidate="txt_imagen"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Mensaje:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TTextBox ID="txt_mensaje"
+                TextMode="MultiLine"
+                MaxLength="500"
+                Rows="6" Columns="60">
+                </com:TTextBox>
+                <com:TRequiredFieldValidator ID="val_mensaje"
+                    ControlToValidate="txt_mensaje"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TButton ID="incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+  </fieldset>
+</div>
+</com:TContent>

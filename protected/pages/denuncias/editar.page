@@ -1,0 +1,155 @@
+<com:TContent ID="cuerpo">
+    <com:TTextBox ID="oculto" visible="false"/>
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+        <legend>Modificar Consumible</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">Número</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t1"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t1"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Integer"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t1"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>                                                                                                
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Fecha</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="fecha1" Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="fecha1"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Denunciantes</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t2" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t2"
+                        ErrorMessage="Requerido"
+                        Display="Dynamic"
+                        DataType="String"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t2"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Motivos</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t3" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t3"
+                        ErrorMessage="Requerido"
+                        Display="Dynamic"
+                        DataType="String"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t3"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Ubicación</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t4" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t4"
+                        ErrorMessage="Requerido"
+                        Display="Dynamic"
+                        DataType="String"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t4"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Organismos</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t5" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t5"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t5"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Documentos Consignados</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t6" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t6"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Integer"/>                        
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Limitaciones</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t7" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t7"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Integer"/>                        
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Estado</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t8" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t8"
+                        ErrorMessage=" Número Requerido"
+                        Display="Dynamic"
+                        DataType="Integer"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t8"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                    <com:TTableCell CssClass="titulos_formularios">Observaciones</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t9" TextMode="MultiLine" Width="180px"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ControlToValidate="t9"
+                        ErrorMessage="Requerido"
+                        Display="Dynamic"
+                        DataType="Integer"/>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t9"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4"><com:TButton Text="Guardar" OnClick="guardar" ValidationGroup="grupo1"></com:TButton></com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

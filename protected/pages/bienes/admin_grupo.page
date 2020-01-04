@@ -1,0 +1,90 @@
+<%@ Title="N&oacute;mina - Administrar Grupo" %>
+<com:TContent ID="cuerpo">
+<com:MensajeDiv ID="cargando"/>
+<br/>
+
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+<div align="center">
+<com:XActiveDataGrid
+Caption="Administrar Grupo"
+	ID="DataGrid"
+	AllowPaging="false"
+	Width="90%"
+	PageSize="24"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemCreated="itemCreated"
+    OnEditCommand="editItem"
+    OnCancelCommand="cancelItem"
+    OnUpdateCommand="saveItem"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>
+                No existen datos suficientes para realizar el listado.</div>">
+
+
+  >
+
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+
+		<com:XActiveBoundColumn
+		ID="grupo"
+		HeaderText="GRUPO"
+		DataField="grupo"
+		HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+
+		/>
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripci&oacute;n"
+		DataField="descripcion"
+		HeaderStyle.Width="230px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+        <com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+       <com:XActiveTemplateColumn
+		ID="eliminar"
+		HeaderText="Eliminar"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>"   Text="<img src='imagenes/iconos/delete.png' border='0' />" OnClick="Page.eliminar" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de eliminar el grupo seleccionado?')) return false;" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+       
+
+
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

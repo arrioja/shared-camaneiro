@@ -1,0 +1,145 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Direcciones</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                        Periodos
+                        <com:TDropDownList
+                            ID="drop_periodo"
+                            PromptText="Seleccione"
+                            AutoPostBack="true"
+                            DataTextField="nombre"
+                            DataValueField="id"
+                             OnSelectedIndexChanged="cargar_data"
+                             ValidationGroup="1">
+                        </com:TDropDownList>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b">Datos</com:TTableCell>
+                </com:TTableRow>
+
+<com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Denominacion:" />
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="4">
+                <com:TActiveTextBox ID="txt_nombre" Columns="50" />
+                <com:TRequiredFieldValidator ID="val_res_con"
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+
+        </com:TTableRow>
+
+<com:TTableRow BorderWidth="1">
+
+ <com:TTableCell HorizontalAlign="Right" CssClass="color_b"  >
+               <com:TLabel Text="Nivel:" />
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="4">
+                <com:TActiveDropDownList ID="drop_nivel">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Directivo" Text="Directivo" />
+                  <com:TListItem Value="Normativo" Text="Normativo" />
+                  <com:TListItem Value="Operativo" Text="Operativo" />
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_nivel"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic" ValidationGroup="2"/>
+
+            </com:TTableCell>
+        </com:TTableRow>
+ 
+ <com:TTableRow >
+                 <com:TTableCell ColumnSpan="4" HorizontalAlign="Right">
+                    <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"
+                    ValidationGroup="2"/>
+                 </com:TTableCell>
+                 </com:TTableRow>
+                 <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b">Listado</com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+                        <div align="center" class="div4">
+                        <com:XActiveDataGrid
+                            Width="100%"
+                            CellSpacing="0"
+                            CellPadding="2"
+                            ID="DataGrid"
+                            DataKeyField="id"
+                            AutoGenerateColumns="false"
+                            HeaderStyle.BackColor="#29166F"
+                            HeaderStyle.ForeColor="white"
+                            ItemStyle.BackColor="#BFCFFF"
+                            ItemStyle.BorderColor="white"
+                           	AlternatingItemStyle.BackColor="#E6ECFF"
+                            EditItemStyle.BackColor="lightyellow"
+                            OnItemCreated="itemCreated"
+                            OnItemDataBound="nuevo_item"
+                            OnEditCommand="editItem"
+                            OnUpdateCommand="saveItem"
+                            OnCancelCommand="cancelItem"
+                            OnDeleteCommand="deleteItem"
+                            EmptyTemplate="<div style='font-size:14px;
+                            color:#FF0000;
+                            font-weight:bold;
+                            vertical-align:middle;
+                            padding-top:40px;'>
+                            No Definidas.</div>">
+                            <com:XActiveBoundColumn
+                                HeaderText="id"
+                                DataField="id"
+                                visible="false"/>
+                                <com:XActiveBoundColumn
+                                ID="denominacion"
+                                HeaderText="Denominacion"
+                                DataField="nombre"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveDropDownListColumn
+                                ID="nivel"
+                                HeaderText="Nivel"
+                                DataTextField="nivel"
+                                ItemStyle.HorizontalAlign="Center">
+                                      <com:TListItem Value="Directivo" Text="Directivo" />
+                                      <com:TListItem Value="Normativo" Text="Normativo" />
+                                      <com:TListItem Value="Operativo" Text="Operativo" />
+                                </com:XActiveDropDownListColumn>
+                                
+                               
+                                <com:XActiveEditCommandColumn
+                                HeaderText="Editar"
+                                HeaderStyle.Width="50px"
+                                UpdateText="Guardar"
+                                ItemStyle.HorizontalAlign="Center"
+                                ItemStyle.Font.Italic="false"
+                                CancelText="Cancelar"
+                                EditText="Editar"/>
+                                <com:XActiveButtonColumn
+                                ID="Borrar"
+                                HeaderText="Borrar"
+                                HeaderStyle.Width="50px"
+                                ItemStyle.HorizontalAlign="Center"
+                                ItemStyle.Font.Italic="false"
+                                Text="Borrar"
+                                CommandName="delete"/>
+                        </com:XActiveDataGrid>
+                        </div>
+                        
+                    </com:TTableCell>
+                </com:TTableRow>
+                
+            </com:TTable>
+               <com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+
+        </fieldset>
+    </div>
+</com:TContent>

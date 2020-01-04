@@ -1,0 +1,119 @@
+<%@ Title="N&oacute;mina - Administrar N&oacute;minas" %>
+<com:TContent ID="cuerpo">
+<br/>
+
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+<div align="center">
+<com:XActiveDataGrid
+Caption="Administrar N&oacute;minas"
+	ID="DataGrid"
+	AllowPaging="false"
+	Width="90%"
+	PageSize="24"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="cod"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    OnItemCreated="itemCreated"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>
+                No existen datos suficientes para realizar el listado.</div>">
+
+
+  >
+
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+
+		<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="COD"
+		DataField="cod"
+		HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+
+		/>
+		<com:XActiveBoundColumn
+		ID="titulo"
+		HeaderText="T&iacute;tulo"
+		DataField="titulo"
+		HeaderStyle.Width="230px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="tipo_nomina"
+		HeaderText="Tipo N&oacute;mina"
+		HeaderStyle.Width="100px"
+		DataField="tipo_nomina"
+		ItemStyle.HorizontalAlign="Center"
+
+		/>
+        <com:XActiveTemplateColumn
+		ID="archivo_banco"
+		HeaderText="Archivo al Banco"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="archivo_banco"  CommandParameter="<%#$this->Page->createMultiple($this, array('cod', 'tipo_nomina'))%>" Text="<img src='imagenes/iconos/file.png' border='0' />" ToolTip="Archivo a Banco"   OnClick="Page.archivo_banco"/>
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+	<com:XActiveTemplateColumn
+		ID="historial"
+		HeaderText="Pasar a Historial"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="historial"  CommandParameter="<%#$this->Page->createMultiple($this, array('cod', 'tipo_nomina'))%>" Text="<img src='imagenes/iconos/history.png' border='0' />" ToolTip="Pasar a historial"   OnClick="Page.historial"  Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de pasar al Historial la N&oacute;mina seleccionada?')) return false;" />
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+
+         <com:XActiveTemplateColumn
+		ID="eliminar"
+		HeaderText="Eliminar"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="delete"  CommandParameter="<%#$this->Page->createMultiple($this, array('cod', 'tipo_nomina'))%>" Text="<img src='imagenes/iconos/delete.png' border='0' />" ToolTip="Eliminar la N&oacute;mina"  OnClick="Page.eliminar" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de eliminar la N&oacute;mina seleccionada?')) return false;" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+
+</com:XActiveDataGrid>
+</div>
+<table Width="90%" aling="center" >
+    <tr>
+    <td aling="center">
+        <div align="center"><com:TButton BorderWidth="0" ID="btn_volver"
+                    Text="Regresar"
+                    OnClick="regresar"
+                    />
+                    </div>
+    </td>
+    </tr>
+    </table>
+
+</com:TContent>

@@ -1,0 +1,21 @@
+<%@ Title="Reporte Revisión de N&oacute;mina" %>
+<com:TContent ID="cuerpo">
+<br/>
+<div align="center">
+<table  border="1">
+
+      <tr>
+    <td aling="center">
+        <div align="center"><com:TButton BorderWidth="0" ID="btn_volver"
+                    Text="Mostrar"
+                    OnClick="mostrar"
+                    ValidationGroup="1"
+                    />
+                    </div>
+    </td>
+    </tr>
+</table>
+</div>
+
+
+</com:TContent>

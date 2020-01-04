@@ -1,0 +1,85 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Recalcular Presupuesto de Gastos</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left" ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o:"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left" >
+                <com:TActiveLabel ID="lbl_ano" Text="XXXX"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                Valores iniciales:
+            </com:TTableCell >
+            <com:TTableCell HorizontalAlign="Left" >
+                <com:TActiveLabel ID="lbl_valores_iniciales" Text="En Espera..."/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                Movimientos:
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left" >                
+                    <com:TActiveLabel ID="lbl_movimientos" Text="En Espera..."/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                Compromisos:
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left" >
+                    <com:TActiveLabel ID="lbl_compromisos" Text="En Espera..."/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                Causados:
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left" >
+                    <com:TActiveLabel ID="lbl_causados" Text="En Espera..."/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                Anulaciones:
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left" >
+                    <com:TActiveLabel ID="lbl_reversos" Text="En Espera..."/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                Pagados:
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Left" >
+                    <com:TActiveLabel ID="lbl_Pagados" Text="En Espera..."/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TButton ID="incluir"
+                    Text="Recalcular Ejecución"
+                    OnClick="recalcular_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+  </fieldset>
+</div>
+</com:TContent>

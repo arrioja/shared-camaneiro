@@ -1,0 +1,153 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%" height="500px">
+    <legend>Inclusi&oacute;n de Bienes.</legend>
+    <table Width="70%" aling="center" border="1">
+        <tr >
+            <td Align="left" width="160">
+                <com:TLabel Text="Grupo:"/>
+            </td>
+            <td Align="left">
+                <com:TLabel Text="Sub Grupo:"/>
+            </td>
+            <td Align="left">
+                <com:TLabel Text="Secciones:"/>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                <com:TActiveTextBox ID="txt_grupo"/>
+
+            </td>
+            <td>
+                <com:TActiveTextBox ID="txt_subgrupo"/>
+            </td>
+            <td>
+                <com:TActiveTextBox ID="txt_secciones"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <com:TLabel Text="Descripci&oacute;n:"/>
+            </td>
+            <td ColSpan="2">
+                <com:TActiveTextBox ID="txt_descripcion"
+                    Columns="50"
+                />
+             </td>
+        </tr>
+
+    </table>
+<table Width="70%" aling="center" border="1">
+    <tr>
+           <td>
+                <com:TLabel Text="C&oacute;digo del Bien:"/>
+            </td>
+            <td ColSpan="3">
+                <com:TActiveTextBox ID="txt_codigo"
+                    />
+
+             </td>
+   </tr>
+   <tr>
+    <td>
+        <span>Direcci&oacute;n:</span>
+    </td>
+    <td>
+        <com:TActiveTextBox ID="txt_direccion" Columns="40"
+            >
+            </com:TActiveTextBox>
+    </td>
+</tr>
+        <tr>
+            <td>
+                <com:TLabel Text="Cantidad"/>
+            </td>
+
+           <td ColSpan="3">
+           <com:TActiveTextBox ID="txt_cantidad" Columns="10"/>
+
+            </td>
+
+        </tr>
+<tr >
+    <td>
+        <span>Precio Incorporaci&oacute;n:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_precio_incorporacion" Columns="10"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Serial:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_serial" Columns="20"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Fecha Incorporación:</span>
+    </td>
+            <td ColSpan="3">
+            <com:TDatePicker ID="txt_fecha_incorporacion"  Culture="es"
+            DateFormat="dd/MM/yyyy"
+             />
+
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Años de vida &uacute;til:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_a_vida_util" Columns="10"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Meses de vida &uacute;til:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_meses_vida_util" Columns="10"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>D&iacute;as de vida &uacute;til:</span>
+    </td>
+
+<td ColSpan="3">
+           <com:TTextBox ID="txt_dias_vida_util" Columns="10"/>
+            </td>
+</tr>
+
+<tr>
+    <td align="center" colspan="3">
+    <com:TActiveImageButton ID="img_1" ImageUrl=""/>
+    </td>
+</tr>
+<tr>
+    <td align="center"colspan="2">
+     <com:TButton ID="btn_regresar"
+     Text="Regresar"
+     OnClick="regresar"
+    />
+    </td>
+    <td align="right">
+     <com:TButton ID="btn_desincorporar"
+     Text="Desincorporar"
+     OnClick="desincorporar"
+    />
+    </td>
+</tr>
+</table>
+</fieldset>
+</div>
+</com:TContent>

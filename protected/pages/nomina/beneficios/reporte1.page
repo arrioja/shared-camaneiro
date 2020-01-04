@@ -1,0 +1,310 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Calculo de Bonificaciones</legend>
+
+ <com:TTable BorderWidth="1" GridLines="Both">
+
+<com:TTableRow BorderWidth="1" >
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TActiveLabel ID="lbl_codigo_temporal" visible="False"/>
+                <com:TLabel Text="Fecha:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5" HorizontalAlign="Left">
+                <com:TDatePicker ID="txt_fecha" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Date=<%= @date('d/m/Y') %>"
+                    FromYear="<%= @date('Y')-2 %>"
+                    UpToYear="<%= @date('Y')+20 %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+      <com:TTableRow BorderWidth="1" >
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Descripcion:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5" HorizontalAlign="Left">
+                <com:TTextBox ID="txt_descripcion"
+                    Columns="60"
+                    MaxLength="50"/>
+                <com:TRequiredFieldValidator ID="val_descripcion"
+                    ControlToValidate="txt_descripcion"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+<com:TTableRow BorderWidth="1" >
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Resolucion Nº:" />
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5" HorizontalAlign="Left">
+                <com:TTextBox ID="txt_resolucion"
+                    Columns="5"
+                    MaxLength="5"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+ <com:TTableRow BorderWidth="1">
+           <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Base de Calculo:" />
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3" HorizontalAlign="Left">
+                <com:TActiveDropDownList ID="drop_monto"
+                DataTextField="tipo"
+                DataValueField="tipo"
+                AutoPostBack="true"
+                OnCallback="actualiza"/>
+                    <com:TRequiredFieldValidator
+                        ControlToValidate="drop_monto"
+                        InitialValue="Seleccione"
+                        Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+      
+
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right" >
+                <com:TLabel Text="Dias:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3" HorizontalAlign="Left">
+                <com:TActiveTextBox ID="txt_dias"
+                    Columns="10"
+                    MaxLength="3"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+         <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" >
+                <com:TLabel Text="Total a Bonificar Bs.:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3" HorizontalAlign="Left">
+                <com:TActiveTextBox ID="txt_bs"
+                    Columns="10"
+                    MaxLength="10"/>
+
+            </com:TTableCell>
+        </com:TTableRow>
+           <com:TTableRow BorderWidth="1">
+           <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Tipo de Nomina:" />
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3" HorizontalAlign="Left">
+                <com:TActiveDropDownList ID="drop_nomina"
+                DataTextField="tipo_nomina"
+                DataValueField="tipo_nomina"
+                AutoPostBack="true"
+                OnCallback="actualiza_listados">
+                <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+           <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Filtrar por:" />
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3" HorizontalAlign="Left">
+                <com:TActiveDropDownList ID="drop_sexo" AutoPostBack="true" OnCallback="actualiza_listados">
+                  <com:TListItem Value="N/A" Text="Sexo:" />
+                  <com:TListItem Value="Masculino" Text="Masculino" />
+                  <com:TListItem Value="Femenino" Text="Femenino" />
+                <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+     
+             <com:TActiveDropDownList ID="drop_hijo" AutoPostBack="true" 
+             OnCallback="actualiza_listados">
+                <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+    
+
+            </com:TTableCell>
+        </com:TTableRow>
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Observaciones:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_observacion" TextMode="MultiLine" Rows="4" Columns="60">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4" >
+            <com:TButton ID="btn_limpiar"
+                    Text="limpiar"
+                    OnClick="limpiar"
+                   >
+                </com:TButton>
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir">
+                </com:TButton>
+
+                <com:TButton ID="btn_imprimir_recibo"
+                    Text="Recibos"
+                    OnClick="imprimir_recibos">
+                </com:TButton>
+
+
+            </com:TTableCell>
+        </com:TTableRow>
+
+ </com:TTable>
+
+<br>
+    <com:XActiveDataGrid
+    Width="800px"
+    CellPadding="2"
+    ID="DataGrid"
+    DataKeyField="id"
+    AutoGenerateColumns="false"
+    HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+    AlternatingItemStyle.BackColor="#E6ECFF"
+    EditItemStyle.BackColor="lightyellow"
+    OnItemCreated="itemCreated"
+    OnEditCommand="editItem"
+    OnUpdateCommand="saveItem"
+    OnCancelCommand="cancelItem"
+    OnDeleteCommand="deleteItem"
+Caption="Funcionarios Asignados para Bonificacion"
+    EmptyTemplate="<div style='font-size:14px;
+               color:#FF0000;
+               height:100px;
+               font-weight:bold;
+               vertical-align:middle;
+               padding-top:40px;'>
+    No existen datos para generar el reporte.</div>"
+    >
+  <com:XActiveBoundColumn
+        ID="cedula"
+        HeaderText="cedula"
+        HeaderStyle.Width="150px"
+        DataField="cedula"
+        />
+    <com:XActiveBoundColumn
+        ID="nombre"
+        HeaderText="Apellidos y Nombres"
+        HeaderStyle.Width="400px"
+        DataField="nombre"
+        ItemStyle.HorizontalAlign="Left"
+        />
+   <com:XActiveBoundColumn
+        ID="editable"
+        HeaderText="Dias-Monto"
+        HeaderStyle.Width="100px"
+        DataField="editable"
+        />
+   
+    <com:XActiveBoundColumn
+        ID="PriceColumn"
+        visible="false"
+        ItemStyle.HorizontalAlign="Right"
+        ItemStyle.Wrap="false"
+        ItemStyle.Font.Italic="false"
+        ItemStyle.ForeColor="green"
+        HeaderText="Price"
+        HeaderStyle.Width="70px"
+        DataField="price"
+        DataFormatString="$%.2f"
+        />
+    <com:XActiveCheckBoxColumn
+        ID="InStockColumn"
+        visible="false"
+        HeaderText="In-stock"
+        DataField="instock"
+        />
+    <com:XActiveDropDownListColumn
+        ID="RatingColumn"
+  visible="false"
+        HeaderText="Rating"
+        DataTextField="rating"
+        >
+        <prop:DataTextFormatString><img src="images/star%s.gif" alt="" /></prop:DataTextFormatString>
+        <com:TListItem Value="1" />
+        <com:TListItem Value="2" />
+        <com:TListItem Value="3" />
+        <com:TListItem Value="4" />
+        <com:TListItem Value="5" />
+    </com:XActiveDropDownListColumn>
+    <com:XActiveEditCommandColumn
+        HeaderText="Modificar"
+        HeaderStyle.Width="100px"
+        UpdateText="Guardar"
+        ItemStyle.HorizontalAlign="Center"
+        ItemStyle.Font.Italic="false"
+        EditText="modificar"
+        />
+    <com:XActiveButtonColumn
+        ID="DeleteColumn"
+        HeaderText="Remover"
+        HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+        ItemStyle.Font.Italic="false"
+        Text="Remover"
+        CommandName="delete"
+        />
+</com:XActiveDataGrid>
+<com:XActiveDataGrid
+	ID="DataGrid_no_tiene"
+	 Width="800px"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+    EnableViewState="true"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#FFBFBF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	OnDeleteCommand="agregar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Funcionarios No Asignados para Bonificacion"
+    BorderColor="black">
+
+	<com:XActiveBoundColumn
+		ID="cedula2"
+		HeaderText="Cédula"
+		HeaderStyle.Width="90px"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+        ID="nombre2"
+        HeaderStyle.Width="80%"
+        DataField="nombre"
+        HeaderText="Nombre"/>
+
+	<com:XActiveButtonColumn
+        HeaderText="Acci&oacute;n"
+        HeaderStyle.Width="50px"
+        ID="quitar_column2"
+        ItemStyle.HorizontalAlign="Center"
+        Text="Agregar"
+        CommandName="delete"/>
+
+</com:XActiveDataGrid>
+
+</fieldset>
+
+</div>
+</com:TContent>

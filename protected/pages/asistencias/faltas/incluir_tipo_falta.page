@@ -1,0 +1,69 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir tipo de falta a la asistencia.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Descripcion:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_descripcion"
+                    Columns="60"
+                    MaxLength="50"/>
+                <com:TRequiredFieldValidator ID="val_descripcion"
+                    ControlToValidate="txt_descripcion"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Codigo:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_codigo"
+                    Columns="4"
+                    MaxLength="2"/>
+                <com:TRequiredFieldValidator ID="val_txt_codigo"
+                    ControlToValidate="txt_codigo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+                <com:TCustomValidator
+                    ControlToValidate="txt_codigo"
+                    OnServerValidate="verifica_existencia"
+                    Display="Dynamic"
+                    FocusOnError="true"
+                    Text="Existe." />
+            </com:TTableCell>
+            <com:TTableCell CssClass="color_b"  HorizontalAlign="Right">
+                <com:TLabel Text="Visible:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="drop_visible">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Si" Text="Si" />
+                  <com:TListItem Value="No" Text="No" />
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_visible"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

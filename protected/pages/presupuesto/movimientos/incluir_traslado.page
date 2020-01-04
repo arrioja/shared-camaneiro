@@ -1,0 +1,234 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir nuevo traslado (traspaso) presupuestario</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+                <com:TLabel ID="lbl_codigo_temporal" Text="" Visible="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Num. Oficio:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_numero_doc" Columns="15"/>
+                <com:TRequiredFieldValidator ID="val_cedula"
+                    ControlToValidate="txt_numero_doc"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TLabel Text="Fecha: "/>
+                <com:TDatePicker ID="txt_fecha" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Mode="ImageButton"
+                    InputMode="TextBox"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha"
+                    ControlToValidate="txt_fecha"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Presupuesto: "/>
+                <com:TLabel ID="lbl_ano" Text="XXXX" Font.Bold="true"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Motivo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_motivo" TextMode="MultiLine" Rows="2" Columns="80">
+                </com:TTextBox>
+                <com:TRequiredFieldValidator ID="val_direccion"
+                    ControlToValidate="txt_motivo"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tipo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TRadioButton
+                    ID="cedente"
+                    GroupName="grupo_tipo"
+                    Checked="true"
+                    ValidationGroup="9"
+                    Text="Cedente"
+                    />
+                <com:TRadioButton
+                    ID="receptora"
+                    GroupName="grupo_tipo"
+                    ValidationGroup="9"
+                    Text="Receptora"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="C&oacute;digo:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%" ColumnSpan="3">
+                <com:ActiveMaskedTextBox ID="txt_codigo"
+                    Mask="##-##-##-##-##-###-##-##-##-#####"
+                    Columns="30"
+                    ValidationGroup="9" />
+                <com:TRequiredFieldValidator ID="val_codigo_1"
+                    ControlToValidate="txt_codigo"
+                    ValidationGroup="9"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+                <com:TRegularExpressionValidator ID="val_codigo_2"
+                    ControlToValidate="txt_codigo"
+                    RegularExpression="\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{3}-\d{2}-\d{2}-\d{2}-\d{5}"
+                    ErrorMessage="Codigo Incompleto"
+                    ValidationGroup="9"
+                    Display="Dynamic"/>
+                <com:TActiveCustomValidator
+                    ControlToValidate="txt_codigo"
+                    OnServerValidate="validar_existencia"
+                    ValidationGroup="9"
+                    FocusOnError="true"
+                    Display="Dynamic"
+                    Text="No Existe." />
+                <com:TActiveCustomValidator
+                    ControlToValidate="txt_codigo"
+                    OnServerValidate="validar_incluido"
+                    ValidationGroup="9"
+                    FocusOnError="true"
+                    Display="Dynamic"
+                    Text="Ya Incluido." />
+                &nbsp;&nbsp;&nbsp; Bs.
+                <com:TActiveTextBox ID="txt_monto"
+                    Columns="12"
+                    ValidationGroup="9"
+                    Text="0.00"
+                    Style="text-align:right"/>
+                <com:TRequiredFieldValidator ID="val_monto_1"
+                    ControlToValidate="txt_monto"
+                    ErrorMessage="Monto Requerido"
+                    ValidationGroup="9"
+                    Display="Dynamic"/>
+                <com:TDataTypeValidator ID="val_monto_2"
+                    ControlToValidate="txt_monto"
+                    DataType="Float"
+                    ValidationGroup="9"
+                    ErrorMessage="El monto debe ser num&eacute;rico"
+                    Display="Dynamic"/>
+                <com:TActiveCustomValidator
+                    ControlToValidate="txt_monto"
+                    OnServerValidate="validar_monto"
+                    ValidationGroup="9"
+                    FocusOnError="true"
+                    Display="Dynamic"
+                    Text="Insuficiente." />
+                <com:TActiveButton ID="anadir"
+                    Text="A&ntilde;adir"
+                    ValidationGroup="9"
+                    OnClick="anadir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Center" ColumnSpan="4">
+                <com:XActiveDataGrid
+                    ID="DataGrid"
+                    Width="100%"
+                    CellPadding="0"
+                    CellSpacing="0"
+                    GridLines="Both"
+                    HeaderStyle.BackColor="#29166F"
+                    HeaderStyle.ForeColor="white"
+                    ItemStyle.BackColor="#BFCFFF"
+                    ItemStyle.BorderColor="white"
+                    DataKeyField="id"
+                    AlternatingItemStyle.BackColor="#E6ECFF"
+                    AutoGenerateColumns="false"
+                    OnDeleteCommand="eliminar"
+                    OnItemDataBound="nuevo_item"
+                    ForeColor="black"
+                    BorderColor="black"
+                    EmptyTemplate="<div style='font-size:14px;
+                                           color:#FF0000;
+                                           height:100px;
+                                           font-weight:bold;
+                                           vertical-align:middle;
+                                           align:center;
+                                           padding-top:20px;'>
+                                No hay c&oacute;digos incluidos.</div>"
+                    >
+                        <com:XActiveButtonColumn
+                            HeaderText="Acci&oacute;n"
+                            HeaderStyle.Width="50px"
+                            ID="quitar_column"
+                            CausesValidation="false"
+                            ItemStyle.HorizontalAlign="Center"
+                            Text="Eliminar"
+                            CommandName="delete"/>
+                        <com:XActiveBoundColumn
+                        ID="codigo"
+                        HeaderText="C&oacute;digo Presupuestario"
+                        HeaderStyle.Width="260px"
+                        DataField="codigo"
+                        ItemStyle.HorizontalAlign="Center"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="disminucion"
+                        HeaderText="Cede Bs."
+                        HeaderStyle.Width="120px"
+                        DataField="monto_disminucion"
+                        ItemStyle.ForeColor="Red"
+                        ItemStyle.HorizontalAlign="Right"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="aumento"
+                        HeaderText="Recibe Bs."
+                        HeaderStyle.Width="120px"
+                        DataField="monto_aumento"
+                        ItemStyle.ForeColor="green"
+                        ItemStyle.HorizontalAlign="Right"
+                        />
+                </com:XActiveDataGrid>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TLabel ID="lbl_total0" Text="TOTAL: Bs."/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TActiveLabel Text="Bs. " Font.Bold="true" ForeColor="red"/>
+                <com:TActiveLabel ID="lbl_total_disminucion" Text="0.00" Font.Bold="true" ForeColor="red"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TActiveLabel Text="Bs. " Font.Bold="true" ForeColor="green"/>
+                <com:TActiveLabel ID="lbl_total_aumento" Text="0.00" Font.Bold="true" ForeColor="green"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    Enabled="false"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+  </fieldset>
+</div>
+</com:TContent>

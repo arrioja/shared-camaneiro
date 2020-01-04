@@ -1,0 +1,156 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="LTB"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Consulta de Solicitudes de Vacaciones Aprobadas.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_cedula"
+                    DataTextField="nombre"
+                    PromptText="Seleccione un Funcionario"
+                    PromptValue="X"
+                    ValidationGroup="2"
+                    OnCallback="consulta_vacaciones"
+                    DataValueField="cedula" >
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Consultar"
+                    OnClick="consulta_vacaciones">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="93%"
+    AllowPaging="true"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+    PageSize="30"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+    HeaderStyle.Font.Size = "12px"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="Black"
+    ItemStyle.Font.Size = "12px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="formatear"
+    ForeColor="black"
+    Caption="Listado de Vacaciones Aprobadas"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+               color:#FF0000;
+               height:100px;
+               font-weight:bold;
+               vertical-align:middle;
+               padding-top:40px;'>
+    No existen datos para generar el reporte.</div>"
+    >
+
+	<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="Cedula"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="70px"/>
+
+	<com:XActiveBoundColumn
+        ID="nombres"
+        DataField="nombres"
+        HeaderText="Nombres"/>
+
+	<com:XActiveBoundColumn
+        ID="dias"
+        DataField="dias_disfrute"
+        HeaderText="Dias"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"/>
+
+	<com:XActiveBoundColumn
+        ID="periodo"
+        DataField="periodo"
+        HeaderText="Período"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="desde"
+        DataField="fecha_desde"
+        HeaderText="Desde"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="hasta"
+        DataField="fecha_hasta"
+        HeaderText="Hasta"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="90px"/>
+
+	<com:XActiveBoundColumn
+        ID="descuentos"
+        DataField="dias_restados"
+        HeaderText="Desc"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"/>
+
+	<com:XActiveBoundColumn
+        ID="feriado"
+        DataField="dias_feriados"
+        HeaderText="Feriado"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"/>
+
+       <com:XActiveTemplateColumn
+		ID="detalle"
+		HeaderText="Acción"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="100px"
+		>
+            <prop:ItemTemplate>
+                <com:TActiveLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img src='imagenes/iconos/edit.png' border='0' height='24' width='24'/>" ToolTip="Modificar Vacacion" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de Modificar vacacion seleccionada?')) return false;"  OnClick="Page.modificar_click"/>
+                <com:TActiveLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img src='imagenes/iconos/minus.png' border='0'  height='24' width='24' />" ToolTip="Interrumpir Vacacion" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de Interrumpir vacacion seleccionada?')) return false;" OnClick="Page.interrumpir_click" />
+
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+
+	<com:XActiveBoundColumn
+		ID="antiguo"
+		HeaderText="antiguo"
+        DataField="antiguo"
+        Visible = "false"
+		/>
+
+</com:XActiveDataGrid>
+
+<br>
+<div class="notas_y_leyendas">
+Nota: Desc = Días Descontados por horario especial.
+</div>
+</div>
+</com:TContent>

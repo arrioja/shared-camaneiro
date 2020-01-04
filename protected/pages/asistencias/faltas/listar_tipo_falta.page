@@ -1,0 +1,60 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    Caption="Tipos de Faltas a la asistencia"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Tipos de Faltas a la asistencia. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+		<com:TBoundColumn
+		ID="codigo"
+		HeaderText="Código"
+		HeaderStyle.Width="80px"
+		DataField="codigo"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="descripcion"
+		HeaderText="Descripción"
+		DataField="descripcion"
+		/>
+		<com:TBoundColumn
+		ID="visible"
+		HeaderText="Visible"
+		HeaderStyle.Width="76px"
+		DataField="visible"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+</com:TDataGrid>
+
+Leyenda: En la columna "Visible", (SI) significa que es visible por los usuarios al momento de solicitar
+un permiso, caso contrario en el (NO).
+</div>
+
+</com:TContent>

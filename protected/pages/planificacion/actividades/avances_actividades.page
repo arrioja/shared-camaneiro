@@ -1,0 +1,175 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center">
+    <legend>Registro de Avances de Actividades.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="95%">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Plan Operativo"/>
+                <com:TActiveLabel ID="lbl_cod_plan_estrategico" Visible = "false" Text=""/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_plan"
+                    DataTextField="nombre"
+                    DataValueField="cod_plan_operativo"
+                    AutoPostBack="true"
+                    OnCallback="actualizar_obj_estrategicos"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_plan"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_direcciones"
+                    DataTextField="nombre"
+                    PromptText="Seleccione"
+                    OnCallback="actualizar_obj_estrategicos"
+                    PromptValue="X"
+                    AutoPostBack="true"
+                    ValidationGroup="2"
+                    DataValueField="codigo" >
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_direcciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Obj. Específico:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_objetivo"
+                    DataTextField="nombre"
+                    DataValueField="cod_objetivo_especifico"
+                    AutoPostBack="true"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    OnCallback="actualizar_listado_actividades"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_objetivo"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="btn_imprimir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+
+        <com:XActiveDataGrid
+            ID="DataGrid"
+            Width="95%"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            OnItemDataBound="formato"
+            Caption="Listado de Actividades Planificadas"
+            AutoGenerateColumns="false"
+            ForeColor="black"
+            BorderColor="black"
+            >
+                <com:XActiveBoundColumn
+                ID="nombre"
+                HeaderText="Breve Descripción de la Actividad"
+                DataField="nombre"
+                ItemStyle.HorizontalAlign="Left"
+                />
+                <com:XActiveBoundColumn
+                ID="dias"
+                HeaderText="Días"
+                DataField="dias"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="fecha_inicio"
+                HeaderText="Inicio"
+                DataField="fecha_inicio"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="fecha_fin"
+                HeaderText="Fin"
+                DataField="fecha_fin"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="estatus"
+                HeaderText="Estatus"
+                Visible = "False"
+                HeaderStyle.Width="60px"
+                DataField="estatus"
+                ItemStyle.HorizontalAlign="Center"
+                />
+
+                <com:XActiveTemplateColumn
+                ID="detalle"
+                HeaderText="Actual"
+                ItemStyle.HorizontalAlign="Center"
+                HeaderStyle.Width="60px"
+                >
+                    <prop:ItemTemplate>
+                        <com:TActiveImage ID="estatus_img" ImageUrl="imagenes/iconos/led_00.png" />
+                    </prop:ItemTemplate>
+                </com:XActiveTemplateColumn>
+                <com:XActiveTemplateColumn
+                ID="nuevo"
+                HeaderText="Nuevo"
+                ItemStyle.HorizontalAlign="Center"
+                HeaderStyle.Width="100px"
+                >
+                    <prop:ItemTemplate>
+
+                        <com:TActiveLinkButton ID="btn_0"  CommandParameter="<%# array($this->Parent->DataItem['id'],$this->Parent->DataItem['cod_actividad'], $this->Parent->DataItem['cod_objetivo_especifico'],$this->Parent->DataItem['cod_plan_operativo']) %>" Text="<img src='imagenes/iconos/led_00.png' border='0' />" OnClick="Page.click_estatus" />
+                        <com:TActiveLinkButton ID="btn_1"  CommandParameter="<%# array($this->Parent->DataItem['id'],$this->Parent->DataItem['cod_actividad'], $this->Parent->DataItem['cod_objetivo_especifico'],$this->Parent->DataItem['cod_plan_operativo']) %>" Text="<img src='imagenes/iconos/led_01.png' border='0' />" OnClick="Page.click_estatus" />
+                        <com:TActiveLinkButton ID="btn_2"  CommandParameter="<%# array($this->Parent->DataItem['id'],$this->Parent->DataItem['cod_actividad'], $this->Parent->DataItem['cod_objetivo_especifico'],$this->Parent->DataItem['cod_plan_operativo']) %>" Text="<img src='imagenes/iconos/led_02.png' border='0' />" OnClick="Page.click_estatus" />
+                        <com:TActiveLinkButton ID="btn_3"  CommandParameter="<%# array($this->Parent->DataItem['id'],$this->Parent->DataItem['cod_actividad'], $this->Parent->DataItem['cod_objetivo_especifico'],$this->Parent->DataItem['cod_plan_operativo']) %>" Text="<img src='imagenes/iconos/led_03.png' border='0' />" OnClick="Page.click_estatus" />
+                    </prop:ItemTemplate>
+                </com:XActiveTemplateColumn>
+        </com:XActiveDataGrid>
+</fieldset>
+</div>
+Nota: Las Actividades en ROJO, presentan retraso, la que se muestra en amarillo debería
+estarse ejecutando actualmente.<br>
+El Estatus en 
+<com:TActiveImage ImageUrl="imagenes/iconos/led_00.png" />: Pendiente,
+<com:TActiveImage ImageUrl="imagenes/iconos/led_01.png" />: En Proceso,
+<com:TActiveImage ImageUrl="imagenes/iconos/led_02.png" />: Finalizado,
+<com:TActiveImage ImageUrl="imagenes/iconos/led_03.png" />: No Ejecutado
+</com:TContent>

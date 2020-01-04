@@ -1,0 +1,24 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Archivo</legend>
+            <com:TTable>
+                <com:TTableRow>
+                    <com:TTableCell>
+                        <com:TImage ID="img1"></com:TImage>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell>
+                        <com:TButton ID="b1" Text="<" OnClick="ant"></com:TButton>
+                        <com:TButton ID="b2" Text=">" OnClick="sig"></com:TButton>
+                        <com:TButton ID="b3" Text="ver listado" OnClick="ver_listado"></com:TButton>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>            
+        </fieldset>
+    </div>
+    <com:TTextBox ID="t9" visible="false"></com:TTextBox>
+    <com:TTextBox ID="t10" visible="false"></com:TTextBox>
+    <com:TTextBox ID="t11" visible="false"></com:TTextBox>
+</com:TContent>

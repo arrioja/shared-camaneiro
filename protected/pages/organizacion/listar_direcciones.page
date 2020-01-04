@@ -1,0 +1,84 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+
+<com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+    <com:TTableRow BorderWidth="1">
+        <com:TTableCell HorizontalAlign="Right">
+            <com:TLabel Text="Organizaci&oacute;n:"/>
+        </com:TTableCell>
+        <com:TTableCell>
+            <com:TDropDownList ID="drop_organizaciones"
+                DataTextField="nombre"
+                AutoPostBack="true"
+                PromptText="Seleccione una Organizaci&oacute;n"
+                PromptValue="X"
+                OnSelectedIndexChanged="actualiza_listado"
+                DataValueField="codigo" />
+            <com:TRequiredFieldValidator
+                ControlToValidate="drop_organizaciones"
+                InitialValue="X"
+                Text="Seleccione." />
+        </com:TTableCell>
+    </com:TTableRow>
+</com:TTable>
+
+            <com:XActiveDataGrid
+                ID="DataGrid"
+                Width="90%"
+                CellPadding="0"
+                CellSpacing="0"
+                GridLines="Both"
+                HeaderStyle.BackColor="#29166F"
+                HeaderStyle.ForeColor="white"
+                ItemStyle.BackColor="#BFCFFF"
+                ItemStyle.BorderColor="white"
+                DataKeyField="id"
+                OnEditCommand="editItem"
+                OnDeleteCommand="anularItem"
+                OnUpdateCommand="saveItem"
+                AlternatingItemStyle.BackColor="#E6ECFF"
+                AutoGenerateColumns="false"
+                Caption="Listado de Unidades Administrativas (Direcciones/Unidades/Jefaturas/etc)"
+                ForeColor="black"
+                BorderColor="black"
+                EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de Direcciones. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+                >
+                    <com:XActiveBoundColumn
+                    ID="siglas"
+                    HeaderText="Siglas"
+                    DataField="siglas"
+                    ItemStyle.HorizontalAlign="Center"
+                    />
+                    <com:XActiveBoundColumn
+                    ID="nombre"
+                    HeaderText="Nombre"
+                    DataField="nombre_completo"
+                    />
+                    <com:XActiveBoundColumn
+                    ID="abreviado"
+                    HeaderText="Abreviatura"
+                    DataField="nombre_abreviado"
+                    />
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+            </com:XActiveDataGrid>
+
+
+</div>
+
+</com:TContent>

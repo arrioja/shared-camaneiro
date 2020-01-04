@@ -1,0 +1,120 @@
+<%@ Title="N&oacute;mina - Administrar Constantes" %>
+
+<com:TContent ID="cuerpo">
+
+<h1>Administar Constantes</h1>
+
+<a href="<%= $this->Service->constructUrl('nomina.constantes.nueva_constante')%>">Crear Nueva Constante</a>
+<br/>
+<br/>
+
+<div align="center">
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+    HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+    OnItemDataBound="formatear"
+
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+	>
+		<com:TBoundColumn
+		ID="cod"
+		HeaderText="COD"
+		DataField="cod"
+		HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+        ReadOnly="True"
+		/>
+
+		<com:TBoundColumn
+		ID="descripcion"
+		HeaderText="Descripci&oacute;n"
+		HeaderStyle.Width="300px"
+		DataField="descripcion"
+		ItemStyle.HorizontalAlign="Left"
+		/>
+
+        <com:TBoundColumn
+		ID="abreviatura"
+		HeaderText="Abreviatura"
+		HeaderStyle.Width="100px"
+		DataField="abreviatura"
+		ItemStyle.HorizontalAlign="Center"
+		/>
+
+        <com:TDropDownListColumn
+        ID="tipo"
+        HeaderText="Tipo"
+        DataTextField="tipo"
+        ItemStyle.HorizontalAlign="Center"
+        >
+        <com:TListItem Value="CREDITO" />
+        <com:TListItem Value="DEBITO" />
+        <com:TListItem Value="OTRO" />
+        </com:TDropDownListColumn>
+
+
+        <com:TDropDownListColumn
+        ID="tipo_pago"
+        HeaderText="Tipo de Pago"
+        DataTextField="tipo_pago"
+        ItemStyle.HorizontalAlign="Center"
+        >
+        <com:TListItem Value="CORRIENTE" />
+        <com:TListItem Value="ESPECIAL" />
+        </com:TDropDownListColumn>
+
+        <com:TDropDownListColumn
+        ID="global"
+        HeaderText="Constante Global?"
+        DataTextField="global"
+        HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <com:TListItem Value="1" Text="S&iacute;" />
+            <com:TListItem Value="0" Text="No" />
+        </com:TDropDownListColumn>
+
+
+		<com:TEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="100px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:TButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+</com:TDataGrid>
+</div>
+
+
+</com:TContent>

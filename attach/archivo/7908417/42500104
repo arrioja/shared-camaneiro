@@ -1,0 +1,115 @@
+SOBREPONER IMAGENES
+<DIV STYLE="position:absolute; top:150px; left:150px; width:200px; height:200px; visibility:visible;z-index:1">
+<IMG SRC="Imagen1.gif" border=0>
+</DIV> 
+<DIV STYLE="position:absolute; top:30px; left:100px; width:200px; height:200px; visibility:visible;z-index:2">
+<IMG SRC="Imagen2.gif" border=0>
+</DIV> 
+
+
+Es que hago una captura de pantalla de mi programa en delphi(o donde sea),
+la guardo en una bitmap con el siguiente codigo:
+
+Bmp:=Tbitmap.Create;
+Bmp.Height:=1000;
+Bmp.Width:=1000;
+Bmp.Canvas.CopyRect(Rect(1,1,1000,1000),Canvas,Rect(1,1,1000,1000));
+Bmp.SaveToFile('c:\bmp.bmp');
+Bmp.Free;
+
+
+y el último paso que quiero hacer es pegar esta imagen en un archivo word, pero todo desde mi aplicacion delphi. Como pegar una imagen a word??
+
+
+
+
+
+function redimensionar($img_original, $img_nueva, $img_nueva_anchura, $img_nueva_altura, $img_nueva_calidad, $imagen_encajar){ 
+                    // crear una imagen desde el original 
+                    $datos = getimagesize($img_original); 
+                    if($datos[2]==1){$img = @imagecreatefromgif($img_original);} 
+                    if($datos[2]==2){$img = @imagecreatefromjpeg($img_original);} 
+                    if($datos[2]==3){$img = @imagecreatefrompng($img_original);} 
+                    // crear una imagen nueva 
+                    $thumb = imagecreatetruecolor($img_nueva_anchura,$img_nueva_altura); 
+                    $thumb2 = imagecreatefromjpeg($imagen_encajar);
+                    if ($img==""){
+                        //error
+                    }else{
+                        // redimensiona la imagen original copiandola en la imagen 
+                        imagecopyresampled($thumb,$img,0,0,0,0,$img_nueva_anchura,$img_nueva_altura,imagesx($img),imagesy($img)); 
+                         // guardar la nueva imagen redimensionada donde indicia $img_nueva 
+                        $anchura = (((imagesx($thumb2))/2)-((imagesx($thumb))/2));
+                        $altura = ((imagesy($thumb2)/2)-(imagesy($thumb)/2));
+                        imagecopy($thumb2,$thumb,$anchura,$altura,0,0,imagesx($thumb),imagesy($thumb));
+                        //imagejpeg($thumb2,$img_nueva,$img_nueva_calidad);
+                        if($datos[2]==1){imagegif($thumb2,$img_nueva,$img_nueva_calidad);} 
+                        if($datos[2]==2){imagejpeg($thumb2,$img_nueva,$img_nueva_calidad);} 
+                        if($datos[2]==3){imagepng($thumb2,$img_nueva,$img_nueva_calidad);} 
+                        imagedestroy($img);
+                        }
+                    }  
+
+
+
+
+
+Mira, lo que tengo hecho yo (que costo bastante) es para visualizar imagenes guardadas en formato JPEG en una tabla de una base de datos mySQL utilizando Delphi 5.
+Yo pienso que te va a a servir perfectamente. El codigo utilizado para agregar o insertar un registro imagen es el siguiente:
+
+**************************
+buf:=Tmemorystream.create;
+try
+foto.Picture.Graphic.SaveToStream(buf);
+buf.Seek(0, soFromBeginning);
+if (FotoNueva) then
+begin
+dm1.qcartel.insert;
+dm1.qcartelid_titulo.Value := dm1.qtitulos['ID_TITULO'];
+end
+else
+dm1.qcartel.edit;
+
+dm1.qcartelcartel.LoadFromStream(buf);
+dm1.qcartel.post;
+finally
+buf.free;
+end;
+
+****************************
+El objeto "dm1" es un DataModule donde guardo todos los objetos de datos.
+Fijate que utilizo la propiedad Graphic en el objeto foto lo que me devuelve un JPEG. Si utilizas Bitmap estarias guardando un BMP.
+
+Para visualizar la imagen utilizo un TImage comun, no un TDBImage. Este ultimo tiene muchas restricciones.
+Este es el codigo que utilizo:
+
+****************************************
+jp := TJpegImage.Create;
+buf := TMemoryStream.Create;
+dm1.qcartel.open;
+if not(dm1.qcartel.eof) then
+begin
+try
+dm1.qcartelcartel.SaveToStream(buf);
+buf.Seek(0, soFromBeginning);
+jp.LoadFromStream(buf);
+Foto.Picture.Assign(jp);
+finally
+end;
+end
+else
+begin
+foto.Width := 100;
+foto.Height := 100;
+end;
+buf.free;
+jp.free;
+****************************************
+
+Lo que tuve que hacer fue agregar los campos que voy a utilizar ID_TITULO y CARTEL en el TQuery (qcartel) que utilizo. Esto es necesario porque tenes que aclararle que el tipo de datos de CARTEL (BlobType) es un ftBlob.
+Espero que te sirva y cualquier consulta que tengas no dudes en preguntarme.
+Ahh!!!, con una tabla de Access tambien funciona.
+NAHUELON.. 
+
+
+

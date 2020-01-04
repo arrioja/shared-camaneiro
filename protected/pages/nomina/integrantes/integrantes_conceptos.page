@@ -1,0 +1,168 @@
+<com:TContent ID="cuerpo">
+    <h2>Integrantes Conceptos</h2>
+<div align="center">
+
+<table Border="1" GridLines="Both" Width="60%">
+
+    <tr >
+        <td class="formtd" width="20%"Align="Right">
+            <com:TLabel Text="Conceptos:"/>
+        </td>
+        <td class="formcampo" >
+            <com:TActiveDropDownList ID="drop_conceptos"
+                DataTextField="descripcion"
+                AutoPostBack="true"
+                PromptText="Seleccione un concepto"
+                PromptValue="-1"
+                OnCallback="actualiza_listado"
+                ValidationGroup="2"
+                DataValueField="cod"
+                >
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+            <com:TRequiredFieldValidator
+                ControlToValidate="drop_conceptos"
+                InitialValue="X"
+                Text="Seleccione."
+                Display="Dynamic"
+                />
+
+        </td>
+</table>
+<com:MensajeDiv ID="cargando"/>
+
+<com:XActiveDataGrid
+	ID="DataGrid_tienen"
+	Width="90%"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+    OnItemCreated="itemCreated"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>
+                No existen datos suficientes para realizar el listado de Integrantes con conceptos Asignados.</div>"
+  >
+
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+
+	<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="C&eacute;dula"
+		HeaderStyle.Width="110px"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+        ReadOnly="true"/>
+
+	<com:XActiveBoundColumn
+        ID="nombres"
+        HeaderStyle.Width="200px"
+        DataField="nombres"
+        HeaderText="Nombres"
+        ReadOnly="true"/>
+	<com:XActiveBoundColumn
+        ID="apellidos"
+        HeaderStyle.Width="200px"
+        DataField="apellidos"
+        HeaderText="Apellidos"
+        ReadOnly="true"/>
+	<com:XActiveButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+</com:XActiveDataGrid>
+
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid_no_tienen"
+	Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#FFBFBF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="cedula"
+    OnDeleteCommand="agregar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Integrantes que NO TIENEN asignada el concepto"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Integrantes que NO TIENEN asignada el concepto <br><br>
+                No existen datos suficientes para realizar el listado.</div>">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+    
+
+	<com:XActiveBoundColumn
+		ID="cedula2"
+		HeaderText="C&eacute;dula"
+		HeaderStyle.Width="110px"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+        />
+
+	<com:XActiveBoundColumn
+        ID="nombres2"
+        HeaderStyle.Width="200px"
+        DataField="nombres"
+        HeaderText="Nombres"
+        ReadOnly="true"/>
+	<com:XActiveBoundColumn
+        ID="apellidos2"
+        HeaderStyle.Width="200px"
+        DataField="apellidos"
+        HeaderText="Apellidos"
+        ReadOnly="true"/>
+	<com:XActiveButtonColumn
+        HeaderText="Acci&oacute;n"
+        HeaderStyle.Width="50px"
+        ID="agregar_column2"
+        ItemStyle.HorizontalAlign="Center"
+        Text="Agregar"
+        CommandName="delete"/>
+
+</com:XActiveDataGrid>
+
+
+
+</div>
+
+</com:TContent>

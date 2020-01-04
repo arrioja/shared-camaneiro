@@ -1,0 +1,31 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Salida Documento</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Fecha</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t1" ReadOnly="true"></com:TTextBox>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">A quien se envío</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t2"></com:TTextBox>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t2"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="2" HorizontalAlign="Center">
+                        <com:TButton Text="Guardar" OnClick="guardar" ValidationGroup="grupo1"></com:TButton>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

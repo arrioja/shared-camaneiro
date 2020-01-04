@@ -1,0 +1,80 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<div  id="loading" style="display:none;width: 90%;text-align: center; "
+				><img ID='loading' src='imagenes/iconos/progress_wheel.gif'>
+</div>
+ <fieldset Align="Center" width="80%">
+    <legend>Crear N&oacute;mina</legend>
+    <table Width="90%" aling="center" border="1">
+        <tr BorderWidth="1">
+            <td HorizontalAlign="Right" >
+                <com:TLabel Text="Tipo de N&oacute;mina a crear"/>
+            </td>
+            <td ColSpan="3">
+                <com:TTextBox ID="txt_tipo_nomina" ReadOnly="True"
+                />
+            </td>
+        </tr>
+<tr><td colspan="4" align="center">Datos de la N&oacute;mina Actual</td></tr>
+        <tr BorderWidth="1">
+            <td HorizontalAlign="Right">
+                <com:TLabel Text="C&oacute;digo:"/>
+            </td>
+            <td ColumnSpan="3">
+                <com:TTextBox ID="txt_codigo"
+                    Columns="8"
+                    ReadOnly="true"/>
+            </td>
+<td> <com:TLabel Text="T&iacute;tulo:"/></td> <td><com:TTextBox ID="txt_titulo" Columns="40"
+                    ReadOnly="true"/></td>
+        </tr>
+        <tr BorderWidth="1">
+            <td HorizontalAlign="Right">
+                <com:TLabel Text="Fecha Inicial:"/>
+            </td>
+            <td ColumnSpan="3">
+                <com:TTextBox ID="txt_fecha_i"
+                    Columns="8"
+                    ReadOnly="true"/>
+            </td>
+<td> <com:TLabel Text="Fecha Final"/></td> <td><com:TTextBox ID="txt_fecha_f" Columns="8"
+                    ReadOnly="true"/></td>
+        </tr>
+
+<tr>
+    <td colspan="4">
+         <com:TActiveTextBox ID="txt_archivo" TextMode="MultiLine"Rows="20" Columns="70" />
+    </td>
+</tr>
+        <tr>
+            <td align="center" ColSpan="2">
+                <com:TButton ID="btn_regresar"
+                    Text="Regresar"
+                    OnClick="regresar"
+                />
+            </td>
+            <td align="center" ColSpan="2">
+             <a href="protected/pages/nomina/nominas/descarga.php?file=nomina.txt" title="Descargar archivo" target="_SELF">Descargar archivo</a>
+            </td>
+        </tr>
+    <tr>
+        <td colspan="4">
+            <com:MEffectPanel BorderStyle="solid"
+        ToggleControls="btn_generar"
+        OpenByDefault="False"
+        OpenEffect="Effect.SlideDown"
+        OpenEffectOptions="{duration:.5,queue:'end'}"
+        CloseEffect="Effect.SlideUp"
+        CloseEffectOptions="{duration:.5,queue:'end'}" >
+
+           
+
+    </com:MEffectPanel>
+        </td>
+    </tr>
+    </table>
+
+</fieldset>
+</div>
+
+</com:TContent>

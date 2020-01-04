@@ -1,0 +1,38 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Antecedentes</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Cédula"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDropDownList
+                            ID="ddl1"
+                            PromptText="seleccione"
+                            AutoPostBack="true"
+                            DataTextField="cedula"
+                            DataValueField="cedula"
+                            OnSelectedIndexChanged="nya">                            
+                        </com:TDropDownList>
+                        <com:TRequiredFieldValidator
+                            ValidationGroup="group1"
+                            ControlToValidate="ddl1"
+                            InitialValue="seleccione"
+                            Text="seleccione" />
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow BorderWidth="1">
+                    <com:TTableCell CssClass="titulos_formularios">
+                        <com:TLabel Text="Nombres y Apellidos"/>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t1" Width="300px"></com:TTextBox>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>            
+            <com:TButton Text="Imprimir" ValidationGroup="group1" OnClick="imprimir"></com:TButton>
+        </fieldset>
+    </div>
+</com:TContent>

@@ -1,0 +1,47 @@
+<!--modulo para crear la evaluacion de una determinada persona -->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Crear Evaluacion</h1>
+    <table align="center" border="1">
+        <tr>
+            <td>desde</td>
+            <td>hasta</td>
+            <td>código</td>
+            <td>cédula</td>
+            <td>fecha</td>
+            <td>evaluación 1</td>
+            <td>evaluación 2</td>
+            <td>evaluación 3</td>
+        </tr>
+        <tr>
+            <td>
+                <com:TDatePicker ID="f_desde" Width="80px" Culture="es"/>
+            </td>
+            <td>
+                <com:TDatePicker ID="f_hasta" Width="80px" Culture="es"/>
+            </td>
+            <td>
+                <com:TTextBox ID="t_codigo" ReadOnly="true"/>                
+            </td>
+            <td>
+                <com:TDropDownList ID="drop_cedula" DataTextField="cedula" DataValueField="cedula"/>
+            </td>
+            <td>
+                <com:TTextBox ID="t_fecha" ReadOnly="true"/>
+            </td>
+            <td>
+                <com:TDatePicker ID="f_eva1" Width="80px" Culture="es"/>
+            </td>
+            <td>
+                <com:TDatePicker ID="f_eva2" Width="80px" Culture="es"/>
+            </td>
+            <td>
+                <com:TDatePicker ID="f_eva3" Width="80px" Culture="es"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="8">
+                <com:TButton ID="button1" Text="guardar" OnClick="guardar_datos"/>
+            </td>
+        </tr>
+    </table>
+</com:TContent>

@@ -1,0 +1,25 @@
+<com:TContent ID="cuerpo">
+<br>
+<br>
+<br>
+ <table width="70%" border="1" align="center" cellpadding="3" cellspacing="0">
+   <tr class="encabezado_formularios">
+     <td width="24%" rowspan="2" align="center">
+         <com:TImage ImageUrl="imagenes/botones/password.png" Height="128" Width="128" ID="imagen"></com:TImage>
+     </td>
+     <td colspan="2" align="center" class="encabezado_formularios"><com:TLabel ID="lbl_titulo" Text="T&iacute;tulo del Mensaje" /></td>
+   </tr>
+   <tr>
+     <td colspan="2" class="datos_formularios"><div align="justify"><com:TLabel ID="lbl_mensaje" Text="Texto del Mensaje" />.</div></td>
+   </tr>
+      <tr>
+     <td colspan="3" class="datos_formularios">
+       <div align="center">
+        <com:TButton ID="inicio"
+            Text="Inicio"
+            OnClick="btn_click"/>
+       </div>
+     </td>
+   </tr>
+  </table>
+</com:TContent>

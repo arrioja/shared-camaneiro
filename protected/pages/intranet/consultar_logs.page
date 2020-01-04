@@ -1,0 +1,127 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+
+<com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+    <com:TTableRow BorderWidth="1" >
+        <com:TTableCell CssClass="encabezado_formularios" ColumnSpan="4">
+            Consulta de bit&aacute;cora del sistema por usuario y fecha.
+        </com:TTableCell>
+    </com:TTableRow>
+
+    <com:TTableRow BorderWidth="1">
+        <com:TTableCell CssClass="titulos_formularios">
+            <com:TLabel Text="Usuario:"/>
+        </com:TTableCell>
+        <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+            <com:TActiveDropDownList ID="drop_usuarios"
+                DataTextField="nombre_completo"
+                PromptText="Seleccione un Usuario"
+                PromptValue="X"
+                ValidationGroup="2"
+                DataValueField="login" />
+            <com:TRequiredFieldValidator
+                ControlToValidate="drop_usuarios"
+                InitialValue="X"
+                Text="Seleccione." />
+        </com:TTableCell>
+    </com:TTableRow>
+
+    <com:TTableRow BorderWidth="1">
+        <com:TTableCell CssClass="titulos_formularios">
+            <com:TLabel Text="Desde:"/>
+        </com:TTableCell>
+        <com:TTableCell CssClass="datos_formularios">
+            <com:TDatePicker ID="txt_fecha_desde" Culture="es"
+                DateFormat="dd/MM/yyyy"
+                Mode="ImageButton"
+                InputMode="TextBox"
+                Columns="10"/>
+            <com:TRequiredFieldValidator ID="val_fecha_desde"
+                ControlToValidate="txt_fecha_desde"
+                ErrorMessage="Requerido."
+                Display="Dynamic"/>
+        </com:TTableCell>
+        <com:TTableCell CssClass="titulos_formularios">
+            <com:TLabel Text="Hasta:"/>
+        </com:TTableCell>
+        <com:TTableCell CssClass="datos_formularios">
+            <com:TDatePicker ID="txt_fecha_hasta" Culture="es"
+                DateFormat="dd/MM/yyyy"
+                Mode="ImageButton"
+                InputMode="TextBox"
+                Columns="10"/>
+            <com:TRequiredFieldValidator ID="val_fecha_hasta"
+                ControlToValidate="txt_fecha_hasta"
+                ErrorMessage="Requerido."
+                Display="Dynamic"/>
+        </com:TTableCell>
+    </com:TTableRow>
+    <com:TTableRow BorderWidth="1">
+        <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+            <com:TButton ID="btn_consultar"
+                Text="Consultar"
+                OnClick="btn_consultar_click"/>
+        </com:TTableCell>
+    </com:TTableRow>
+
+</com:TTable>
+
+<com:XActiveDataGrid
+	ID="DataGrid_logs"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id2"
+	OnDeleteCommand="eliminar"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Registro de actividades para el usuario seleccionado"
+    BorderColor="black" 
+    EmptyTemplate="<div style='font-size:14px;
+                       color:#FF0000;
+                       height:100px;
+                       font-weight:bold;
+                       vertical-align:middle;
+                       padding-top:40px;'>
+            <br>Logs del sistema. <br><br>
+            No existen datos suficientes para realizar el listado.</div>"
+    >
+
+	<com:XActiveBoundColumn
+		ID="id"
+		HeaderText="#Reg"
+		DataField="id"
+        ItemStyle.HorizontalAlign="Center"  />
+	<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="C&eacute;dula"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"  />
+	<com:XActiveBoundColumn
+        ID="nombre"
+        DataField="nomb"
+        HeaderText="Nombres y Apellidos"/>
+	<com:XActiveBoundColumn
+        ID="descripcion"
+        DataField="descripcion"
+        HeaderText="Descripci&oacute;n"/>
+	<com:XActiveBoundColumn
+        ID="timestamp"
+        DataField="timestamp"
+        HeaderText="Timestamp"/>
+</com:XActiveDataGrid>
+</div>
+</com:TContent>

@@ -1,0 +1,73 @@
+<com:TContent ID="cuerpo">
+<br>
+<br>
+  <table width="90%" border="1" align="center" cellpadding="0" cellspacing="0" class="datos_formularios">
+    <tr>
+      <td colspan="2"><div align="center" class="encabezado_formularios">Ingrese el nuevo m&oacute;dulo para la Intranet</div></td>
+    </tr>
+    <tr>
+      <td width="30%" class="titulos_formularios">C&oacute;digo:</td>
+      <td>
+            <com:TTextBox ID="txt_codigo" Columns="10" MaxLength="8"/>
+            <com:TRequiredFieldValidator
+                ControlToValidate="txt_codigo"
+                ErrorMessage="Requerido."
+                Display="Dynamic"/>
+            <com:TRegularExpressionValidator ID="val_codigo_2"
+                ControlToValidate="txt_codigo"
+                RegularExpression="\d{8}"
+                ErrorMessage="El código debe ser de ocho (8) n&uacute;meros."
+                Display="Dynamic"/>
+     </td>
+    </tr>
+    <tr>
+      <td class="titulos_formularios">Nombre Corto:</td>
+      <td width="70%">
+        <com:TTextBox ID="txt_nombre_corto" Columns="35" MaxLength="30"/>
+            <com:TRequiredFieldValidator
+                ControlToValidate="txt_nombre_corto"
+                ErrorMessage="Requerido."
+                Display="Dynamic"/>
+     </td>
+    </tr>
+    <tr>
+      <td class="titulos_formularios">Nombre Largo:</td>
+      <td>
+        <com:TTextBox ID="txt_nombre_largo" Columns="55" MaxLength="50"/>
+        </td>
+    </tr>
+        <tr>
+      <td class="titulos_formularios">Im&aacute;gen Men&uacute; Off:</td>
+      <td>
+        <com:TTextBox ID="txt_imagen_off" Columns="55" MaxLength="50"/>
+        </td>
+    </tr>
+        <tr>
+      <td class="titulos_formularios">Im&aacute;gen Men&uacute; On:</td>
+      <td>
+        <com:TTextBox ID="txt_imagen_on" Columns="55" MaxLength="50"/>
+        </td>
+    </tr>
+        <tr>
+      <td class="titulos_formularios">Archivo de M&oacute;dulo:</td>
+      <td>
+        <com:TTextBox ID="txt_archivo_php" Columns="55" MaxLength="50"/>
+        </td>
+    </tr>
+    <tr>
+      <td colspan="2">Nota: El campo &quot;Archivo de M&oacute;dulo&quot;,
+      debe ser colocado siguiendo los estandares de PRADO Framework, de la manera:
+       &quot;directorio.archivo &quot; (sin las comillas en caso de encontrarse
+       dentro de un directorio), sino, solo coloque el &quot;archivo&quot;.
+       Si lo que esta introduciendo es un submen&uacute;, s&oacute;lo coloque el
+       c&oacute;digo y el nombre.</td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="right">
+        <com:TButton ID="incluir"
+            Text="Incluir"
+            OnClick="incluir_click"/>
+      </div></td>
+    </tr>
+  </table>
+</com:TContent>

@@ -1,0 +1,131 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset width="95%">
+    <legend>Listado de Presupuesto de Gastos.</legend>
+    <com:TTable BorderWidth="1" CellPadding="0" CellSpacing="0" GridLines="Both" Width="90%">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Tipo:"/>
+                </com:TTableCell>
+                <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                    <com:TRadioButton
+                        ID="gasto"
+                        AutoPostBack="true"
+                        GroupName="grupo_tipo"
+                        Checked="true"
+                        Text="Gasto"
+                        OnCheckedChanged="actualiza_listado"
+                        />
+                    <com:TRadioButton
+                        ID="retencion"
+                        AutoPostBack="true"
+                        GroupName="grupo_tipo"
+                        Text="Retenci&oacute;n"
+                        OnCheckedChanged="actualiza_listado"
+                        />
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="Tipo:"/>
+                </com:TTableCell>
+                <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                    <com:TRadioButton
+                        ID="gasto1"
+                        AutoPostBack="true"
+                        GroupName="grupo_tipo"
+                        Checked="true"
+                        Text="Gasto"
+                        OnCheckedChanged="actualiza_listado"
+                        />
+                    <com:TRadioButton
+                        ID="retencion1"
+                        AutoPostBack="true"
+                        GroupName="grupo_tipo"
+                        Text="Retenci&oacute;n"
+                        OnCheckedChanged="actualiza_listado"
+                        />
+                </com:TTableCell>
+            </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+
+</fieldset>
+<com:XActiveDataGrid
+	ID="DataGrid"
+	Width="95%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="nuevo_item"
+    Caption="Presupuesto de Gastos"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Presupuesto de Gastos. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+		<com:XActiveBoundColumn
+		ID="codigo"
+		HeaderText="C&oacute;digo Presupuestario"
+		HeaderStyle.Width="260px"
+		DataField="codigo"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripcion"
+		DataField="descripcion"
+        ItemStyle.HorizontalAlign="Left"
+		/>
+		<com:XActiveBoundColumn
+		ID="monto"
+		HeaderText="Monto Asignado"
+		HeaderStyle.Width="120px"
+		DataField="asignado"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+		<com:XActiveBoundColumn
+		ID="acumulado"
+		HeaderText="acumulado"
+		DataField="acumulado"
+        ItemStyle.HorizontalAlign="Right"
+        Visible = "false"
+		/>
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

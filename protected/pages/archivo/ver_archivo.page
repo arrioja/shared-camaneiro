@@ -1,0 +1,51 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <div class="div5">
+                <com:XActiveDataGrid
+                    ID="DataGrid"
+                    Width="90%"
+                    CellPadding="0"
+                    CellSpacing="0"
+                    GridLines="Both"
+                    HeaderStyle.BackColor="#29166F"
+                    HeaderStyle.ForeColor="white"
+                    ItemStyle.BackColor="#BFCFFF"
+                    ItemStyle.BorderColor="white"
+                    DataKeyField="id"
+                    AlternatingItemStyle.BackColor="#E6ECFF"
+                    AutoGenerateColumns="false"
+                    Caption="Listado de archivo"
+                    ForeColor="black"
+                    BorderColor="black"
+                    EmptyTemplate="<div style='font-size:14px;
+                               color:#FF0000;
+                               height:100px;
+                               font-weight:bold;
+                               vertical-align:middle;
+                               padding-top:40px;'>
+                    <br>Listado de Archivo. <br><br>
+                    No existen datos suficientes para realizar el listado.</div>"
+                    >
+                        <com:XActiveBoundColumn
+                        ID="codigo"
+                        HeaderText="código"
+                        DataField="codigo"/>
+                        <com:XActiveBoundColumn
+                        ID="ubicacion"
+                        HeaderText="ubicación"
+                        DataField="ubicacion"/>
+                        <com:XActiveBoundColumn
+                        ID="descripcion"
+                        HeaderText="descripción"
+                        DataField="descripcion"/>
+                        <com:XActiveTemplateColumn ID="detalle" HeaderText="Detalle">
+                            <prop:ItemTemplate>
+                                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['codigo'] %>" Text="<img src='imagenes/iconos/detalle.png' border='0' />" OnClick="page.ver_detalle" />
+                            </prop:ItemTemplate>
+                        </com:XActiveTemplateColumn>
+                </com:XActiveDataGrid>
+            </div>
+        </fieldset>
+    </div>
+</com:TContent>

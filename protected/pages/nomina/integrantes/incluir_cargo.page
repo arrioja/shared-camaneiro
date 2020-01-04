@@ -1,0 +1,252 @@
+<com:TContent ID="cuerpo">
+    <style type="text/css">
+<!--
+.acomplete { position: relative; z-index: 5; background-color: #EDF5FF; border: 1px solid #243356; }
+.acomplete ul, .acomplete li { margin: 0px; padding: 0px; list-style: none; color: #333; }
+.acomplete li { padding: 4px; border-top: 1px solid #ccc; }
+.acomplete .selected { background-color: #ffc; }
+-->
+</style>
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Cargos</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                        Persona
+                        <com:TDropDownList
+                            ID="drop_persona"
+                            PromptText="seleccione"
+                            AutoPostBack="true"
+                            DataTextField="nombre"
+                            DataValueField="cedula"
+                            OnSelectedIndexChanged="cargar_data"
+                             ValidationGroup="1">
+                        </com:TDropDownList>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b">Datos Cargo</com:TTableCell>
+                </com:TTableRow>
+
+
+          <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Denominación:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                        <com:TAutoComplete
+                        ID="txt_denominacion"
+                        OnSuggest="cargo_sugeridos"
+                        OnSuggestionSelected="cargo_selecionado"
+                        Separator=","
+                        ResultPanel.CssClass="acomplete"
+                        Suggestions.DataKeyField="id" Columns="40" >
+
+                            <prop:Suggestions.ItemTemplate>
+                            <li><%# $this->Data['nombre'] %></li>
+                            </prop:Suggestions.ItemTemplate>
+                        </com:TAutoComplete>
+<com:TActiveLabel ID="lbl_denominacion"   Display="Hidden" />
+                <com:TRequiredFieldValidator ID="val_denominacion"
+                    ControlToValidate="txt_denominacion"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+        </com:TTableRow>
+  
+<com:TTableRow BorderWidth="1">
+                        <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+               <com:TLabel Text="Condicion:" />
+            </com:TTableCell>
+            <com:TTableCell >
+                <com:TActiveDropDownList ID="drop_condicion">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Fijo" Text="Fijo" />
+                  <com:TListItem Value="Contratado" Text="Contratado" />
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_condicion"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic" ValidationGroup="2"/>
+               
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Resolucion o Contrato Nº:" />
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveTextBox ID="txt_res_con" Columns="6" />
+                <com:TRequiredFieldValidator ID="val_res_con"
+                    ControlToValidate="txt_res_con"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic" ValidationGroup="2"/>
+            </com:TTableCell>
+
+        </com:TTableRow>
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Fecha Inicio:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDatePicker ID="txt_fecha_in" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    OnCallback="cargar_dir"
+                    FromYear="1969"
+                    UpToYear="<%= @date('Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+
+            </com:TTableCell>
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Fecha Fin:"/>
+            </com:TTableCell>
+<com:TTableCell>
+                <com:TDatePicker ID="txt_fecha_fin" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    FromYear="1969"
+                    UpToYear="<%= @date('Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+
+
+            </com:TTableCell>
+        </com:TTableRow>
+
+          <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right" CssClass="color_b">
+                <com:TLabel Text="Ubicacion:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                
+
+                            <com:TActiveDropDownList
+                            ID="drop_ubicacion"
+                            AutoPostBack="true"
+                            DataTextField="nombre"
+                            DataValueField="id"
+                             ValidationGroup="1">
+                                  <com:TListItem Value="N/A" Text="Seleccione" />
+                        </com:TActiveDropDownList>
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+
+ <com:TTableRow >
+                 <com:TTableCell ColumnSpan="4" HorizontalAlign="Right">
+                    <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"
+                    ValidationGroup="2"/>
+                 </com:TTableCell>
+                 </com:TTableRow>
+                 <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" CssClass="color_b">Listado de Cargos</com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+                        <div align="center" class="div6">
+                        <com:XActiveDataGrid
+                            Width="100%"
+                            CellSpacing="0"
+                            CellPadding="2"
+                            ID="DataGrid"
+                            DataKeyField="id"
+                            AutoGenerateColumns="false"
+                            HeaderStyle.BackColor="#29166F"
+                            HeaderStyle.ForeColor="white"
+                            ItemStyle.BackColor="#BFCFFF"
+                            ItemStyle.BorderColor="white"
+                           	AlternatingItemStyle.BackColor="#E6ECFF"
+                            EditItemStyle.BackColor="lightyellow"
+                            OnItemCreated="itemCreated"
+                            OnItemDataBound="nuevo_item"
+                            OnEditCommand="editItem"
+                            OnUpdateCommand="saveItem"
+                            OnCancelCommand="cancelItem"
+                            OnDeleteCommand="deleteItem"
+                            EmptyTemplate="<div style='font-size:14px;
+                            color:#FF0000;
+                            font-weight:bold;
+                            vertical-align:middle;
+                            padding-top:40px;'>
+                            No existen Cargos.</div>">
+                            <com:XActiveBoundColumn
+                                HeaderText="id"
+                                DataField="id"
+                                visible="false"/>
+                                <com:XActiveBoundColumn
+                                ID="denominacion"
+                                HeaderText="Denominacion"
+                                DataField="denominacion"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveDropDownListColumn
+                                ID="condicion"
+                                HeaderText="Condición"
+                                DataTextField="condicion"
+                                ItemStyle.HorizontalAlign="Center">
+                                    <com:TListItem Value="Fijo" Text="Fijo" />
+                                    <com:TListItem Value="Contratado" Text="Contratado" />
+                                </com:XActiveDropDownListColumn>
+                                <com:XActiveBoundColumn
+                                ID="decreto_contrato"
+                                HeaderText="Decreto o Contrato Nº"
+                                DataField="decreto_contrato"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                ID="fecha_ini"
+                                HeaderText="Fecha de Inicio"
+                                DataField="fecha_ini"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                ID="fecha_fin"
+                                HeaderText="Fecha Fin"
+                                DataField="fecha_fin"
+                                ItemStyle.HorizontalAlign="Center"/>
+                                <com:XActiveBoundColumn
+                                ID="lugar_trabajo"
+                                Readonly="true"
+                                HeaderText="Ubicacion"
+                                DataField="lugar_trabajo"
+                                ItemStyle.HorizontalAlign="Center"/>
+
+                                <com:XActiveTemplateColumn
+                                ID="pagos"
+                                HeaderText="Asignaciones"
+                                ItemStyle.HorizontalAlign="Center"
+                                HeaderStyle.Width="50px">
+                                <prop:ItemTemplate>
+                                    <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>"   Text="<img src='imagenes/iconos/money.png' border='0' />" OnClick="Page.pagos" />
+                                </prop:ItemTemplate>
+                                </com:XActiveTemplateColumn>
+                                <com:XActiveEditCommandColumn
+                                HeaderText="Editar"
+                                HeaderStyle.Width="50px"
+                                UpdateText="Guardar"
+                                ItemStyle.HorizontalAlign="Center"
+                                ItemStyle.Font.Italic="false"
+                                CancelText="Cancelar"
+                                EditText="Editar"/>
+                                <com:XActiveButtonColumn
+                                ID="Borrar"
+                                HeaderText="Borrar"
+                                HeaderStyle.Width="50px"
+                                ItemStyle.HorizontalAlign="Center"
+                                ItemStyle.Font.Italic="false"
+                                Text="Borrar"
+                                CommandName="delete"/>
+                        </com:XActiveDataGrid>
+                        </div>
+                        
+                    </com:TTableCell>
+                </com:TTableRow>
+                
+            </com:TTable>
+               <com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+
+        </fieldset>
+    </div>
+</com:TContent>

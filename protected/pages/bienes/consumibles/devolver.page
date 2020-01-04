@@ -1,0 +1,41 @@
+<com:TContent ID="cuerpo">
+    <com:TTextBox ID="t0" ReadOnly="true" visible="false"></com:TTextBox>
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Devolucion Consumible</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">direccion</com:TTableCell>
+                    <com:TTableCell><com:TTextBox ID="t1" ReadOnly="true" Width="350px"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>                
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Devolver</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDropDownList ID="ddl1"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell CssClass="titulos_formularios">Fecha</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TDatePicker ID="fecha1"  Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                        <com:TRequiredFieldValidator
+                        ValidationGroup="Group1"
+                        ControlToValidate="fecha1"
+                        ErrorMessage="Requerido."
+                        Display="Dynamic"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="2"><com:TButton ID="b1" ValidationGroup="Group1" Text="Devolver" OnClick="hacer_devolucion"></com:TButton></com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

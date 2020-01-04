@@ -1,0 +1,129 @@
+<%@ Title="N&oacute;mina - Administrar N&oacute;minas" %>
+<com:TContent ID="cuerpo">
+<br/>
+
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+<div align="center">
+<com:XActiveDataGrid
+Caption="Reportes Historial"
+	ID="DataGrid"
+	AllowPaging="false"
+	Width="90%"
+	PageSize="24"
+    AllowSorting="True"
+    
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="cod"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>
+                No existen datos suficientes para realizar el listado.</div>">
+
+
+  >
+
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+
+		<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="COD"
+		DataField="cod"
+		HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+
+		/>
+		<com:XActiveBoundColumn
+		ID="titulo"
+		HeaderText="T&iacute;tulo"
+		DataField="titulo"
+		HeaderStyle.Width="230px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="tipo_nomina"
+		HeaderText="Tipo N&oacute;mina"
+		HeaderStyle.Width="100px"
+		DataField="tipo_nomina"
+		ItemStyle.HorizontalAlign="Center"
+
+		/>
+        <com:XActiveTemplateColumn
+		ID="general"
+		HeaderText="Reporte General"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="reporte_general"  CommandParameter="<%#$this->Page->createMultiple($this, array('cod', 'tipo_nomina'))%>" Text="<img src='imagenes/iconos/file.png' border='0' />" ToolTip="reporte general"   OnClick="Page.reporte_general"/>
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+	
+	<com:XActiveTemplateColumn
+		ID="revision_nomina"
+		HeaderText="Reporte Revision Nomina"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="reporte_revision_nomina"  CommandParameter="<%#$this->Page->createMultiple($this, array('cod', 'tipo_nomina'))%>" Text="<img src='imagenes/iconos/file.png' border='0' />" ToolTip="reporte revision nomina"   OnClick="Page.reporte_revision_nomina"/>
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+	<com:XActiveTemplateColumn
+		ID="resumen_conceptos"
+		HeaderText="Reporte Resumen Conceptos"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="reporte_resumen_conceptos"  CommandParameter="<%#$this->Page->createMultiple($this, array('cod', 'tipo_nomina'))%>" Text="<img src='imagenes/iconos/file.png' border='0' />" ToolTip="reporte resumen conceptos"   OnClick="Page.reporte_resumen_conceptos"/>
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+	<com:XActiveTemplateColumn
+		ID="recibo_general"
+		HeaderText="Reporte Recibo General"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="reporte_recibo_general"  CommandParameter="<%#$this->Page->createMultiple($this, array('cod', 'tipo_nomina'))%>" Text="<img src='imagenes/iconos/file.png' border='0' />" ToolTip="reporte recibo general"   OnClick="Page.reporte_recibo_general"/>
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+
+</com:XActiveDataGrid>
+</div>
+<table Width="90%" aling="center" >
+    <tr>
+    <td aling="center">
+        <div align="center"><com:TButton BorderWidth="0" ID="btn_volver"
+                    Text="Regresar"
+                    OnClick="regresar"
+                    />
+                    </div>
+    </td>
+    </tr>
+    </table>
+
+</com:TContent>

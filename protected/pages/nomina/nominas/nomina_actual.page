@@ -1,0 +1,109 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<div  id="loading" style="display:none;width: 90%;text-align: center; "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+</div>
+ <fieldset Align="Center" width="80%">
+    <legend>Datos de la N&oacute;mina Actual</legend>
+    <table Width="90%" aling="center" border="1">
+
+<tr><td class="form3td" colspan="4" align="center">Datos de la N&oacute;mina Actual</td></tr>
+        <tr>
+        <td colspan="2" align="right">
+            <com:TLabel Text="Per&iacute;odo"/></td>
+            <td colspan="2">
+            <com:TActiveDropDownList ID="drop_periodos"
+            AutoPostBack="true"
+            DataValueField="periodo"
+            DataTextField="periodo"
+            OnCallback="cargar_descripcion"/>
+            <com:TRequiredFieldValidator
+            ControlToValidate="drop_periodos"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>             
+            </td>
+        </tr>
+       <tr BorderWidth="1">
+            <td HorizontalAlign="Right">
+                <com:TLabel Text="C&oacute;digo:"/>
+
+            </td>
+            <td ColumnSpan="3">
+                <com:TTextBox ID="txt_codigo"
+                    Columns="8"
+                    />
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_codigo"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+             <com:TDataTypeValidator
+            ControlToValidate="txt_codigo"
+            DataType="Integer"
+            Text="S&oacute;lo Enteros"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+            <com:TRegularExpressionValidator
+            ControlToValidate="txt_codigo"
+            RegularExpression="\d{4}"
+            Text="el c&oacute;digo debe ser de 4 d&iacute;gitos"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+            <com:TCustomValidator ControlToValidate='txt_codigo'
+              OnServerValidate='check_codigo'
+              Text='C&oacute;digo Existente, Por Favor C&aacute;mbielo!'
+              Display='Dynamic'
+              ValidationGroup="1"/>
+            </td>
+<td> <com:TLabel Text="T&iacute;tulo:"/></td> <td><com:TActiveTextBox ID="txt_titulo" Columns="40"ReadOnly="true"
+                    />
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_titulo"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"
+            /></td>
+        </tr>
+        <tr BorderWidth="1">
+            <td HorizontalAlign="Right">
+                <com:TLabel Text="Fecha Inicial:"/>
+            </td>
+            <td >
+                <com:TActiveTextBox ID="txt_fecha_i" ReadOnly="true"
+                    
+                    />
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_fecha_i"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+            </td>
+
+<td> <com:TLabel Text="Fecha Final"/></td> <td><com:TActiveTextBox ID="txt_fecha_f" ReadOnly="true"/>
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_fecha_f"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+            </td>
+        </tr>
+        <tr>
+
+            <td align="center" ColSpan="2">
+                <com:TButton   ID="btn_guardar"
+                    Text="Guardar"
+                    OnClick="guardar"
+                    ValidationGroup="1"/>
+            </td>
+<td colspan="2">        <div align="center"><com:TButton BorderWidth="0" ID="btn_volver"
+                    Text="Regresar"
+                    OnClick="regresar"
+                    />
+                    </div>  </td>
+        </tr>
+    </table>
+</fieldset>
+</div>
+
+</com:TContent>

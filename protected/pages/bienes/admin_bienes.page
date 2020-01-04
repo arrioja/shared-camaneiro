@@ -1,0 +1,202 @@
+<%@ Title="Administrar Bienes" %>
+<com:TContent ID="cuerpo">
+<com:MensajeDiv ID="cargando"/>
+<div align="center">
+<fieldset width="80%" style=" background : #E6ECFF">
+    <legend> Filtrado</legend>
+<table align="center" width="90%" >
+		<tr>
+		<td class="formtd"><com:TLabel Text="Criterio de B&uacute;squeda:"/></td>
+		<td class="formcampo">
+            <com:TActiveRadioButton ID="rad_dir" GroupName="opciones_busq" Text="Direcci&oacute;n" OnCheckedChanged="chequear"/>
+            <com:TActiveRadioButton ID="rad_codigo" GroupName="opciones_busq" Text="C&oacute;digo Barra" OnCheckedChanged="chequear"/>
+            <com:TActiveRadioButton ID="rad_clas" GroupName="opciones_busq" Text="Clasificaci&oacute;n" OnCheckedChanged="chequear"/>           
+</td>
+	</tr>
+    <tr>
+	    <td class="formtd"><com:TLabel Text="Cadena de B&uacute;squeda:" ForControl="txt_cadena" /></td>
+		<td class="formcampo"><com:TActiveTextBox ID="txt_cadena" Columns="31"/><com:TActiveDropDownList ID="drop_direcciones"
+                DataTextField="nombre"
+                AutoPostBack="true"
+                PromptText="Seleccione una Direcci&oacute;n"
+                PromptValue="-1"
+                OnCallback="actualiza_listado"
+                ValidationGroup="2"
+                DataValueField="codigo"
+                >
+        <prop:ClientSide
+              OnLoading="Element.show('mensaje')"
+              OnComplete="Element.hide('mensaje')"
+            />
+            </com:TActiveDropDownList>        <com:TActiveButton ID="btn_buscar" Text="Buscar" ValidationGroup="Grupo1" OnCallback="busc_codigo">
+        <prop:ClientSide
+              OnLoading="Element.show('mensaje')"
+              OnComplete="Element.hide('mensaje')"
+            /></com:TActiveButton>
+
+		<com:TRequiredFieldValidator ID="val" ControlToValidate="txt_cadena" ErrorMessage="Este campo no puede quedar vacio" ValidationGroup="Grupo1" Display="Dynamic"/>
+		</td>
+	</tr>
+</table>
+</fielset>
+</div>
+<br/>
+
+<div align="center">
+<com:XActiveDataGrid
+Caption="Administrar Bienes"
+	ID="DataGrid"
+	AllowPaging="True"
+	Width="95%"
+	PageSize="24"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemCreated="itemCreated"
+    OnEditCommand="editItem"
+    OnCancelCommand="cancelItem"
+    OnUpdateCommand="saveItem"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>
+                No existen datos suficientes para realizar el listado.</div>">
+
+
+
+          <prop:ClientSide
+              OnLoading="Element.show('mensaje')"
+              OnComplete="Element.hide('mensaje')"
+            />
+
+		<com:XActiveBoundColumn
+		ID="grupo"
+		HeaderText="Grupo"
+		DataField="grupo"
+		HeaderStyle.Width="30px"
+        ItemStyle.HorizontalAlign="Center"
+
+		/>
+		<com:XActiveBoundColumn
+		ID="subgrupo"
+		HeaderText="SGrupo"
+		DataField="subgrupo"
+		HeaderStyle.Width="30px"
+        ItemStyle.HorizontalAlign="Center"
+
+		/>
+		<com:XActiveBoundColumn
+		ID="secciones"
+		HeaderText="Secc"
+		DataField="secciones"
+		HeaderStyle.Width="30px"
+        ItemStyle.HorizontalAlign="Center"
+
+		/>
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripci&oacute;n"
+		DataField="descripcion"
+		HeaderStyle.Width="230px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="cantidad"
+		HeaderText="Cant"
+		DataField="cantidad"
+		HeaderStyle.Width="35px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="serial"
+		HeaderText="Serial"
+		DataField="serial"
+		HeaderStyle.Width="20px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="codigo"
+		HeaderText="C&oacute;digo"
+		DataField="codigo"
+		HeaderStyle.Width="20px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="valor"
+		HeaderText="Valor BsF."
+		DataField="precio_incorporacion"
+		HeaderStyle.Width="20px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+        <com:XActiveTemplateColumn
+		ID="detalle_bien"
+		HeaderText="Detalle"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="detalle_bien"  CommandParameter="<%#$this->Page->createMultiple($this, array('id'))%>" Text="<img src='imagenes/iconos/file.png' border='0' />" ToolTip="Detalle del Bien"   OnClick="Page.detalle_bien"/>
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+<com:XActiveTemplateColumn
+		ID="desincorporacion"
+		HeaderText="Desincorp"
+		HeaderStyle.Width="30px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="desincorporacion"  CommandParameter="<%#$this->Page->createMultiple($this, array('id'))%>" Text="<img src='imagenes/iconos/minus.png' border='0' />" ToolTip="Desincorporación"   OnClick="Page.desincorporacion"/>
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+<com:XActiveTemplateColumn
+		ID="movimientos"
+		HeaderText="Ver Movimientos"
+		HeaderStyle.Width="30px"
+		ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton  CommandName="movimientos"  CommandParameter="<%#$this->Page->createMultiple($this, array('codigo'))%>" Text="<img src='imagenes/iconos/move.png' border='0' />" ToolTip="Ver Movimientos"   OnClick="Page.imprimir_movimientos"/>
+			</prop:ItemTemplate>
+		</com:XActiveTemplateColumn>
+       <com:XActiveTemplateColumn
+		ID="eliminar"
+		HeaderText="Eliminar"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>"   Text="<img src='imagenes/iconos/delete.png' border='0' />" OnClick="Page.eliminar" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de eliminar la descripci&oacute;n seleccionada?')) return false;" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+       
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+
+</com:XActiveDataGrid>
+</div>
+<div align="center">
+    <com:TButton ID="imprimir" Text="Imprimir" OnClick="imprimir_listado"/>
+</div>
+
+</com:TContent>

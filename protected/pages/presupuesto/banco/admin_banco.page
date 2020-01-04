@@ -1,0 +1,92 @@
+<%@ Title="N&oacute;mina - Administrar Banco" %>
+
+<com:TContent ID="cuerpo">
+
+<h1>Administar Banco</h1>
+
+<a href="<%= $this->Service->constructUrl('presupuesto.banco.nuevo_banco')%>">Crear Nuevo Banco</a>
+<br/>
+<br/>
+
+<div align="center">
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="70%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="black"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    EmptyTemplate="<div style='font-size:14px;
+                                           color:#FF0000;
+                                           height:100px;
+                                           font-weight:bold;
+                                           vertical-align:middle;
+                                           align:center;
+                                           padding-top:20px;'>
+                                No hay Bancos incluídos.</div>"
+                    >
+		<com:TBoundColumn
+		ID="id"
+		HeaderText="ID"
+		DataField="id"
+		HeaderStyle.Width="20px"
+        ItemStyle.HorizontalAlign="Center"
+       
+		/>
+		<com:TBoundColumn
+		ID="nombre"
+		HeaderText="Nombre"
+		DataField="nombre"
+		HeaderStyle.Width="80px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:TBoundColumn
+		ID="info"
+		HeaderText="Info Adicional"
+		HeaderStyle.Width="120px"
+		DataField="info_adicional"
+		ItemStyle.HorizontalAlign="Left"
+		/>
+		
+       <com:TEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:TButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+        Visible="False"
+		/>
+
+</com:TDataGrid>
+</div>
+
+
+</com:TContent>

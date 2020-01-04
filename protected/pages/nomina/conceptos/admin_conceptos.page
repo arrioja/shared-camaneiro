@@ -1,0 +1,136 @@
+<%@ Title="N&oacute;mina - Administrar Conceptos" %>
+
+<com:TContent ID="cuerpo">
+
+<h1>Administar Conceptos</h1>
+
+<a href="<%= $this->Service->constructUrl('nomina.conceptos.nuevo_concepto')%>">Crear Nuevo Concepto</a>
+<br/>
+
+<div align="center">
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+    HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+    OnItemDataBound="formatear"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+	>
+		<com:TBoundColumn
+		ID="cod"
+		HeaderText="COD"
+		DataField="cod"
+		HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+        ReadOnly="True"
+		/>
+
+		<com:TBoundColumn
+		ID="descripcion"
+		HeaderText="Descripci&oacute;n"
+		HeaderStyle.Width="260px"
+		DataField="descripcion"
+		ItemStyle.HorizontalAlign="Left"
+		/>
+
+
+
+        <com:TDropDownListColumn
+        ID="tipo"
+        HeaderText="Tipo"
+        HeaderStyle.Width="85px"
+        DataTextField="tipo"
+        ItemStyle.HorizontalAlign="Center"
+        >
+        <com:TListItem Value="CREDITO" />
+        <com:TListItem Value="DEBITO" />
+        <com:TListItem Value="OTRO" />
+        </com:TDropDownListColumn>
+
+
+        <com:TDropDownListColumn
+        ID="tipo_pago"
+        HeaderText="Tipo de Pago"
+        HeaderStyle.Width="100px"
+        DataTextField="tipo_pago"
+        ItemStyle.HorizontalAlign="Center"
+        >
+        <com:TListItem Value="CORRIENTE" />
+        <com:TListItem Value="ESPECIAL" />
+        </com:TDropDownListColumn>
+
+        <com:TBoundColumn
+		ID="formula"
+		HeaderText="F&oacute;rmula"
+		HeaderStyle.Width="200px"
+		DataField="formula"
+		ItemStyle.HorizontalAlign="Center"
+		/>
+
+        <com:TDropDownListColumn
+        ID="general"
+        HeaderText="General"
+        HeaderStyle.Width="30px"
+        DataTextField="general"
+        ItemStyle.HorizontalAlign="Center"
+        >
+        <com:TListItem Text="No" Value="0"/>
+        <com:TListItem Text="S&iacute;" Value="1"/>
+        </com:TDropDownListColumn>
+
+        <com:TDropDownListColumn
+        ID="frecuencia"
+        HeaderText="Frecuencia"
+        HeaderStyle.Width="100px"
+        DataTextField="frecuencia"
+        ItemStyle.HorizontalAlign="Center"
+        >
+        <com:TListItem Value="SEMANAL" />
+        <com:TListItem Value="QUINCENAL" />
+        <com:TListItem Value="MENSUAL" />
+        <com:TListItem Value="TRIMESTRAL" />
+        <com:TListItem Value="SEMESTRAL" />
+        <com:TListItem Value="ANUAL" />
+        </com:TDropDownListColumn>
+
+		<com:TEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:TButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+</com:TDataGrid>
+</div>
+
+
+</com:TContent>

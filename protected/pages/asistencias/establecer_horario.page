@@ -1,0 +1,205 @@
+<com:TContent ID="cuerpo">
+    <com:THiddenField ID="campo_id" Value=""/>
+   <com:THiddenField ID="campo_id2" Value=""/>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Establecimiento de horarios de trabajo.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" HorizontalAlign="Center" >
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_c" HorizontalAlign="Center" ColumnSpan="4">
+                <com:TLabel Font.Bold = "True" Text="Fecha de Vigencia"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel  ID="hola" Text="Desde:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDatePicker ID="txt_fecha_desde"  Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Date=<%= @date('d/m/Y') %>"
+                    FromYear="<%= @date('Y') %>"
+                    UpToYear="<%= @date('Y')+1 %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_desde"
+                    ControlToValidate="txt_fecha_desde"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_c" HorizontalAlign="Center" ColumnSpan="4">
+                <com:TLabel Font.Bold = "True" Text="Horario de Trabajo"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Hora de Entrada:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TLabel Text="H:"/>
+                <com:TActiveDropDownList ID="hhe" AutoPostBack="false"/>
+                <com:TLabel Text="M:"/>
+                <com:TActiveDropDownList ID="mhe" AutoPostBack="false"/>
+                <com:TLabel Text="S:"/>
+                <com:TActiveDropDownList ID="she" AutoPostBack="false"/>
+                <com:TLabel Text="/"/>
+                <com:TActiveDropDownList ID="ahe" AutoPostBack="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Hora de Salida:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TLabel Text="H:"/>
+                <com:TActiveDropDownList ID="hhs" AutoPostBack="false"/>
+                <com:TLabel Text="M:"/>
+                <com:TActiveDropDownList ID="mhs" AutoPostBack="false"/>
+                <com:TLabel Text="S:"/>
+                <com:TActiveDropDownList ID="shs" AutoPostBack="false"/>
+                <com:TLabel Text="/"/>
+                <com:TActiveDropDownList ID="ahs" AutoPostBack="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Holgura de Entrada:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="dropholguraentrada"/> Minutos
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_c" HorizontalAlign="Center" ColumnSpan="4">
+                <com:TLabel Font.Bold = "True" Text="Horario de Almuerzo"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Hora de Salida:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TLabel Text="H:"/>
+                <com:TActiveDropDownList ID="hsa" AutoPostBack="false"/>
+                <com:TLabel Text="M:"/>
+                <com:TActiveDropDownList ID="msa" AutoPostBack="false"/>
+                <com:TLabel Text="S:"/>
+                <com:TActiveDropDownList ID="ssa" AutoPostBack="false"/>
+                <com:TLabel Text="/"/>
+                <com:TActiveDropDownList ID="asa" AutoPostBack="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Hora de Entrada:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TLabel Text="H:"/>
+                <com:TActiveDropDownList ID="hea" AutoPostBack="false"/>
+                <com:TLabel Text="M:"/>
+                <com:TActiveDropDownList ID="mea" AutoPostBack="false"/>
+                <com:TLabel Text="S:"/>
+                <com:TActiveDropDownList ID="sea" AutoPostBack="false"/>
+                <com:TLabel Text="/"/>
+                <com:TActiveDropDownList ID="aea" AutoPostBack="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Duraci&oacute;n Almuerzo:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="dropminalmuerzo"/> Minutos
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_c" HorizontalAlign="Center" ColumnSpan="4">
+                <com:TLabel Font.Bold = "True" Text="Otras Opciones"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="En Horario Especial:"/>
+            </com:TTableCell>
+            <com:TTableCell>Por cada
+                <com:TDropDownList ID="dropdiascontar">
+                    <com:TListItem Text="00" Value="0" />
+                    <com:TListItem Text="01" Value="1" />
+                    <com:TListItem Text="02" Value="2" />
+                    <com:TListItem Text="03" Value="3" />
+                    <com:TListItem Text="04" Value="4" />
+                    <com:TListItem Text="05" Value="5" />
+                    <com:TListItem Text="06" Value="6" />
+                    <com:TListItem Text="07" Value="7" />
+                    <com:TListItem Text="08" Value="8" />
+                    <com:TListItem Text="09" Value="9" />
+                    <com:TListItem Text="10" Value="10" />
+                </com:TDropDownList>
+            d&iacute;as de inasistencia, se descontar&aacute;n   <br>
+                <com:TDropDownList ID="dropdiasrestar">
+                    <com:TListItem Text="00" Value="0" />
+                    <com:TListItem Text="01" Value="1" />
+                    <com:TListItem Text="02" Value="2" />
+                    <com:TListItem Text="03" Value="3" />
+                    <com:TListItem Text="04" Value="4" />
+                    <com:TListItem Text="05" Value="5" />
+                    <com:TListItem Text="06" Value="6" />
+                    <com:TListItem Text="07" Value="7" />
+                    <com:TListItem Text="08" Value="8" />
+                    <com:TListItem Text="09" Value="9" />
+                    <com:TListItem Text="10" Value="10" />
+                </com:TDropDownList> d&iacute;as de vacaciones.
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Permisos Potestativos:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="droppermisos">
+                    <com:TListItem Text="01" Value="1" />
+                    <com:TListItem Text="02" Value="2" />
+                    <com:TListItem Text="03" Value="3" />
+                    <com:TListItem Text="04" Value="4" />
+                    <com:TListItem Text="05" Value="5" />
+                </com:TDropDownList> M&aacute;ximos al mes
+            </com:TTableCell>
+        </com:TTableRow>
+<com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Descuento Ticket:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TLabel Text="H:" visible="false"/>
+                <com:TActiveDropDownList ID="htc" AutoPostBack="false" visible="false"/>
+                <com:TActiveDropDownList ID="mtc" AutoPostBack="false"/>
+               Minutos no laborados, descontara
+                 <com:TActiveDropDownList ID="ntc" AutoPostBack="false"  visible="false"/> un (01) ticket Alimentación
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

@@ -1,0 +1,131 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="80%">
+    <legend>Asignar Organizaci&oacute;n / Direcci&oacute;n / Nivel.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="C&eacute;dula:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_cedula" Columns="10" AutoPostBack="false"/>
+                <com:TActiveButton Text="Comprobar"
+                    ID="btn_validar_cedula"
+                    ValidationGroup="1"
+                    OnClick="validar_cedula"/>
+                <com:TCustomValidator
+                    ControlToValidate="txt_cedula"
+                    OnServerValidate="validar_cedula"
+                    FocusOnError="true"
+                    Text="La persona NO existe." />
+                <com:TCustomValidator
+                    ControlToValidate="txt_cedula"
+                    OnServerValidate="validar_cedula_en_direccion"
+                    FocusOnError="true"
+                    Text="Ya pertenece a una Dirección." />
+                <com:TRequiredFieldValidator ID="val_cedula"
+                    ControlToValidate="txt_cedula"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Nombre:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveTextBox ID="txt_nombre"
+                    Columns="50"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_nombre"
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Apellido:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveTextBox ID="txt_apellido"
+                    Columns="50"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_apellido"
+                    ControlToValidate="txt_apellido"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_organizaciones"
+                    DataTextField="nombre"
+                    PromptText="Seleccione una Organización"
+                    PromptValue="X"
+                    OnCallback="actualiza_drops"
+                    ValidationGroup="2"
+                    DataValueField="codigo" />
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_organizaciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Dirección:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_direcciones"
+                    DataTextField="nombre_completo"
+                    PromptText="Seleccione una Dirección"
+                    PromptValue="X"
+                    ValidationGroup="2"
+                    DataValueField="codigo" />
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_direcciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Nivel:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_niveles"
+                    DataTextField="nombre"
+                    PromptText="Seleccione el nivel del usuario"
+                    PromptValue="X"
+                    ValidationGroup="2"
+                    DataValueField="codigo" />
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_niveles"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TActiveLabel Visible = "False" ID="lbl_cod_direccion" Text="XXXXXX"/>
+                <com:TActiveLabel Visible = "False" ID="lbl_cod_organizacion" Text="XXXXXX"/>
+                <com:TButton ID="btn_incluir"
+                    Text="Aplicar Cambios"
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

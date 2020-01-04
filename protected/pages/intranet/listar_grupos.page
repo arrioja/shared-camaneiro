@@ -1,0 +1,82 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+
+<com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+    <com:TTableRow BorderWidth="1" >
+        <com:TTableCell CssClass="encabezado_formularios" ColumnSpan="2">
+            Listado de Grupos de la Intranet
+        </com:TTableCell>
+    </com:TTableRow>
+
+
+    <com:TTableRow BorderWidth="1">
+        <com:TTableCell CssClass="titulos_formularios">
+            <com:TLabel Text="Organizaci&oacute;n:"/>
+        </com:TTableCell>
+        <com:TTableCell CssClass="datos_formularios">
+            <com:TDropDownList ID="drop_organizaciones"
+                DataTextField="nombre"
+                AutoPostBack="true"
+                PromptText="Seleccione una Organizaci&oacute;n"
+                PromptValue="X"
+                OnSelectedIndexChanged="actualiza_listado"
+                DataValueField="codigo" />
+            <com:TRequiredFieldValidator
+                ControlToValidate="drop_organizaciones"
+                InitialValue="X"
+                Text="Seleccione." />
+
+        </com:TTableCell>
+    </com:TTableRow>
+</com:TTable>
+
+
+<com:TDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	OnEditCommand="editItem"
+	OnDeleteCommand="anularItem"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de Grupos. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+	<com:TBoundColumn
+		ID="codigo"
+		HeaderText="C&oacute;digo"
+        ItemStyle.HorizontalAlign="Center"
+		DataField="codigo"
+	/>
+	<com:TBoundColumn
+		ID="nombre"
+		HeaderText="Nombre"
+		DataField="nombre"
+	/>
+
+</com:TDataGrid>
+</div>
+
+</com:TContent>

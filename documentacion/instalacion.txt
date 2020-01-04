@@ -1,0 +1,117 @@
+El sistema que se distribuye conjuntamente con este archivo se pesenta
+"TAL CUAL", los programadores, desarrolladores y colaboradores han invertido
+su tiempo y esfuerzo en hacerlo viable y con el mínimo de errores posibles;
+entendemos que todo software es propenso a errores de programación y con base
+a ese entendido, ninguno de los programadires, desarrolladores y colaboradores
+nos hacemos responsables del o los daños que el mal uso o instalación de este
+sistema pudiera acarrearle a su empresa.
+
+Este Software es Disfribuido bajo la Licencia GPLv3, lo que quiere decir que se
+respetan las 4 libertades descritas en dicha licencia y cualquier usuario o
+persona que posea este sistema, debe respetarlas también.
+
+*******************************************************************************
+Requisitos Mínimos:
+El Sistema corre en la mayoría de los equipos PC estándar, no obstante
+es altamente recomendado que si se propone a utilizarlo en una empresa en la
+que se someterá a un tráfico de información considerable use un servidor
+adecuado para estos propósitos.
+
+En un PC:
++  Computador PC compatible con Sistema Operativo GNU/Linux o Microsoft Windows
+(En MacOS aún no lo hemos probado),
+______________________________
+  Minimo     |   Recomendado
+_____________|________________
+  512 RAM        1024 o más
+  80 Gb DD       Más de 80 Gb.
+
++  Tarjeta de Red.
++  Teclado, Monitor. (Si trabaja en modo colsola no es necesario mouse)
++  No es necesario una tarjeta aceleradora de video.
+
+*******************************************************************************
+Instalación del Sistema.
+
+Nota antes de la instalación:  si usa sistema operativo Microsoft Windows, los
+pasos para la instalación son mas o menos similares:
+a.- Descargar el software desde el sitio web. (ver direcciones mas adelante)
+b.- Hacer doble click en el archivo descargado. (Si, con el ratón... No quise
+                                                 decir con TODO el raton, sólo
+                                                 con el botón derecho).
+c.- Seguir las instrucciones en la pantalla.
+
+Particularmente recomendamos la instalación de este sistema en un Sistema
+Operativo GNU/Linux de su preferencia.  Como difieren las instalaciones de uno
+a otro S.O. describiremos la manera de hacerlo en Ubuntu, que es el que hemos
+visto mas distribuido en las computadoras que usan GNU/Linux en Venezuela.
+
+0.- Instalación de Programas Necesarios.
+Para que el sistema funcione correctamente es necesario que se tengan
+instalados los siguientes programas (en cada caso se proporciona el comando
+que se debe introducir en la consola para instalarlo):
+    0.1 Un Servidor http (Recomendamos Apache) (www.apache.org)
+        sudo aptitude install apache2
+
+    0.2 El Motor de Base de Datos MySql (www.mysql.com)
+        sudo aptitude install mysql-server
+
+    0.3 PHP (PHP Hypertext Processor) (www.php.net)
+        sudo aptitude install php5 php5-gd
+
+    0.4 PHPMyadmin (Opcional) (www.phpmyadmin.net) (Para administrar las bases
+        de datos desde un explorador web).
+        sudo aptitude install phpmyadmin
+
+1.- Instalación de la Base de Datos
+    Sea que haya decidido instalar phpmyadmin o cualquier otra interfaz grafica
+    de usuario (GUI) para Mysql, el proceso de instalación de las bases de datos
+    es el mismo:
+    1.0 En el directorio "bd" del sistema se encuentran varios archivos con
+        extensión .sql (copias de seguridad de las bases de datos que debe
+        instalar) que se usan en los siguientes pasos.
+    1.1 (En el GUI de Mysql), deberá crear la base de datos correspondiente al
+        archivo que desea restaurar. p.e. si el archivo se llama "intranet.sql"
+        usted debe crear la base de datos "intranet" en el GUI de MySql.
+    1.2 El siguiente paso es restaurar la información del archivo "intranet.sql"
+        en la base "intranet" (siguiendo el mismo ejemplo), para esto busque
+        alguna opción que diga "importar" o "restaurar" y siga las
+        instrucciones en pantalla. (no deseo ahondar mas en este punto porque
+        realmente depende del GUI que haya escogido para interactuar con Mysql.
+    1.3 Siga el paso 1.1 y 1.2 para cada uno de los archivos que se encuentran
+        en el directorio "bd" mencionado en el paso 1.0.
+    1.4 Ahora, en el GUI de MySql, deberá crear un usuario denominado "usuario"
+        cuya clave debe ser: "8aveX8Sa8Kx4cN7q" (sin comillas en ambos casos)
+        y darle permisos apropiados (Select,Insert,Delete,Modify,File) al
+        usuario para que trabaje con las bases de datos que ha creado.
+        Si desea cambiar esta clave por su seguridad, recuerde modificar el
+        archivo "protected/application.xml" del sistemay colocar ahi la
+        nueva contraseña que ha elegido".
+
+2.- Instalación del sistema.
+    La instalación del sistema es sumamente sencilla.
+    2.1 Descomprimir el contenido del archivo (si lo recibió comprimido en
+        formato .zip, .rzr o .tar.gz) en el directorio raiz de su servidor http
+        2.1.1 Aunque es opcional, se recomienda ampliamente que en vez de
+              copiar el sistema en el directorio mencionado, usted cree un
+              directorio virtual en apache para mejorar la seguridad de su
+              servidor.
+    2.2 Dar permisos de lectura/escritura a los directorios siguientes:
+          "imagenes/temporales"
+          "assets"
+          "protected/runtime"
+          "attach"
+        En caso de GNU/Linux los permisos apropiados se logran con el comando:
+           sudo chmod 766 nombredirectorio
+        Siendo "nombredirectorio" cada uno de los descritos arriba.
+
+3.- Instalación de los Sistemas de Soporte.
+    El sistema necesita de varios "sistemas de soporte" para poder funcionar
+    los cuales se pueden descargar de forma gratuita desde la pagina web de
+    sus respectivos desarrolladores.
+
+    3.1 - Prado Framework (www.pradosoft.net)
+
+    3.2 - TCPDF (www.tcpdf.org)
+
+

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<application id="integrado" mode="Debug">
+  <!-- alias definitions and namespace usings
+  <paths>
+    <alias id="myalias" path="./lib" />
+    <using namespace="Application.common.*" />
+  </paths>
+  -->
+
+  <paths>
+    <using namespace="Application.db.funciones" />
+    <using namespace="Application.db.funciones_nomina" />
+    <using namespace="Application.db.*" />
+    <using namespace="Application.comunes.autenticacion" />
+    <using namespace="Application.comunes.utilidades" />
+    <using namespace="Application.comunes.controles" />
+    <using namespace="Application.comunes.evalmath" />
+    <using namespace="Application.comunes.fechas" />
+    <using namespace="Application.comunes.archivos" />
+    <using namespace="Application.controles.*" /> 
+    <using namespace="Application.clases.*" />
+    <using namespace="System.Web.UI.ActiveControls.*"/>
+  </paths>
+
+  <!-- configurations for modules -->
+  <modules>
+    <!-- Remove this comment mark to enable caching
+    <module id="cache" class="System.Caching.TDbCache" />
+    -->
+
+    <!-- Remove this comment mark to enable PATH url format
+    <module id="request" class="THttpRequest" UrlFormat="Path" />
+    -->
+
+    <!-- Remove this comment mark to enable logging
+    <module id="log" class="System.Util.TLogRouter">
+      <route class="TBrowserLogRoute" Categories="System" />
+    </module>
+    -->
+
+  <module id="db" class="System.Data.TDataSourceConfig">
+  <database ConnectionString="mysql:host=localhost;dbname=organizacion" Username="root" Password="cmm12345"/>
+  </module>
+
+  <module id="db2" class="System.Data.TDataSourceConfig">
+  <database ConnectionString="mysql:host=localhost;dbname=nomina" Username="root" Password="cmm12345"/>
+  </module>
+
+  <module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db" />
+
+<!--
+    No esta tomando el valor del ErrorTemplatePath, debo solucionar esto para que pueda funcionar
+    los errores personalizados que quiero implementar
+  <module class="TErrorHandler" id ="error" ErrorTemplatePath="Application.errores.templates" />
+-->
+
+<!--
+    <module id="auth"
+      class="System.Security.TAuthManager"
+      UserManager="users"
+      LoginPage="Application.intranet.login" />
+
+    <module id="users"
+      class="System.Security.TDbUserManager"
+      UserClass="Application.clases.usuario" />
+-->
+  </modules>
+
+  <!-- configuration for available services -->
+  <services>
+    <service id="page" class="TPageService" DefaultPage="Home" >
+    <!-- page service -->
+        <pages MasterClass="Application.layouts.intranet.intranet_layout" Theme="basico" />
+    </service>
+  </services>
+
+  <!-- application parameters
+  <parameters>
+    <parameter id="param1" value="value1" />
+    <parameter id="param2" value="value2" />
+  </parameters>
+  -->
+</application>

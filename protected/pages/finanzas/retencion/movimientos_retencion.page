@@ -1,0 +1,198 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+    <br>
+ <fieldset Align="Center" width="80%">
+    <legend>Listado de Movimientos de Retencion.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+            <com:TTableRow BorderWidth="1">
+                <com:TTableCell CssClass="titulos_formularios">
+                    <com:TLabel Text="A&ntilde;o:"/>
+                </com:TTableCell>
+                <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    PromptText="Seleccione"
+                    OnCallback="cargar_retenciones"
+                    ValidationGroup="1"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione." />
+ 
+                </com:TTableCell>
+
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Mes:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_mes"
+                    PromptValue="X"
+                    PromptText="Seleccione"
+                    DataTextField="nombre"
+                    DataValueField="mes"
+                    OnCallback="actualiza_listado"
+                    />
+
+                    <com:TRequiredFieldValidator
+                        ControlToValidate="drop_mes"
+                        InitialValue="X"
+                        Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+<com:TTableRow BorderWidth="1" >
+                <com:TTableCell CssClass="titulos_formularios" >
+                    <com:TLabel Text="Retencion:"/>
+                </com:TTableCell>
+                <com:TTableCell ColumnSpan="4">
+                     <com:TActiveDropDownList ID="drop_retenciones"
+                    PromptValue="X"
+                    PromptText="Seleccione"
+                    DataTextField="descripcion"
+                    DataValueField="codigo"
+                    OnCallback="actualiza_listado"
+                    />
+                    </td>
+                </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="imprimir_listado"
+                    Enabled="True"     >
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+<div align="center">
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+</div>
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="90%"
+    AllowPaging="true"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+    PageSize="20"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="nuevo_item"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+<com:XActiveBoundColumn
+
+        <com:XActiveBoundColumn
+		ID="id"
+		HeaderText="id"
+		DataField="id"
+        HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+        visible="false"
+		/>
+        <com:XActiveBoundColumn
+		ID="fecha"
+		HeaderText="Fecha"
+        HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+		DataField="fecha"
+         visible="true"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="documento"
+		HeaderText="Documento"
+		DataField="documento"
+        HeaderStyle.Width="80px"
+        ItemStyle.HorizontalAlign="Left"
+       visible="true"
+		/>
+		<com:XActiveBoundColumn
+		ID="proveedor"
+		HeaderText="Proveedor"
+		DataField="proveedor"
+        HeaderStyle.Width="160px"
+        ItemStyle.HorizontalAlign="Left"
+        visible="true"
+		/>
+
+
+        <com:XActiveBoundColumn
+		ID="monto"
+		HeaderText="monto"
+		DataField="monto"
+        HeaderStyle.Width="70px"
+        ItemStyle.HorizontalAlign="Right"
+        visible="false"
+		/>
+
+        <com:XActiveBoundColumn
+		ID="debe"
+		HeaderText="debe"
+		DataField="debe"
+        HeaderStyle.Width="70px"
+        ItemStyle.HorizontalAlign="Right"
+        visible="true"
+		/>
+       <com:XActiveBoundColumn
+		ID="haber"
+		HeaderText="haber"
+		DataField="haber"
+        HeaderStyle.Width="70px"
+        ItemStyle.HorizontalAlign="Right"
+        visible="true"
+		/>
+		
+        <com:XActiveTemplateColumn
+        ID="detalle"
+        HeaderText="Ver"
+        ItemStyle.HorizontalAlign="Center"
+         HeaderStyle.Width="30px"
+        visible="false"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img alt='Ver' src='imagenes/iconos/imprimir.png' border='0' />" OnClick="Page.imprimir_detalle" />
+       
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+   
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

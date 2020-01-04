@@ -1,0 +1,46 @@
+<%@ Title="N&oacute;mina - Insertar Nuevo Banco" %>
+
+<com:TContent ID="cuerpo">
+<div align="center"><com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" /></div>
+<h1 align="center">Crear un Nuevo Banco</h1>
+<!--<com:TValidationSummary
+	Display="Dynamic"
+	ValidationGroup="constante" />-->
+<table align="center" border="1" width="60%" >
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right" class="titulos_formularios">
+        <span>Nombre:</span>
+     </td>
+     <td HorizontalAlign="Left">
+         <com:TTextBox ID="txt_nombre"   Columns="40"/>
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_nombre"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+     </td>
+ </tr>
+
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right" class="titulos_formularios">
+        <span>Info Adicional:</span>
+     </td>
+     <td HorizontalAlign="Left">
+         <com:TTextBox ID="txt_info_adicional"  TextMode="MultiLine" Rows="2" Columns="51"/>
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_info_adicional"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+     </td>
+ </tr>
+
+ <tr BorderWidth="1">
+     <td  Align="center" colspan="2">
+        <com:TButton Text="Guardar" OnClick="guardar_banco" />
+        <com:TButton Text="Cancelar" ValidationGroup="55" OnClick="cancelar"/>
+        
+     </td>
+</tr>
+
+</table>
+
+</com:TContent>

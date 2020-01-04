@@ -1,0 +1,223 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center">
+    <legend>Planificación de Actividades.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="95%">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Plan Operativo"/>
+                <com:TActiveLabel ID="lbl_cod_plan_estrategico" Visible = "false" Text=""/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_plan"
+                    DataTextField="nombre"
+                    DataValueField="cod_plan_operativo"
+                    AutoPostBack="true"
+                    OnCallback="actualizar_obj_estrategicos"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_plan"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios" HorizontalAlign="Right">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_direcciones"
+                    DataTextField="nombre"
+                    PromptText="Seleccione"
+                    OnCallback="actualizar_obj_estrategicos"
+                    PromptValue="X"
+                    AutoPostBack="true"
+                    ValidationGroup="2"
+                    DataValueField="codigo" >
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_direcciones"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Obj. Específico:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveDropDownList ID="drop_objetivo"
+                    DataTextField="nombre"
+                    DataValueField="cod_objetivo_especifico"
+                    AutoPostBack="true"
+                    CausesValidation="false"
+                    PromptText="Seleccione"
+                    OnCallback="actualizar_listado_actividades"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_objetivo"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Título:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="5">
+                <com:TActiveTextBox ID="txt_nombre_completo" Columns="50" MaxLength="150"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_nombre_completo"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Días:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_dias"
+                    AutoPostBack="true"
+                    OnCallback="actualizar_dias_y_fechas"
+                    PromptText="Dias"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_dias"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Desde:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+                <com:TActiveDatePicker ID="txt_fecha_inicio" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    OnCallBack="actualizar_dias_y_fechas"
+                    UpToYear="<%= @date('Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator 
+                    ControlToValidate="txt_fecha_inicio"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Hasta:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+                <com:TActiveLabel ID="lbl_hasta" Text="??/??/????"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    OnClick="btn_imprimir_click"/>
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+
+        <com:XActiveDataGrid
+            ID="DataGrid"
+            Width="95%"
+            CellPadding="0"
+            CellSpacing="0"
+            GridLines="Both"
+            HeaderStyle.BackColor="#29166F"
+            HeaderStyle.ForeColor="white"
+            ItemStyle.BackColor="#BFCFFF"
+            ItemStyle.BorderColor="white"
+            DataKeyField="id"
+            AlternatingItemStyle.BackColor="#E6ECFF"
+            OnItemDataBound="formato"
+            Caption="Listado de Actividades Planificadas"
+            AutoGenerateColumns="false"
+            ForeColor="black"
+            BorderColor="black"
+            >
+                <com:XActiveBoundColumn
+                ID="nombre"
+                HeaderText="Breve Descripción de la Actividad"
+                DataField="nombre"
+                ItemStyle.HorizontalAlign="Left"
+                />
+                <com:XActiveBoundColumn
+                ID="dias"
+                HeaderText="Días"
+                DataField="dias"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="fecha_inicio"
+                HeaderText="Inicio"
+                DataField="fecha_inicio"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="fecha_fin"
+                HeaderText="Fin"
+                DataField="fecha_fin"
+                ItemStyle.HorizontalAlign="Center"
+                />
+                <com:XActiveBoundColumn
+                ID="estatus"
+                HeaderText="Estatus"
+                Visible = "False"
+                HeaderStyle.Width="60px"
+                DataField="estatus"
+                ItemStyle.HorizontalAlign="Center"
+                />
+
+                <com:XActiveTemplateColumn
+                ID="detalle"
+                HeaderText="Estatus"
+                ItemStyle.HorizontalAlign="Center"
+                HeaderStyle.Width="60px"
+                >
+                    <prop:ItemTemplate>
+                        <com:TActiveImage ID="estatus_img" ImageUrl="imagenes/iconos/led_00.png" />
+                    </prop:ItemTemplate>
+                </com:XActiveTemplateColumn>
+                <com:XActiveTemplateColumn
+                ID="accion"
+                HeaderText="Acción"
+                HeaderStyle.Width="60px"
+                ItemStyle.HorizontalAlign="Center"
+                >
+                    <prop:ItemTemplate>
+                        <com:TActiveLinkButton ID="eliminar_actividad" CausesValidation="false" CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img alt='Eliminar' src='imagenes/iconos/eliminar_peq.png' border='0' />" OnCallBack="Page.eliminar_actividad" />
+                    </prop:ItemTemplate>
+                </com:XActiveTemplateColumn>
+        </com:XActiveDataGrid>
+</fieldset>
+</div>
+Nota: Las Actividades en ROJO, presentan retraso, la que se muestra en amarillo debería
+estarse ejecutando actualmente.<br>
+El Estatus en Gris: Pendiente, Amarillo: En Proceso, Verde: Finalizado, Rojo:No Ejecutado
+</com:TContent>

@@ -1,0 +1,10 @@
+<%@ Title="Reporte Resumen de Conceptos" %>
+<com:TContent ID="cuerpo">
+<br/>
+<div align="center">
+<table  border="1">
+</table>
+</div>
+
+
+</com:TContent>

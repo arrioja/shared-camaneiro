@@ -1,0 +1,220 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Integrantes Banco</legend>
+    <table Width="90%" aling="center" border="1">
+        <tr BorderWidth="1">
+            <td HorizontalAlign="Right" >
+                <com:TLabel Text="C&eacute;dula:"/>
+            </td>
+            <td ColumnSpan="3">
+                <com:TTextBox ID="txt_cedula" Columns="10"
+                ReadOnly="true"/>
+            </td>
+        </tr>
+        <tr BorderWidth="1">
+            <td HorizontalAlign="Right">
+                <com:TLabel Text="Nombre:"/>
+            </td>
+            <td ColumnSpan="3">
+                <com:TTextBox ID="txt_nombre"
+                    Columns="50"
+                    ReadOnly="true"/>
+            </td>
+        </tr>
+
+        <tr BorderWidth="1">
+            <td HorizontalAlign="Right">
+                <com:TLabel Text="Apellido:"/>
+            </td>
+            <td ColumnSpan="3">
+                <com:TTextBox ID="txt_apellido"
+                    Columns="50"
+                    ReadOnly="true"/>
+            </td>
+        </tr>
+<tr BorderWidth="1" >
+    <td HorizontalAlign="Right">
+        <span>Banco:</span>
+    </td>
+    <td HorizontalAlign="Left">
+        <com:TDropDownList ID="cmb_bancos"
+        DataTextField="nombre"
+        DataValueField="cod_banco"
+        PromptText="Seleccione un Banco"
+        PromptValue="-1"
+        ValidationGroup="1"
+        
+        >
+
+        </com:TDropDownList>
+                    <com:TRequiredFieldValidator ID="val_banco"
+                    ControlToValidate="cmb_bancos"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    />
+    </td>
+</tr>
+<tr BorderWidth="1" >
+    <td HorizontalAlign="Right">
+        <span>Tipo de Cuenta:</span>
+    </td>
+    <td HorizontalAlign="Left">
+        <com:TDropDownList ID="cmb_tipo_cuenta">
+            <com:TListItem Text="AHORRO" Value="AHORRO" />
+            <com:TListItem Text="CORRIENTE" Value="CORRIENTE" />
+            <com:TListItem Text="N&Oacute;MINA" Value="NOMINA" />
+        </com:TDropDownList>
+    </td>
+</tr>
+<tr BorderWidth="1" >
+    <td HorizontalAlign="Right">
+        <span>Uso:</span>
+    </td>
+    <td HorizontalAlign="Left">
+        <com:TDropDownList ID="cmb_uso">
+            <com:TListItem Text="N&Oacute;MINA" Value="NOMINA" />
+            <com:TListItem Text="FIDEICOMISO" Value="FIDEICOMISO" />
+        </com:TDropDownList>
+                    <com:TCustomValidator ID="validar_uso"
+                    ControlToValidate="cmb_uso"
+                    OnServerValidate="val_uso"
+                    Text="El Usuario que intenta agregar ya posee una cuenta de este tipo"
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    />
+    </td>
+</tr>
+<tr BorderWidth="1">
+            <td HorizontalAlign="Right" >
+                <com:TLabel Text="N&uacute;mero"/>
+            </td>
+            <td ColumnSpan="3">
+                <com:TTextBox ID="txt_numero" Columns="30"
+                />
+                    <com:TRequiredFieldValidator ID="val_numero"
+                    ControlToValidate="txt_numero"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"
+                    ValidationGroup="1"
+                    />
+            </td>
+ </tr>
+
+
+        <tr>
+            <td> </td>
+            <td HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="incluir"
+                    ValidationGroup="1"/>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+</div>
+<div  id="loading" style="display:none;width: 90%;text-align: center; "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+</div>
+<table align="center" width="93%">
+    <tr>
+        <td>
+<com:XActiveDataGrid
+Caption="CUENTAS BANCARIAS"
+    Width="100%"
+	ID="DataGrid"
+	PageSize="24"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+    HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+    OnItemDataBound="formatear"
+  >
+
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+
+		<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="CEDULA"
+		DataField="cedula"
+		HeaderStyle.Width="80px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="banco"
+		HeaderText="Banco"
+		DataField="nombre"
+		HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveDropDownListColumn
+		ID="tipo"
+		HeaderText="Tipo"
+		HeaderStyle.Width="100px"
+		DataTextField="tipo"
+		ItemStyle.HorizontalAlign="Center"       
+        >   <com:TListItem Value="AHORRO" Text="AHORRO" />
+            <com:TListItem Value="CORRIENTE" Text="CORRIENTE" />
+            <com:TListItem Value="NOMINA" Text="N&Oacute;MINA" />
+
+        </com:XActiveDropDownListColumn>
+
+        <com:XActiveDropDownListColumn
+		ID="uso"
+		HeaderText="Uso"
+		HeaderStyle.Width="100px"
+		DataTextField="uso"
+		ItemStyle.HorizontalAlign="Center">
+            <com:TListItem Value="NOMINA" Text="N&Oacute;MINA" />
+            <com:TListItem Value="FIDEICOMISO" Text="FIDEICOMISO" />
+        </com:XActiveDropDownListColumn>
+
+        <com:XActiveBoundColumn
+		ID="numero"
+		HeaderText="N&uacute;mero"
+		HeaderStyle.Width="100px"
+		DataField="numero_cuenta"
+		ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:XActiveButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+</com:XActiveDataGrid>
+    <tr>
+        <td>
+</table>
+</com:TContent>

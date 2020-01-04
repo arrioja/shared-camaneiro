@@ -1,0 +1,49 @@
+CREATE TABLE IF NOT EXISTS `retencion_pagado` (
+`id` INT NOT NULL AUTO_INCREMENT ,
+`ano` YEAR NOT NULL ,
+`cod_movimiento` varchar(10) NOT NULL,
+`codigo_retencion` VARCHAR( 33 ) NOT NULL ,
+PRIMARY KEY (  `id` )
+) ENGINE = MYISAM ;
+
+
+CREATE TABLE IF NOT EXISTS `cheques` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ano` year(4) NOT NULL,
+  `cod_movimiento` varchar(10) NOT NULL,
+  `tipo_pago` set('CON ORDEN','SIN ORDEN','RETENCION') NOT NULL,
+  `estatus_actual` set('ANULADO','NORMAL') NOT NULL,
+  `cod_proveedor` varchar(6) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+
+INSERT INTO  `presupuesto`.`cheques` (
+`ano` ,
+`cod_movimiento` ,
+`tipo_pago` ,
+`estatus_actual` ,
+`cod_proveedor` 
+)
+ (
+  SELECT  m.ano,m.cod_movimiento ,'CON ORDEN',mp.estatus_actual, mp.cod_proveedor
+FROM presupuesto.maestro_pagado AS mp
+INNER JOIN presupuesto.bancos_cuentas_movimientos AS m ON ( m.tipo = mp.tipo_documento
+AND m.referencia = mp.numero_cheque
+AND m.numero_cuenta = mp.cuenta
+AND m.ano = mp.ano ) 
+INNER JOIN presupuesto.bancos AS b ON ( b.cod_banco = m.cod_banco ) 
+);
+
+INSERT INTO `fuentes_financiamiento` (`id`, `ano`, `cod_fuente_financiamiento`, `descripcion`, `cod_organizacion`, `cod_presupuesto_ingreso`) VALUES
+(5, '2012', '04', 'Venezuela Cuenta Principal', '000001', '04');
+
+INSERT INTO `fuentes_financiamiento_cuentas` (`id`, `ano`, `cod_organizacion`, `cod_fuente_financiamiento`, `numero_cuenta`) VALUES
+(5, '2012', '000001', '04', '01020667700000005801');
+
+
+UPDATE  `bancos_cuentas_movimientos` SET tipo =  'CH' WHERE tipo =  'E'
+
+

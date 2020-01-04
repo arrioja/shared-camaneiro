@@ -1,0 +1,36 @@
+.titulos_formularios {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #E0DFE3;
+	font-weight: bold;
+	font-size: 14px;
+	text-align: right;
+}
+
+.datos_formularios {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+    text-align: left;
+
+}
+
+.datos_login {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+    text-align: left;
+}
+
+.notas_y_leyendas {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+    text-align: justify;
+}
+.encabezado_formularios {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #E0DFE3;
+	font-weight: bold;
+	font-size: 14px;
+	text-align: center;
+}

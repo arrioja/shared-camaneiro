@@ -1,0 +1,152 @@
+<com:TContent ID="cuerpo">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Reporte de Nominas Personal</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+                   <com:TTableCell CssClass="color_b" >
+                    <com:TLabel Text="A&ntilde;o:"/>
+                </com:TTableCell>
+                <com:TTableCell >
+                <com:TActiveDropDownList  ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    PromptText="Seleccione"
+                    OnCallback="cargar"
+                    PromptValue="X"  >
+                        <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione."
+                    />
+
+                </com:TTableCell>
+
+          </com:TTableRow>
+        
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Consultar"
+                    OnCallBack="cargar">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+<div align="center">
+<com:XActiveDataGrid
+Caption="Historial Personal de Nominas"
+	ID="DataGrid"
+	AllowPaging="false"
+	Width="90%"
+	PageSize="24"
+    AllowSorting="True"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="cod"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+    OnItemDataBound="formatear"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>
+                No existen datos para realizar el listado.</div>">
+
+
+  >
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+
+		<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="Codigo Nomina"
+		DataField="cedula"
+		HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+        visible="false"
+		/>
+<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="Codigo Nomina"
+		DataField="cod"
+		HeaderStyle.Width="60px"
+        ItemStyle.HorizontalAlign="Center"
+
+		/>
+		<com:XActiveBoundColumn
+		ID="ano"
+		HeaderText="Año"
+		DataField="f_ini"
+		HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="mes"
+		HeaderText="Mes"
+		DataField="f_ini"
+		HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="titulo"
+		HeaderText="T&iacute;tulo"
+		DataField="titulo"
+		HeaderStyle.Width="230px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="tipo_nomina"
+		HeaderText="Tipo N&oacute;mina"
+		HeaderStyle.Width="100px"
+		DataField="tipo_nomina"
+		ItemStyle.HorizontalAlign="Center"
+        visible="false"
+		/>
+
+<com:XActiveTemplateColumn
+		ID="pagos"
+		HeaderText="Pagos"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['cedula'],$this->Parent->DataItem['cod']) %>"   Text="<img src='imagenes/iconos/money.png' border='0' />" OnClick="Page.pagos" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+</com:XActiveDataGrid>
+</div>
+</fieldset>
+
+Nota: Para mayor informacion o consulta, favor dirigirse a la Direccion de Recursos Humanos.
+</com:TContent>

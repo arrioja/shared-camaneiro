@@ -1,0 +1,77 @@
+<com:TContent ID="cuerpo">
+    <br>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir Tipo de Documento que afectan el presupuesto y las finanzas</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+        
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" CssClass="titulos_formularios">
+                <com:TLabel Text="Siglas:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:TTextBox ID="txt_siglas" Text="" Columns="2" MaxLength="2" />
+                <com:TRequiredFieldValidator ID="val_siglas"
+                    ControlToValidate="txt_siglas"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+                <com:TCustomValidator
+                    ControlToValidate="txt_siglas"
+                    OnServerValidate="validar_siglas"
+                    FocusOnError="true"
+                    Text="El tipo de documento existe." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Nombre:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_nombre" Text="" MaxLength="150" Columns="50"/>
+                <com:TRequiredFieldValidator ID="val_nombre"
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Operaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TDropDownList ID="drop_operacion"
+                    DataTextField="nombre"
+                    PromptText="Seleccione una Operaci&oacute;n"
+                    PromptValue="X">
+                    <com:TListItem Text="Compromete" Value="CO"/>
+                    <com:TListItem Text="Causa" Value="CA"/>
+                    <com:TListItem Text="Paga" Value="PA"/>
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_operacion"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TButton ID="incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+  </fieldset>
+</div>
+</com:TContent>

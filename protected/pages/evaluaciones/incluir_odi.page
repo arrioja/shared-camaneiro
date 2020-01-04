@@ -1,0 +1,71 @@
+<!--modulo de incluir odis en la evaluacion -->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Incluir O.D.I.</h1>    
+    <br></br>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <com:TDropDownList
+                ID="drop_cedula"
+                PromptText="cedula"
+                DataTextField="cedula"
+                DataValueField="cedula"
+                OnTextChanged="buscar_datos"
+                AutoPostBack="true"/>                                
+                <com:TTextBox ID="t_nombre" ReadOnly="true"/>
+                <com:TTextBox ID="t_apellido" ReadOnly="true"/>
+                <com:TTextBox ID="t_denominacion" ReadOnly="true"/>
+                <com:TTextBox ID="t_nombre_corto" ReadOnly="true"/>
+                <com:TDropDownList
+                ID="drop_codigo"
+                PromptText="evaluacion"
+                DataTextField="codigo"
+                DataValueField="codigo"
+                />
+            </td>
+        </tr>
+    </table>
+    <hr align="center" width="50%">
+    <table align="center" border="1">
+        <tr>
+            <td>codigo O.D.I.</td>
+            <td>objetivos de desempeño individual (O.D.I.)</td>
+            <td>peso</td>
+        </tr>
+        <tr>
+            <td><com:TDropDownList ID="drop_odi1" PromptText="codigo" DataTextField="codigo" DataValueField="codigo" OnTextChanged="buscar1" AutoPostBack="true"/></td>
+            <td><com:TTextBox TextMode="MultiLine" ID="t_desc1" ReadOnly="true" Columns="41"/></td>
+            <td><com:TTextBox ID="t_peso1" Text="0" OnTextChanged="sumar" AutoPostBack="true"/></td>
+        </tr>
+        <tr>
+            <td><com:TDropDownList ID="drop_odi2" PromptText="codigo" DataTextField="codigo" DataValueField="codigo" OnTextChanged="buscar2" AutoPostBack="true"/></td>
+            <td><com:TTextBox TextMode="MultiLine" ID="t_desc2" ReadOnly="true" Columns="41"/></td>
+            <td><com:TTextBox ID="t_peso2" Text="0" OnTextChanged="sumar" AutoPostBack="true"/></td>
+        </tr>
+        <tr>
+            <td><com:TDropDownList ID="drop_odi3" PromptText="codigo" DataTextField="codigo" DataValueField="codigo" OnTextChanged="buscar3" AutoPostBack="true"/></td>
+            <td><com:TTextBox TextMode="MultiLine" ID="t_desc3" ReadOnly="true" Columns="41"/></td>
+            <td><com:TTextBox ID="t_peso3" Text="0" OnTextChanged="sumar" AutoPostBack="true"/></td>
+        </tr>
+        <tr>
+            <td><com:TDropDownList ID="drop_odi4" PromptText="codigo" DataTextField="codigo" DataValueField="codigo" OnTextChanged="buscar4" AutoPostBack="true"/></td>
+            <td><com:TTextBox TextMode="MultiLine" ID="t_desc4" ReadOnly="true" Columns="41"/></td>
+            <td><com:TTextBox ID="t_peso4" Text="0" OnTextChanged="sumar" AutoPostBack="true"/></td>
+        </tr>
+        <tr>
+            <td><com:TDropDownList ID="drop_odi5" PromptText="codigo" DataTextField="codigo" DataValueField="codigo" OnTextChanged="buscar5" AutoPostBack="true"/></td>
+            <td><com:TTextBox TextMode="MultiLine" ID="t_desc5" ReadOnly="true" Columns="41"/></td>
+            <td><com:TTextBox ID="t_peso5" Text="0" OnTextChanged="sumar" AutoPostBack="true"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"> total</td>
+            <td><com:TTextBox ID="t_total" ReadOnly="true"/></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center"><com:TButton Text="guardar" enabled="false" ID="button1" OnClick="guardar_datos"/></td>
+        </tr>
+    </table>
+    <com:TClientScript ID="alerta" Visible="False">
+        alert("la suma de los pesos ha excedido el limite de 50, revise")
+    </com:TClientScript>
+</com:TContent>

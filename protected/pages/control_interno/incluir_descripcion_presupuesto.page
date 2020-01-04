@@ -1,0 +1,60 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir Descripci&oacute;n Presupuestaria</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" HorizontalAlign="Right">
+                <com:TLabel Text="A&ntilde;o:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:TDropDownList ID="drop_ano">
+                    <com:TListItem Text="2009" Value="2009" Selected="true" />
+                </com:TDropDownList>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell Width="20%" HorizontalAlign="Right">
+                <com:TLabel Text="C&oacute;digo:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:TTextBox ID="txt_codigo" Text="000-00-00-00" />
+                <com:TRequiredFieldValidator ID="val_codigo_1"
+                    ControlToValidate="txt_codigo"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+                <com:TRegularExpressionValidator ID="val_codigo_2"
+                    ControlToValidate="txt_codigo"
+                    RegularExpression="\d{3}-\d{2}-\d{2}-\d{2}"
+                    ErrorMessage="El código debe ser PPP-GG-EE-SS"
+                    Display="Dynamic"/>
+                <com:TCustomValidator
+                    ControlToValidate="txt_codigo"
+                    OnServerValidate="validar_codigo"
+                    FocusOnError="true"
+                    Text="El C&oacute;dico presupuestario existe." />
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Descripci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_descripcion" Text="" MaxLength="250" Columns="60"/>
+                <com:TRequiredFieldValidator ID="val2"
+                    ControlToValidate="txt_descripcion"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>   
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TButton ID="incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+  </fieldset>
+</div>
+</com:TContent>

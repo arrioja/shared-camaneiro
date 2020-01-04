@@ -1,0 +1,30 @@
+<com:TContent ID="cuerpo">    
+    <div align="center" class="div5">
+        <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AutoGenerateColumns="false"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        Caption="Listado de Prestamos"
+        ForeColor="black"
+        BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="codigo"
+            DataField="codigo"/>
+            <com:XActiveBoundColumn
+            HeaderText="Nombres y Apellidos del Solicitante"
+            DataField="nombrecompleto"/>
+            <com:XActiveBoundColumn
+            HeaderText="fecha"
+            DataField="fecha"/>
+            </com:XActiveDataGrid>    
+    </div>
+</com:TContent>

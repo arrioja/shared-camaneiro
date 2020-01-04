@@ -1,0 +1,127 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+    <br>
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir nuevo proveedor.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Cedula/RIF:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_rif" Columns="20"/>
+                
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_rif"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Nombre:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_nombre" Columns="50" MaxLength="50"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tel&eacute;fono 1:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:MaskedTextBox ID="txt_telefono1" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+       </com:TTableRow>
+       <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tel&eacute;fono 2:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:MaskedTextBox ID="txt_telefono2" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_direccion" TextMode="MultiLine" Rows="2" Columns="80">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+<com:TTableCell Width="20%" CssClass="titulos_formularios">
+    <com:TLabel ID="lbl_codigo" Text="C&oacute;digo:"/>
+            </com:TTableCell>
+            <com:TTableCell Width="80%">
+                <com:TTextBox ID="txt_codigo" Columns="10" />
+                <com:TRequiredFieldValidator ID="val_codigo_1"
+                    ControlToValidate="txt_codigo"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+
+            </com:TTableCell>
+        </com:TTableRow>
+<com:TTableRow BorderWidth="1">
+    <com:TTableCell ColumnSpan="2">
+ <fieldset Align="Center" width="80%">
+    <legend>Datos del Representante</legend>
+<com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Cedula/RIF:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_cedula_rep" Columns="20"/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Teléfono Representante"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:MaskedTextBox ID="txt_tlf_rep" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Dirección"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_dir_rep" Columns="60"/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="e-mail"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_email_rep" Columns="30"/>
+            </com:TTableCell>
+        </com:TTableRow>
+</com:TTable>
+ </fieldset>
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+</com:TTableCell>
+</com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

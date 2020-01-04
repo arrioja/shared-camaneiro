@@ -1,0 +1,49 @@
+<%@ Title="N&oacute;mina - Administrar N&oacute;minas" %>
+<com:TContent ID="cuerpo">
+<br/>
+
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+<div align="center">
+    <fieldset Align="Center" width="500" >
+        <legend>Listado de Reportes disponibles</legend>
+<table  border="1">
+<tr>
+    <td><a href="<%= $this->Service->constructUrl('nomina.reportes.reporte_general')%>">GENERAL</a></td>
+  </tr>
+  <tr>
+    <td><a href="<%= $this->Service->constructUrl('nomina.reportes.reporte_individual')%>">INDIVIDUAL</a></td>
+  </tr>
+  <tr>
+    <td><a href="<%= $this->Service->constructUrl('nomina.reportes.reporte_revision_nomina')%>">REVISIÓN DE NOMINA</a></td>
+  </tr>
+  <tr>
+    <td><a href="<%= $this->Service->constructUrl('nomina.reportes.resumen_de_conceptos')%>">RESUMEN DE CONCEPTOS</a></td>
+  </tr>
+  <tr>
+    <td><a href="<%= $this->Service->constructUrl('nomina.reportes.recibo_general')%>">RECIBO GENERAL</a></td>
+  </tr>
+  <tr>
+    <td><a href="<%= $this->Service->constructUrl('nomina.reportes.reporte_pago_banco')%>">PAGO AL BANCO</a></td>
+  </tr>
+  <tr>
+    <td><a href="<%= $this->Service->constructUrl('nomina.reportes.mes')%>">RETENCIONES ISLR</a></td>
+  </tr>
+      <tr>
+    <td aling="center">
+        <div align="center"><com:TButton BorderWidth="0" ID="btn_volver"
+                    Text="Regresar"
+                    OnClick="regresar"
+                    />
+                    </div>
+    </td>
+    </tr>
+</table>
+</fieldset>
+</div>
+
+
+</com:TContent>

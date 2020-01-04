@@ -1,0 +1,277 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+    <com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir nuevo causado (&Oacute;rden de Pago)</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+                <com:TLabel ID="lbl_codigo_temporal" Text="" Visible="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tipo:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TDropDownList ID="drop_tipo"
+                    DataTextField="nombre"
+                    DataValueField="siglas"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_tipo"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o: "/>
+                <com:TLabel ID="lbl_ano" Text="XXXX" Font.Bold="true"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="titulos_formularios">
+                   <com:TActiveLabel Text="Fecha: "/>
+                <com:TDatePicker ID="lbl_fecha" DateFormat="dd/MM/yyyy" Culture="es"/>
+                <com:TLabel ID="lbl2_fecha" Text="XX/XX/XXXX" Font.Bold="true" Visible="False"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Proveedor"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TDropDownList ID="drop_proveedor"
+                    DataTextField="nomb"
+                    DataValueField="cod_proveedor"
+                    AutoPostBack="True"
+                    PromptText="Seleccione"
+                    ValidationGroup="99"
+                    OnSelectedIndexChanged="carga_ordenes_disponibles"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_proveedor"
+                    InitialValue="X"
+                    Text="?." />
+            </com:TTableCell>      
+        </com:TTableRow>
+
+<com:TTableRow BorderWidth="1">
+ <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Compromisos"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TDropDownList ID="drop_compromisos"
+                    DataTextField="nomb"
+                    DataValueField="id"
+                    AutoPostBack="True"
+                    PromptText="Seleccione"
+                    ValidationGroup="99"
+                    OnSelectedIndexChanged="carga_codigos_presupuestarios"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_proveedor"
+                    InitialValue="X"
+                    Text="?." />
+            </com:TTableCell>
+</com:TTableRow>
+
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Concepto:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TActiveTextBox ID="txt_motivo" TextMode="MultiLine" Rows="3" Columns="80" Enabled="false" >
+                </com:TActiveTextBox>
+                 <com:TRequiredFieldValidator ID="val_txt_motivo"
+                    ControlToValidate="txt_motivo"
+                    ErrorMessage="Requerido"
+                    ValidationGroup='9'
+                    Display="Dynamic"/>
+                </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Center" ColumnSpan="4">
+                <com:TRepeater ID="Repeater">
+                    <prop:HeaderTemplate>
+                        <table width = "80%">
+                            <tr style="color:white;background-color:#29166F">
+                              <th>C&oacute;digo</th>
+                              <th>Comprometido</th>
+                              <th>Pendiente</th>
+                              <th>Monto a Causar</th>
+                            </tr>
+                    </prop:HeaderTemplate>
+
+                    <prop:ItemTemplate>
+                                <tr style="<%# 'background-color:' . ($this->ItemIndex%2 ? '#BFCFFF' : '#E6ECFF') %>">
+                                  <td align="center">
+                                  <com:THiddenField
+                                       ID="lbl_id2"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['id2']%> />
+                                  <com:THiddenField
+                                       ID="lbl_cod_organizacion"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['cod_organizacion']%> />
+                                  <com:THiddenField
+                                       ID="lbl_tipo_documento"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['tipo_documento']%> />
+                                  <com:THiddenField
+                                       ID="lbl_numero"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['numero']%> />
+                                  <com:THiddenField
+                                       ID="lbl_ano"
+                                       Visible = "false"
+                                       Value=<%#$this->Data['ano']%> />
+                                  <com:TLabel
+                                       ID="lbl_codigo"
+                                       Text=<%#$this->Data['codigo']%> />
+                                  </td>
+                                  <td align = "right">
+                                  Bs.
+                                  <com:TLabel
+                                       ID="lbl_monto_parcial"
+                                       Text=<%#$this->Data['monto_parcial']%> />
+                                  </td>
+
+                                  <td align = "right">
+                                  Bs.
+                                  <com:TLabel
+                                       ID="lbl_monto"
+                                       Text=<%#$this->Data['monto_pendiente']%> />
+                                  </td>
+                                  <td align = "right">
+                                  Bs.
+                                  <com:TTextBox
+                                       ID="txt_monto_pendiente"
+                                       Columns="13"
+                                       Text=<%#$this->Data['monto_pendiente']%> />
+                                  </td>
+                                </tr>
+
+                    </prop:ItemTemplate>
+
+                    <prop:FooterTemplate>
+                        </table>
+                    </prop:FooterTemplate>
+                </com:TRepeater>
+                        <div align="Right">
+                            <com:TActiveButton ID="btn_anadir" Text="A&ntilde;adir"
+                        OnClick="anadir_click"    />
+                        </div>
+            </com:TTableCell>
+        </com:TTableRow>
+
+<com:TTableRow>
+    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+        <com:TActiveLabel ID="lbl_motivo"  />
+</com:TTableCell>
+</com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Center" ColumnSpan="4">
+                <com:XActiveDataGrid
+                    ID="DataGrid"
+                    Width="100%"
+                    CellPadding="0"
+                    CellSpacing="0"
+                    GridLines="Both"
+                    HeaderStyle.BackColor="#29166F"
+                    HeaderStyle.ForeColor="white"
+                    ItemStyle.BackColor="#BFCFFF"
+                    ItemStyle.BorderColor="white"
+                    DataKeyField="id"
+                    AlternatingItemStyle.BackColor="#E6ECFF"
+                    AutoGenerateColumns="false"
+                    OnDeleteCommand="eliminar"
+                    ForeColor="black"
+                    BorderColor="black"
+                    Caption="C&oacute;digos presupuestarios incluidos"
+                    EmptyTemplate="<div style='font-size:14px;
+                                           color:#FF0000;
+                                           height:100px;
+                                           font-weight:bold;
+                                           vertical-align:middle;
+                                           align:center;
+                                           padding-top:20px;'>
+                                No hay c&oacute;digos incluidos.</div>"
+                    >
+                        <com:XActiveButtonColumn
+                            HeaderText="Acci&oacute;n"
+                            HeaderStyle.Width="50px"
+                            ID="quitar_column"
+                            ItemStyle.HorizontalAlign="Center"
+                            Text="Eliminar"
+                            CommandName="delete"/>
+                        <com:XActiveBoundColumn
+                        ID="compromiso"
+                        HeaderText="Compromiso"
+                        HeaderStyle.Width="100px"
+                        DataField="compromiso"
+                        ItemStyle.HorizontalAlign="Center"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="codigo"
+                        HeaderText="C&oacute;digo Presupuestario"
+                        HeaderStyle.Width="260px"
+                        DataField="codigo"
+                        ItemStyle.HorizontalAlign="Center"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="monto"
+                        HeaderText="Monto Bs."
+                        HeaderStyle.Width="120px"
+                        DataField="monto"
+                        ItemStyle.HorizontalAlign="Right"
+                        />
+                </com:XActiveDataGrid>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell CssClass="titulos_formularios" ColumnSpan="3">
+                <com:TLabel ID="lbl_total0" Text="TOTAL: Bs."/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TActiveLabel ID="lbl_total" Text="0.00" Font.Bold="true"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="3">
+               <com:TActiveButton
+                Text="Guardar Orden"
+                ID="btn_incluir"
+                OnCallback="incluir_click" >
+                <prop:ClientSide
+                OnLoading="Element.show('mensaje')"
+                OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+
+            </com:TTableCell>
+             <com:TTableCell HorizontalAlign="Right" >
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    Enabled="True"
+                    OnClick="imprimir_item"/><com:TActiveLabel ID="lbl_numero" Text="" Visible="false"  />
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+  </fieldset>
+</div>
+
+</com:TContent>

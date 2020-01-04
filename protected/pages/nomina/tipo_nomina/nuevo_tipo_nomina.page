@@ -1,0 +1,50 @@
+<%@ Title="N&oacute;mina - Insertar Nuevo Tipo de N&oacute;mina" %>
+
+<com:TContent ID="cuerpo">
+
+<h1 align="center">Crear un Nuevo Tipo de N&oacute;mina</h1>
+<!--<com:TValidationSummary
+	Display="Dynamic"
+	ValidationGroup="constante" />-->
+<table width="1" align="center" border="1">
+
+ <tr BorderWidth="1" >
+    <td HorizontalAlign="Right">
+        <span>Tipo de N&oacute;mina:</span>
+    </td>
+    <td HorizontalAlign="Left">
+        <com:TTextBox ID="txt_tipo_nomina"  />
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_tipo_nomina"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+        <!--solo string-->
+        <com:TRegularExpressionValidator
+            ControlToValidate="txt_tipo_nomina"
+            RegularExpression="^[A-Za-z]+$"
+            Text="Debe contener s&oacute;lo letras"
+            Display="Dynamic"/>
+
+    </td>
+</tr>
+
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right">
+
+     </td>
+     <td HorizontalAlign="Left">
+
+     </td>
+</tr>
+ <tr BorderWidth="1">
+     <td  Align="center">
+        <com:TButton Text="Guardar" OnClick="guardar_tipo_nomina" />
+     </td>
+     <td Align="center">
+        <a href="<%= $this->Service->constructUrl('nomina.tipo_nomina.admin_tipo_nomina')%>">Cancelar</a>
+     </td>
+</tr>
+
+</table>
+
+</com:TContent>

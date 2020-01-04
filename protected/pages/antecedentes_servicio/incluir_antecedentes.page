@@ -1,0 +1,90 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Incluir Antecedentes</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                        Cédula
+                        <com:TDropDownList
+                            ID="ddl1"
+                            PromptText="seleccione"
+                            AutoPostBack="true"
+                            DataTextField="concat(cedula, ' - ',nombres, apellidos)"
+                            DataValueField="concat(cedula, ' - ',nombres, apellidos)"
+                            OnSelectedIndexChanged="llenar_grid">
+                        </com:TDropDownList>
+                    </com:TTableCell>
+
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" BackColor="gray">Actuacion del Funcionario</com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell>
+                        fecha ini.
+                        <com:TDatePicker ID="dp2"  Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        fecha fin.
+                        <com:TDatePicker ID="dp3" Culture="es"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                    </com:TTableCell>
+                    <com:TTableCell>cargo<com:TTextBox ID="t17"></com:TTextBox></com:TTableCell>
+                    <com:TTableCell>sueldo<com:TTextBox ID="t18"></com:TTextBox><com:TButton Text="+" OnClick="agregar_cargos"></com:TButton></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+                        <div align="center" class="div4">
+                        <com:XActiveDataGrid
+                            ID="dg1"
+                            Width="90%"
+                            CellPadding="0"
+                            CellSpacing="0"
+                            GridLines="Both"
+                            HeaderStyle.BackColor="#29166F"
+                            HeaderStyle.ForeColor="white"
+                            ItemStyle.BackColor="#BFCFFF"
+                            ItemStyle.BorderColor="white"
+                            DataKeyField="id"
+                            AutoGenerateColumns="false"
+                            AlternatingItemStyle.BackColor="#E6ECFF"
+                            ForeColor="black"
+                            BorderColor="black">
+                            <com:XActiveBoundColumn
+                                HeaderText="id"
+                                DataField="id"
+                                visible="false"/>
+                                <com:XActiveBoundColumn
+                                HeaderText="fecha ingreso"
+                                DataField="fecha_ingreso"/>
+                                <com:XActiveBoundColumn
+                                HeaderText="fecha egreso"
+                                DataField="fecha_egreso"/>
+                                <com:XActiveBoundColumn
+                                HeaderText="cargo"
+                                DataField="cargo"/>
+                                <com:XActiveBoundColumn
+                                HeaderText="sueldo"
+                                DataField="sueldo"/>
+                        </com:XActiveDataGrid>
+                        </div>
+                    </com:TTableCell>
+                </com:TTableRow>                                                                
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

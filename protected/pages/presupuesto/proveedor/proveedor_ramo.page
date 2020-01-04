@@ -1,0 +1,171 @@
+<%@ Title="Presupuesto - Proveedores Ramo" %>
+<com:TContent ID="cuerpo">
+<div align="center">
+<fieldset>
+    <legend>Datos del Integrante</legend>
+<table width="60%" border="1"align="center">
+
+<tr>
+    <td Align="Left">
+            <span>Rif</span>
+    </td>
+    <td>
+               <com:TTextBox ID="txt_rif" ReadOnly="True" />
+    </td>
+</tr>
+
+ <tr>
+     <td Align="Left">
+        <span>Cod Proveedor:</span>
+     </td>
+     <td Align="Left">
+        <com:TTextBox ID="txt_cod_proveedor" ReadOnly="True" />
+     </td>
+ </tr>
+<tr>
+<td Align="Left">
+        <span>Nombre Proveedor:</span>
+     </td>
+     <td Align="Left">
+         <com:TTextBox ID="txt_nombres" ReadOnly="True" Columns="45" />
+     </td>
+ </tr>
+
+</table>
+</fieldset>
+</div>
+<com:MensajeDiv ID="cargando"/>
+<div align="center">
+<com:XActiveDataGrid
+	ID="DataGrid_asignados"
+	AllowPaging="false"
+	Width="75%"
+	PageSize="15"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+ EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>
+                No existen datos suficientes para realizar el listado.</div>"
+
+    Caption="Listado de Partidas Asignadas"
+    ShowFooter="true"
+
+  >
+
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+ 		<com:XActiveBoundColumn
+		ID="codigo"
+		HeaderText="C&oacute;digo Presupuestario"
+		DataField="codigo"
+		HeaderStyle.Width="150px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripci&oacute;n"
+		DataField="descripcion"
+		HeaderStyle.Width="200px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+	<com:XActiveTemplateColumn
+		ID="quitar"
+		HeaderText="Quitar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>"   Text="<img src='imagenes/iconos/cross.png' border='0' />" OnClick="Page.quitar" />
+			</prop:ItemTemplate>
+       </com:XActiveTemplateColumn>
+
+</com:XActiveDataGrid>
+</div>
+
+
+<div align="center">
+<com:XActiveDataGrid
+	ID="DataGrid_no_asignados"
+	AllowPaging="false"
+	Width="75%"
+	PageSize="15"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+
+    Caption="Partidas No Asignadas"
+    ShowFooter="false"
+
+  >
+
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+		<com:XActiveBoundColumn
+		ID="codigo2"
+		HeaderText="C&oacute;digo Presupuestario"
+		DataField="codigo"
+		HeaderStyle.Width="150px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="descripcion2"
+		HeaderText="Descripci&oacute;n"
+		DataField="descripcion"
+		HeaderStyle.Width="200px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+	<com:XActiveTemplateColumn
+		ID="agregar2"
+		HeaderText="Agregar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%#$this->Page->createMultiple($this, array('codigo', 'descripcion', 'id'))%>"Text="<img src='imagenes/iconos/add.png' border='0' />" OnClick="Page.agregar" />
+			</prop:ItemTemplate>
+       </com:XActiveTemplateColumn>
+
+</com:XActiveDataGrid>
+</div>
+<table Width="90%" aling="center" >
+    <tr>
+    <td aling="center">
+        <div align="center"><com:TButton BorderWidth="0" ID="btn_volver"
+                    Text="Regresar"
+                    OnClick="regresar"
+                    />
+                    </div>
+    </td>
+    </tr>
+    </table>
+
+</com:TContent>

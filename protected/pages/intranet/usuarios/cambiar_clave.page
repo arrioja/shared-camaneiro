@@ -1,0 +1,87 @@
+<com:TContent ID="cuerpo">
+<br><br><br>
+<div align="center">
+ <fieldset Align="Center" width="100%">
+    <legend>Cambio de clave de usuario.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="100%">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Login:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TLabel ID="lbl_login" Text="login del usuario"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Clave:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TTextBox ID="txt_clave"
+                    Columns="30"
+                    MaxLength="30"
+                    TextMode="Password"/>
+                <com:TRequiredFieldValidator ID="val_clave"
+                    ControlToValidate="txt_clave"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Confirmaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TTextBox ID="txt_confirma"
+                    Columns="30"
+                    MaxLength="30"
+                    TextMode="Password"/>
+                <com:TRequiredFieldValidator ID="val_confirma"
+                    ControlToValidate="txt_confirma"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+                    <com:TCompareValidator
+                        ControlToValidate="txt_clave"
+                        ControlToCompare="txt_confirma"
+                        ErrorMessage="La Clave y su confirmaci&oacute;n no coinciden."
+                        Display="Dynamic" />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1" VerticalAlign="Middle">
+            <div ></div>
+            <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+                <com:TCaptcha ID="captcha"
+                    MaxTokenLength="10"
+                    MinTokenLength="5"
+                    CaseSensitive="true"
+                    TokenExpiry="300"
+                    TokenAlphabet="ABCDEFGHIJKLMOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+                    TokenImageTheme ="9"/>
+                <com:TActiveTextBox ID="txt_captcha"
+                    Columns="15"
+                    MaxLength="10"/>
+                <com:TCaptchaValidator ID="captcha_val"
+                   ControlToValidate="txt_captcha"
+                   CaptchaControl="captcha"
+                   ErrorMessage="C&oacute;digo de im&aacute;gen incorrecto"
+                   Display="Dynamic"/>
+                
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Cambiar Clave"
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

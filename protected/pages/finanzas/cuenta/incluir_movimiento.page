@@ -1,0 +1,116 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Inclusi&oacute;n de Cuentas Bancarias.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Banco:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                <com:TActiveDropDownList ID="drop_bancos"
+                    DataTextField="nombre"
+                    DataValueField="cod_banco"
+                    PromptText="Seleccione Banco"
+                    PromptValue="X"
+                    OnCallback="cargar_cuentas"
+                    ValidationGroup="11"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_bancos"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Número de Cuenta:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                <com:TActiveDropDownList ID="drop_cuentas"
+DataTextField="numero_cuenta"
+DataValueField="numero"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tipo de Movimiento:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TDropDownList ID="drop_tipo">
+                  <com:TListItem Value="x" Text="Seleccione" />
+                  <com:TListItem Value="haber" Text="D&eacute;bito" />
+                  <com:TListItem Value="debe" Text="Cr&eacute;dito" />
+                  
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_tipo"
+                    ErrorMessage="Requerido"
+                    InitialValue="x"
+                    Display="Dynamic"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Monto:"/>
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right" CssClass="datos_formularios">
+                &nbsp;&nbsp;&nbsp; Bs.
+                <com:TActiveTextBox ID="txt_monto"
+                    Columns="12"
+                    ValidationGroup="9"
+                    Text="0.00"
+                    Style="text-align:right"/>
+                <com:TRequiredFieldValidator ID="val_monto_1"
+                    ControlToValidate="txt_monto"
+                    ErrorMessage="Monto Requerido"
+                    ValidationGroup="9"
+                    Display="Dynamic"/>
+                <com:TDataTypeValidator ID="val_monto_2"
+                    ControlToValidate="txt_monto"
+                    DataType="Float"
+                    ValidationGroup="9"
+                    ErrorMessage="El monto debe ser num&eacute;rico"
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Motivo:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                
+                    <com:TActiveTextBox ID="txt_descripcion" Columns="30"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+ <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Referencia:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+
+                    <com:TActiveTextBox ID="txt_referencia" Columns="30"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+</fieldset>
+</div>
+</com:TContent>

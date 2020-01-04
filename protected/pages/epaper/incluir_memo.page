@@ -1,0 +1,91 @@
+<com:TContent ID="cuerpo">
+<com:MensajeDiv ID="LTB"/>
+<br>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir Nuevo Memorando</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+                <com:TLabel ID="numero" Visible = "false" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_direccion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TLabel ID="lbl_ano" Text="Año:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Fecha:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                
+                <com:TDatePicker ID="txt_fecha" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    FromYear="2008"
+                    UpToYear="<%= @date('Y') %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha"
+                    ControlToValidate="txt_fecha"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+                <com:TActiveCustomValidator
+                    ControlToValidate="txt_fecha"
+                    OnServerValidate="validar_fecha"
+                    FocusOnError="true"
+                    Display="Dynamic"
+                    Text="Fecha Menor." />
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Asunto:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_asunto" Text="" MaxLength="100" Columns="50"/>
+                <com:TRequiredFieldValidator ID="val1"
+                    ControlToValidate="txt_asunto"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Destinatario:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_destinatario" Text="" MaxLength="100" Columns="50"/>
+                <com:TRequiredFieldValidator ID="val2"
+                    ControlToValidate="txt_destinatario"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>        
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TActiveButton ID="incluir"
+                Text="Incluir" 
+                OnCallBack="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+     <com:DMessagesPanel ID="mensaje2" DefaultHideEffect="SwitchOff" />
+  </fieldset>
+</div>
+</com:TContent>

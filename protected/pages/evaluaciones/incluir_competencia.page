@@ -1,0 +1,61 @@
+<!--modulo que calcula la evaluacion a una determinada persona -->
+<com:TContent ID="cuerpo">
+    <h1 align="center">Incluir Comptencia</h1>
+    <table align="center" border="1">
+        <tr>
+            <td>Competencia</td>
+            <td><com:TTextBox ID="id_competencia" TextMode="MultiLine" Columns="23"></com:TTextBox></td>
+        </tr>
+        <tr>
+            <td>código</td>
+            <td><com:TTextBox ID="id_cod"></com:TTextBox></td>
+        </tr>
+        <tr>
+            <td>nombre corto</td>
+            <td><com:TTextBox ID="id_nombre_corto" TextMode="MultiLine" Columns="23"></com:TTextBox></td>
+        </tr>
+        <tr>
+            <td>Nivel</td>
+            <td>
+                <com:TDropDownList ID="drop_nivel">
+                    <com:TListItem Value="-"/>
+                    <com:TListItem Value="1" Text="administrador"/>
+                    <com:TListItem Value="2" Text="técnico-profesional"/>
+                    <com:TListItem Value="3" Text="supervisor"/>
+                </com:TDropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><com:TButton ID="id_button" Text="añadir" OnClick="incluir_temp"></com:TButton></td>
+        </tr>
+    </table>
+    <br></br>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <com:TDataGrid
+                ID="datagrid_competencia"
+                GridLines="Both"
+                Caption="competencias incluidas"
+                HeaderStyle.BackColor="black"
+                HeaderStyle.ForeColor="white"
+                ItemStyle.BackColor="#BFCFFF"
+                ItemStyle.BorderColor="white"
+                ItemStyle.Font.Italic="true"
+                AlternatingItemStyle.BackColor="#E6ECFF"
+                AutoGenerateColumns="false"
+                OnDeleteCommand="eliminar">
+                    <com:TBoundColumn DataField="id" HeaderText="id"></com:TBoundColumn>
+                    <com:TBoundColumn DataField="cod" HeaderText="código"></com:TBoundColumn>
+                    <com:TBoundColumn DataField="descripcion" HeaderText="competencia"></com:TBoundColumn>
+                    <com:TBoundColumn DataField="nivel" HeaderText="nivel"></com:TBoundColumn>
+                    <com:TBoundColumn DataField="nombre_corto" HeaderText="nombre corto"></com:TBoundColumn>
+                    <com:TButtonColumn ID="borra" HeaderText="borrar" Text="borrar" CommandName="delete"></com:TButtonColumn>
+                </com:TDataGrid>
+            </td>
+        </tr>
+        <tr>
+            <td align="center"><com:TButton Text="guardar" OnClick="guardar"></com:TButton></td>
+        </tr>
+    </table>
+</com:TContent>

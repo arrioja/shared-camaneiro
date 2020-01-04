@@ -1,0 +1,26 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+    <com:TTable BorderWidth="1" GridLines="None" Width="95%">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell>
+                <div align="justify">
+                 <p>Bienvenido(a) a la Intranet de la <com:TLabel ID="lbl_org" Text="organizaci&oacute;n" />,
+                 en este novedoso sistema basado en tecnolog&iacute;a web, usted podr&aacute;
+                 realizar de manera r&aacute;pida, segura y sencilla las tareas m&aacute;s comunes
+                 relacionadas con su trabajo, desde solicitar un permiso para llegar tarde hasta,
+                 pasando por la programaci&oacute;n de vacaciones hasta conocer su propia evaluaci&oacute;n
+                 de desempe&ntilde;o,  indicadores de gesti&oacute;n, indicadores estrat&eacute;gicos entre
+                 otras funcionalidades que har&aacute;n de esta Intranet su
+                 mas &uacute;til herramienta de trabajo.</p>
+                <p>Para iniciar, haga click sobre algunos de los botones de men&uacute;
+                que representan los diversos sistemas a los que tiene acceso.</p>
+                <p>Para volver a esta p&aacute;gina, siempre puede hacer click en el v&iacute;nculo &quot;
+                <strong>Inicio</strong>&quot; que se encuentra en la parte superior y para salir del
+                sistema es necesario que haga click en el v&iacute;nculo &quot;<strong>Salir</strong>&quot;
+                que se encuentra en la parte superior.</p></div>
+            </com:TTableCell>
+        </com:TTableRow>
+  </com:TTable>
+</div>
+
+</com:TContent>

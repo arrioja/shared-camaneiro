@@ -1,0 +1,52 @@
+<com:TContent ID="cuerpo">
+ <fieldset> 
+	<legend>Inclusión de Documentos</legend>
+	<com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+
+		<com:TTableRow BorderWidth="1">
+			<com:TTableCell Width="20%" HorizontalAlign="Right">
+				<com:TLabel Text="Codigo del Documento:"/>
+			</com:TTableCell>
+			<com:TTableCell Width="80%">
+			<com:TActiveTextBox ID="txt_codigo_documento" OnTextChanged="prueba" AutoPostBack="true"/>
+			</com:TTableCell>
+		</com:TTableRow>
+
+		<com:TTableRow BorderWidth="1">
+			<com:TTableCell HorizontalAlign="Right">
+				<com:TLabel Text="Descripción del Documento:"/>
+			</com:TTableCell>
+			<com:TTableCell>
+				<com:TTextBox ID="txt_descripcion_documento" Text="text2"/>
+			</com:TTableCell>
+		</com:TTableRow>
+		
+		<com:TTableRow BorderWidth="1">
+			<com:TTableCell HorizontalAlign="Right">
+				<com:TLabel Text="Tipo de Documento:"/>
+			</com:TTableCell>
+			<com:TTableCell>
+				<com:TCheckBox ID="chk_compromiso" Text="Compromiso"/><br />
+				<com:TCheckBox ID="chk_causado" Text="Causado"/><br />
+				<com:TCheckBox ID="chk_pagado" Text="Pagado"/><br />
+				<com:TCheckBox ID="chk_disminuye" Text="Disminuye"/><br />
+				<com:TCheckBox ID="chk_aumenta" Text="Aumenta"/><br />
+				<com:TCheckBox ID="chk_traslada" Text="Traslada"/><br />
+				<com:TCheckBox ID="chk_contrato" Text="Contrato"/><br />
+			</com:TTableCell>
+		</com:TTableRow>
+		
+		
+		
+		
+		<com:TTableRow>
+			<com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+				<com:TButton ID="incluir"
+					Text="Incluir"
+					OnClick="incluir_click"/>
+			</com:TTableCell>
+		</com:TTableRow>
+	</com:TTable>
+
+</fieldset>
+</com:TContent>

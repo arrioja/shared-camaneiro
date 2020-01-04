@@ -1,0 +1,187 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="LTB"/>
+ <fieldset Align="Center" width="80%" height="500px">
+    <legend>Movimientos de Bienes.</legend>
+    <table Width="70%" aling="center" border="1">
+        <tr >
+            <td Align="left" width="160">
+                <com:TLabel Text="Grupo:"/>
+            </td>
+            <td Align="left">
+                <com:TLabel Text="Sub Grupo:"/>
+            </td>
+            <td Align="left">
+                <com:TLabel Text="Secciones:"/>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                <com:TActiveTextBox ID="txt_grupo" ReadOnly="true"
+                />
+
+            </td>
+            <td>
+                <com:TActiveTextBox ID="txt_subgrupo" ReadOnly="true"
+                />
+            </td>
+            <td>
+                 <com:TActiveTextBox ID="txt_secciones" ReadOnly="true"
+                />
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <com:TLabel Text="Descripci&oacute;n:"/>
+            </td>
+            <td ColSpan="2">
+                <com:TActiveTextBox ID="txt_desc" ReadOnly="true"
+                    Columns="55"
+                />
+             </td>
+        </tr>
+    </table>
+<table Width="70%" aling="center" border="1">
+    <tr>
+           <td>
+                <com:TLabel Text="C&oacute;digo del Bien:"/>
+            </td>
+            <td ColSpan="3">
+                <com:TActiveTextBox ID="txt_codigo" ReadOnly="true"
+                />
+             </td>
+   </tr>
+<tr>
+    <td>Tipo de movimiento:</td>
+        <td>
+            <com:TActiveDropDownList ID="drop_tipo_movimiento"
+            DataValueField="cod"
+            DataTextField="descripcion"
+            PromptText="Seleccione un tipo de movimiento"
+            PromptValue="-1"
+            ValidationGroup="1"
+            AutoPostBack="False"
+            >
+            </com:TActiveDropDownList>
+            <com:TRequiredFieldValidator ID="val_mov"
+            ControlToValidate="drop_tipo_movimiento"
+            ErrorMessage="Requerido."
+            Display="Dynamic"
+            ValidationGroup="1"
+            InitialValue="-1"
+            />
+    </td>
+</tr>
+
+<tr>
+    <td>Tipo de incorporaci&oacute;n:</td>
+        <td>
+            <com:TActiveDropDownList ID="drop_tipo_incorporacion"
+            DataValueField="cod"
+            DataTextField="descripcion"
+            PromptText="Seleccione un tipo de incorporaci&oacute;n"
+            PromptValue="-1"
+            ValidationGroup="1"
+            AutoPostBack="False"
+            >
+            </com:TActiveDropDownList>
+            <com:TRequiredFieldValidator ID="val_inc"
+            ControlToValidate="drop_tipo_incorporacion"
+            ErrorMessage="Requerido."
+            Display="Dynamic"
+            ValidationGroup="1"
+            InitialValue="-1"
+            />
+    </td>
+</tr>
+   <tr>
+    <td>
+        <span>Direcci&oacute;n Saliente:</span>
+    </td>
+    <td>
+        <com:TActiveTextBox ID="txt_direccion"  ReadOnly="true" Columns="52" />
+
+        <com:TActiveHiddenField ID="txt_direccion_oculto"  />
+    </td>
+    
+</tr>
+
+<tr>
+    <td>Dirección para el Cambio:</td>
+        <td>
+            <com:TActiveDropDownList ID="drop_direcciones"
+            DataValueField="codigo"
+            DataTextField="nombre_completo"
+            PromptText="Seleccione una Dirección"
+            PromptValue="-1"
+            ValidationGroup="1"
+            >
+            </com:TActiveDropDownList>
+            <com:TRequiredFieldValidator ID="val_dir"
+            ControlToValidate="drop_direcciones"
+            ErrorMessage="Requerido."
+            Display="Dynamic"
+            ValidationGroup="1"
+            InitialValue="-1"
+            />
+            <com:TActiveCustomValidator ID="val_dir2"
+                ControlToValidate="drop_direcciones"
+                OnServerValidate="val_direccion"
+                Display="Dynamic"
+                FocusOnError="true"
+                Text="La Dirección seleccionada debe ser distinta a la asignada previamente!"
+                ValidationGroup="1"/>
+
+
+    </td>
+</tr>
+
+<tr >
+    <td>
+        <span>Fecha Movimiento:</span>
+    </td>
+            <td ColSpan="3">
+            <com:TDatePicker ID="txt_fecha_movimiento" Culture="es"
+            DateFormat="dd/MM/yyyy"
+             />
+            <com:TRequiredFieldValidator
+            ControlToValidate="txt_fecha_movimiento"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+            </td>
+</tr>
+<tr >
+    <td>
+        <span>Motivo:</span>
+    </td>
+            <td ColSpan="3">
+                <com:TTextBox ID="txt_motivo"TextMode="MultiLine" Columns="40"
+
+             />
+            </td>
+</tr>
+
+<com:TLabel ID="Result" />
+
+        <tr>
+            <td align="center">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Registrar Movimiento" ValidationGroup="1"
+                    OnClick="prueba"
+               >
+                </com:TActiveButton>
+            </td>
+            <td ColSpan="2" align="center">
+                <com:TButton ID="btn_imprimir"
+                    Text="Ver Detalles de Movimientos"
+                    OnClick="imprimir_movimientos"
+               >
+                </com:TButton>
+            </td>
+        </tr>
+</table>
+</fieldset>
+</div>
+</com:TContent>

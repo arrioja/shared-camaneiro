@@ -1,0 +1,88 @@
+<%@ Title="N&oacute;mina - Administrar Constantes" %>
+
+<com:TContent ID="cuerpo">
+
+<h1>Constantes con Monto Global</h1>
+
+<br/>
+<br/>
+
+<div align="center">
+<com:XActiveDataGrid
+	ID="DataGrid"
+	Width="70%"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+    HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+
+
+	AutoGenerateColumns="false"
+	>
+		<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="COD"
+		DataField="cod"
+		HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="Descripci&oacute;n"
+		HeaderStyle.Width="300px"
+		DataField="descripcion"
+		ItemStyle.HorizontalAlign="Left"
+        ReadOnly="True"
+		/>
+
+        <com:XActiveBoundColumn
+		ID="abreviatura"
+		HeaderText="Abreviatura"
+		HeaderStyle.Width="100px"
+		DataField="abreviatura"
+		ItemStyle.HorizontalAlign="Center"
+        ReadOnly="True"
+		/>
+
+        <com:XActiveBoundColumn
+        ID="tipo"
+        HeaderText="Tipo"
+        DataField="tipo"
+        ItemStyle.HorizontalAlign="Center"
+        ReadOnly="True"
+        />
+
+        <com:XActiveBoundColumn
+		ID="monto"
+		HeaderText="Monto"
+		HeaderStyle.Width="100px"
+		DataField="monto"
+		ItemStyle.HorizontalAlign="Center"
+        DataFormatString="BsF %.2f"
+		/>
+
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="100px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+
+</com:XActiveDataGrid>
+</div>
+
+
+</com:TContent>

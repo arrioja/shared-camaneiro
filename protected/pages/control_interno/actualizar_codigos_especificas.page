@@ -1,0 +1,65 @@
+<com:TContent ID="cuerpo">
+ <fieldset> 
+	<legend>Actualización de codigos (Nivel Especificas)</legend>
+	<com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+
+		<com:TTableRow BorderWidth="1">
+			<com:TTableCell Width="20%" HorizontalAlign="Right">
+				<com:TLabel Text="Leyenda:"/>
+			</com:TTableCell>
+			<com:TTableCell Width="80%">
+				<com:TLabel Text="T-Año-Fu-Or-Se-Pr-Sp-Py-Ac-Par-Ge-Es-Se-Ord"/>
+			</com:TTableCell>
+		</com:TTableRow>
+
+		<com:TTableRow BorderWidth="1">
+			<com:TTableCell Width="20%" HorizontalAlign="Right">
+				<com:TLabel Text="Codigo:"/>
+			</com:TTableCell>
+			<com:TTableCell Width="80%">
+
+			   <com:MaskedTextBox ID="txt_codigo" Mask="#-####-##-##-##-##-##-##-##-###-##-##-##-###" Columns="42" />
+				<com:TRequiredFieldValidator al_codigo_1"
+					ControlToValidate="txt_codigo"
+					ErrorMessage="Requerido"
+					Display="Dynamic"/>
+				<com:TRegularExpressionValidator ID="val_codigo_2"
+					ControlToValidate="txt_codigo"
+					RegularExpression="\d{1}-\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{3}-\d{2}-\d{2}-\d{2}-\d{3}"
+					ErrorMessage="El código debe ser T-Año-Fu-Or-Se-Pr-Sp-Py-Ac-Par-Ge-Es-Se-Ord"
+					Display="Dynamic"/>
+			</com:TTableCell>
+		</com:TTableRow>
+		
+		<com:TTableRow BorderWidth="1">
+			<com:TTableCell HorizontalAlign="Right">
+				<com:TLabel Text="MONTO (Bs.):"/>
+			</com:TTableCell>
+			<com:TTableCell>
+				<com:TActiveTextBox ID="txt_monto" 	Columns="25" MaxLength="10"/>
+			</com:TTableCell>
+		</com:TTableRow>
+
+		<com:TTableRow BorderWidth="1">
+			<com:TTableCell HorizontalAlign="Right">
+				<com:TLabel Text="Codigo Original de Ley:"/>
+			</com:TTableCell>
+			<com:TTableCell>
+				<com:TActiveTextBox ID="txt_codigo_ordinal" 	Columns="1" MaxLength="1"/>
+			</com:TTableCell>
+		</com:TTableRow>
+
+
+
+
+		<com:TTableRow>
+			<com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+				<com:TButton ID="incluir"
+					Text="Incluir"
+					OnClick="incluir_click"/>
+			</com:TTableCell>
+		</com:TTableRow>
+	</com:TTable>
+
+</fieldset>
+</com:TContent>

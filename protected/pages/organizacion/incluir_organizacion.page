@@ -1,0 +1,114 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Inclusi&oacute;n de Organizaciones.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="RIF:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_rif" Columns="20"/>
+                <com:TLabel Text="" ID="lbl_codigo"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_rif"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Nombre:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_nombre" Columns="50" MaxLength="50"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Fecha Creaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TDatePicker ID="txt_fecha_cre" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Mode="ImageButton"
+                    InputMode="TextBox"
+                    Columns="10"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Tel&eacute;fono 1:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:MaskedTextBox ID="txt_telefono1" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Tel&eacute;fono 2:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:MaskedTextBox ID="txt_telefono2" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Tel&eacute;fono 3:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:MaskedTextBox ID="txt_telefono3" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Tel&eacute;fono 4:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:MaskedTextBox ID="txt_telefono4" Mask="####-#######" Columns="12" />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_direccion" TextMode="MultiLine" Rows="2" Columns="80">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Misi&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_mision" TextMode="MultiLine" Rows="3" Columns="80">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Visi&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_vision" TextMode="MultiLine" Rows="3" Columns="80">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

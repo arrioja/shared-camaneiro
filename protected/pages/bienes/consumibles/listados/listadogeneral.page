@@ -1,0 +1,50 @@
+<com:TContent ID="cuerpo">
+    <div align="center">        
+        <br></br>
+        <div class="div3">            
+        <com:XActiveDataGrid
+        ID="dg1"        
+        Width="90%"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AutoGenerateColumns="false"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        Caption="Listado General de Consumibles"
+        ForeColor="black"
+        BorderColor="black">
+            <com:XActiveBoundColumn
+            HeaderText="descripcion"
+            DataField="descripcion"/>
+            <com:XActiveBoundColumn
+            HeaderText="marca"
+            DataField="marca"/>            
+            <com:XActiveBoundColumn
+            HeaderText="costo"
+            DataField="costo"/>
+            <com:XActiveBoundColumn
+            HeaderText="maximo"
+            DataField="maximo"/>
+            <com:XActiveBoundColumn
+            HeaderText="minimo"
+            DataField="minimo"/>
+            <com:XActiveBoundColumn
+            HeaderText="actual"
+            DataField="actual"/>                                    
+            <com:XActiveBoundColumn
+            HeaderText="referencia"
+            DataField="ref_producto"/>            
+            <com:XActiveBoundColumn
+            HeaderText="partida presupuestaria"
+            DataField="concat(ano, partida, generica, especifica, subespecifica)"/>
+        </com:XActiveDataGrid>
+        <br></br>
+        <com:TButton Text="Imprimir" OnClick="imprimir"/>
+        </div>
+    </div>
+</com:TContent>

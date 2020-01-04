@@ -1,0 +1,65 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+<com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+    <com:TTableRow BorderWidth="1">
+        <com:TTableCell CssClass="titulos_formularios">
+            <com:TLabel Text="Organizaci&oacute;n:"/>
+        </com:TTableCell>
+        <com:TTableCell ColumnSpan="3">
+            <com:TLabel ID="lbl_organizacion" Text=""/>
+        </com:TTableCell>
+    </com:TTableRow>
+</com:TTable>
+
+
+<com:XActiveDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+    OnItemDataBound="nuevo_item"
+	AutoGenerateColumns="false"
+    Caption="Estatus Años Control de Documentos de la Organizaci&oacute;n"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                               color:#FF0000;
+                               height:100px;
+                               font-weight:bold;
+                               vertical-align:middle;
+                               padding-top:40px;'>
+                    Estatus de los Presupuestos de la Organizaci&oacute;n. <br>
+                    No existen datos para realizar el listado.</div>"
+	>
+		<com:XActiveBoundColumn
+		ID="ano"
+		HeaderText="A&ntilde;o"
+		HeaderStyle.Width="160px"
+		DataField="ano"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="estatus"
+		HeaderText="Estatus
+        "
+		DataField="estatus"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+</com:XActiveDataGrid>
+
+</div>
+
+</com:TContent>

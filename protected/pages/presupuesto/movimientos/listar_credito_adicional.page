@@ -1,0 +1,165 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="80%">
+    <legend>Listado de Créditos Adicionales al Presupuesto.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    AutoPostBack="true"
+                    OnCallback="actualiza_listado1"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir General"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+                <com:TButton ID="btn_imprimir_codigos"
+                    Text="Imprimir códigos"
+                    OnClick="imprimir_codigos">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    OnItemDataBound="nuevo_item"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de Créditos Adicionales. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+		<com:XActiveBoundColumn
+		ID="num_documento"
+		HeaderText="Oficio"
+		DataField="num_documento"
+        HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="fecha"
+		HeaderText="Fecha"
+        HeaderStyle.Width="100px"
+        ItemStyle.HorizontalAlign="Center"
+		DataField="fecha"
+		/>
+		<com:XActiveBoundColumn
+		ID="motivo"
+		HeaderText="Motivo"
+		DataField="motivo"
+		/>
+		<com:XActiveBoundColumn
+		ID="monto"
+		HeaderText="Monto"
+		DataField="monto_total"
+        HeaderStyle.Width="120px"
+        ItemStyle.ForeColor="green"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+        <com:XActiveTemplateColumn
+        ID="detalle"
+        HeaderText="Acciones"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TActiveLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img src='imagenes/iconos/detalle.png' border='0' />" OnClick="Page.actualiza_listado2" />
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img alt='Ver' src='imagenes/iconos/imprimir.png' border='0' />" OnClick="Page.imprimir_item" />
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+</com:XActiveDataGrid>
+
+<br>
+
+<com:XActiveDataGrid
+	ID="DataGrid2"
+	Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="nuevo_item2"
+    Caption="Detalle del Crédito Adicional"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                Para ver los detalles de algún crédito adicional, haga click en 'VER'.</div>"
+	>
+		<com:XActiveBoundColumn
+		ID="codigo2"
+		HeaderText="C&oacute;digo Presupuestario"
+		HeaderStyle.Width="260px"
+		DataField="codigo"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="monto2"
+		HeaderText="Monto"
+        ItemStyle.ForeColor="Green"
+		HeaderStyle.Width="120px"
+		DataField="monto_aumento"
+        ItemStyle.HorizontalAlign="Right"
+		/>
+</com:XActiveDataGrid>
+
+</div>
+
+</com:TContent>

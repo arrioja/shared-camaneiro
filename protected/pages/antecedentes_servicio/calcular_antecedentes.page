@@ -1,0 +1,185 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Calcular Antecedentes</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4">
+                        Cédula
+                        <com:TDropDownList
+                            ID="ddl1"
+                            PromptText="seleccione"
+                            AutoPostBack="true"
+                            DataTextField="concat(cedula, ' - ',nombres, apellidos)"
+                            DataValueField="concat(cedula, ' - ',nombres, apellidos)"
+                            OnSelectedIndexChanged="llenar_datos">
+                        </com:TDropDownList>
+                    </com:TTableCell>
+
+                </com:TTableRow>
+                
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="2" BackColor="gray">Ingreso</com:TTableCell>
+                    <com:TTableCell ColumnSpan="2" BackColor="gray">Egreso</com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell>
+                        fecha
+                        <com:TTextBox ID="t2" ReadOnly="true" Width="75px"></com:TTextBox>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        cargo
+                        <com:TTextBox ID="t3" ReadOnly="true" Width="250px"></com:TTextBox>
+                    </com:TTableCell>
+                    <com:TTableCell>
+                        fecha
+                        <com:TTextBox ID="t4" ReadOnly="true" Width="75px"></com:TTextBox>
+                    </com:TTableCell>
+                    <com:TTableCell>cargo<com:TTextBox ID="t5" Width="250x" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell>Sueldo Baśico</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t6"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t6"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                    <com:TTableCell>Sueldo Básico</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t7"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t7"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell>Compensación</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t8"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t8"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                    <com:TTableCell>Compensación</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t9"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t9"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell>Prima Prof</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t10"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t10"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                    <com:TTableCell>Prima Prof</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t11"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t11"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell>Prima Resp</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t12"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t12"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                    <com:TTableCell>Prima Resp</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t13"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t13"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell>Prima Antig</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t14"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t14"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                    <com:TTableCell>Prima Antig</com:TTableCell>
+                    <com:TTableCell>
+                        <com:TTextBox ID="t15"></com:TTextBox>
+                        <com:TDataTypeValidator
+                        ValidationGroup="grupo1"
+                        ControlToValidate="t15"
+                        ErrorMessage="Número Requerido"
+                        Display="Dynamic"
+                        DataType="Float"/>
+                    </com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" BackColor="gray">Tipo Egreso</com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="3">
+                        <com:TDropDownList
+                            ID="ddl2"
+                            PromptText="seleccione">
+                            <com:TListItem Value="r" Text="Renuncia" />
+                            <com:TListItem Value="rp" Text="Red. Personal"/>
+                            <com:TListItem Value="p" Text="Pensión" />
+                            <com:TListItem Value="rr" Text="Remoción/Retiro" />
+                            <com:TListItem Value="d" Text="Destitución" />
+                            <com:TListItem Value="j" Text="Jubilación" />
+                            <com:TListItem Value="f" Text="Fallecimiento" />
+                            <com:TListItem Value="cc" Text="Culminación Contrato" />
+                        </com:TDropDownList>
+                        <com:TCheckBox ID="cb1" Text="Presento certificado Electronico DJP" Checked="false" Value="si"></com:TCheckBox>
+                        <com:TCheckBox ID="cb2" Text="Pago Prestaciones Sociales" Checked="false" Value="si"></com:TCheckBox>
+                    </com:TTableCell>
+                    <com:TTableCell>Anticipos<com:TTextBox ID="t16"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+
+
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center"><com:TTextBox TextMode="MultiLine" Width="500px" ID="t19"></com:TTextBox></com:TTableCell>
+                </com:TTableRow>
+                <com:TTableRow>
+                    <com:TTableCell ColumnSpan="4" HorizontalAlign="Center">
+                        <com:TButton Text="Agregar" OnClick="agregar_antecedentes" ValidationGroup="grupo1"></com:TButton>
+                    </com:TTableCell>
+                </com:TTableRow>
+            </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

@@ -1,0 +1,183 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Inclusi&oacute;n de Usuarios en el Sistema.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="C&eacute;dula:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TTextBox ID="txt_cedula" Columns="10" AutoPostBack="false"/>
+                <com:TActiveButton Text="Comprobar"
+                    ValidationGroup="1"
+                    OnClick="validar_cedula"/>
+                <com:TCustomValidator
+                    ControlToValidate="txt_cedula"
+                    OnServerValidate="validar_cedula"
+                    FocusOnError="true"
+                    Text="La C&eacute;dula NO existe." />
+                <com:TRequiredFieldValidator ID="val_cedula"
+                    ControlToValidate="txt_cedula"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Nombre:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TActiveTextBox ID="txt_nombre"
+                    Columns="40"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_nombre"
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Apellido:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TActiveTextBox ID="txt_apellido"
+                    Columns="40"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_apellido"
+                    ControlToValidate="txt_apellido"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TActiveTextBox ID="txt_organizacion"
+                    Columns="60"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_organizacion"
+                    ControlToValidate="txt_organizacion"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Direcci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TActiveTextBox ID="txt_direccion"
+                    Columns="50"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_direccion"
+                    ControlToValidate="txt_direccion"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Nivel:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TActiveTextBox ID="txt_nivel"
+                    Columns="30"
+                    ReadOnly="true"/>
+                <com:TRequiredFieldValidator ID="val_nivel"
+                    ControlToValidate="txt_nivel"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Login:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TTextBox ID="txt_login"
+                    Columns="50"/>
+                <com:TRequiredFieldValidator ID="val_login"
+                    ControlToValidate="txt_login"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Clave:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TTextBox ID="txt_clave"
+                    Columns="30"
+                    MaxLength="30"
+                    TextMode="Password"/>
+                <com:TRequiredFieldValidator ID="val_clave"
+                    ControlToValidate="txt_clave"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Confirmaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TTextBox ID="txt_confirma"
+                    Columns="30"
+                    MaxLength="30"
+                    TextMode="Password"/>
+                <com:TRequiredFieldValidator ID="val_confirma"
+                    ControlToValidate="txt_confirma"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+                    <com:TCompareValidator
+                        ControlToValidate="txt_clave"
+                        ControlToCompare="txt_confirma"
+                        ErrorMessage="La Clave y su confirmaci&oacute;n no coinciden."
+                        Display="Dynamic" />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="E-mail"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TActiveTextBox ID="txt_email"
+                    Columns="50"
+                    MaxLength="200"/>
+                <com:TRequiredFieldValidator ID="val_email"
+                    ControlToValidate="txt_email"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="2">
+                <com:TButton ID="btn_limpiar"
+
+                    Text="Limpiar"
+                    OnClick="btn_limpiar_click"/>
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

@@ -1,0 +1,73 @@
+<com:TContent ID="cuerpo">
+<br>
+<div align="center">
+<com:XActiveDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="20"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+    OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+    OnUpdateCommand="saveItem"
+	OnDeleteCommand="anularItem"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    Caption="Listado de Personas"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Listado de Personas. <br><br>
+                No existen datos suficientes para realizar el listado.</div>"
+	>
+		<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="C&eacute;dula"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:XActiveBoundColumn
+		ID="apellido"
+		HeaderText="Apellidos"
+		DataField="apellidos"
+		/>
+        <com:XActiveBoundColumn
+		ID="nombre"
+		HeaderText="Nombres"
+		DataField="nombres"
+		/>
+        <com:XActiveBoundColumn
+		ID="rif"
+		HeaderText="RIF"
+		DataField="rif"
+		/>
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+
+</com:XActiveDataGrid>
+</div>
+
+</com:TContent>

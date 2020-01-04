@@ -1,0 +1,15 @@
+<com:TContent ID="cuerpo">
+    <br></br>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                seleccione un archivo
+            </td>
+            <td>
+                <com:TFileUpload ID="fu1" OnFileUpload="cargar"/>
+                <com:TButton Text="agregar" ID="b1"/>
+                <com:TTextBox ID="tb2" visible="false"/>
+            </td>
+        </tr>        
+    </table>
+</com:TContent>

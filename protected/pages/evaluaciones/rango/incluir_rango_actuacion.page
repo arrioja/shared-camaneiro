@@ -1,0 +1,31 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+    <br>
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir un Nuevo Rango de Actuación para Evaluaciones.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Nombre:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                <com:TTextBox ID="txt_nombre" Columns="50" MaxLength="50"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_nombre"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

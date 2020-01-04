@@ -1,0 +1,88 @@
+ /* common styling */
+#header {
+	position:relative; left:50%; width:686px; height:185px; margin-left: -343px; font-family: verdana, arial, sans-serif; font-size:11px; 
+}
+
+#main 
+{
+	position:relative; width:686px; height:auto; left:50%; margin-left: -343px; font-family: verdana, arial, sans-serif; font-size:11px;  
+}
+#footer {
+	position:relative; left:50%; width:686px; margin-left: -343px; font-family: verdana, arial, sans-serif; font-size:11px; text-align:center;
+}
+
+.left {clear:both;}
+
+td.formtd {
+	width: 300px;
+	text-align: left;
+	background: #E4F6FC;
+	border: 1px solid silver;
+	padding: 5px;
+
+	font-weight: bold;
+	vertical-align: top;
+}
+
+td.form2td {
+	width: 300px;
+	text-align: left;
+	
+	padding: 5px;
+
+	font-weight: bold;
+	vertical-align: top;
+}
+td.form3td {
+	text-align: center;
+	background: #E4F6FC;
+	border: 1px solid silver;
+	padding: 5px;
+
+	font-weight: bold;
+	vertical-align: top;
+}
+.formtabla {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+td.formcampo {
+	background: #FFFDB3;
+	border: 1px solid silver;
+	padding: 5px;
+	vertical-align: top;
+	text-align:left;
+	
+}
+
+input:focus {
+border: 2px solid silver;
+background:#CCFFCC;
+}
+
+
+input[disabled]
+{
+border: 2px solid silver;
+background:#EBEBEB;
+}
+
+textarea:focus
+{
+border: 2px solid silver;
+background:#CCFFCC;
+}
+
+textarea[disabled]
+{
+border: 2px solid silver;
+background:#EBEBEB;
+}
+
+body
+ {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 14px;
+ }

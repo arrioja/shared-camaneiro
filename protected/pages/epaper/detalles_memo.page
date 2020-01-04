@@ -1,0 +1,60 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+    <fieldset Align="Center" width="80%">
+    <legend>Detalles de Memorando</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+        <com:TTablerow>
+            <com:TTablecell CssClass="titulos_formularios">Número de Memo</com:TTablecell>
+            <com:TTablecell><com:TTextBox ID="t1" ReadOnly="true"/></com:TTablecell>
+        </com:TTablerow>
+        <com:TTablerow>
+            <com:TTablecell CssClass="titulos_formularios">Fecha</com:TTablecell>
+            <com:TTablecell><com:TTextBox ID="t2" ReadOnly="true"/></com:TTablecell>
+        </com:TTablerow>
+        <com:TTablerow>
+            <com:TTablecell CssClass="titulos_formularios">Asunto</com:TTablecell>
+            <com:TTablecell><com:TTextBox ID="t3" ReadOnly="true"/></com:TTablecell>
+        </com:TTablerow>
+        <com:TTablerow>
+            <com:TTablecell CssClass="titulos_formularios">Destinatario</com:TTablecell>
+            <com:TTablecell><com:TTextBox ID="t4" ReadOnly="true"/></com:TTablecell>
+            <com:TTextBox ID="t4a" ReadOnly="true" Visible="false"/>
+        </com:TTablerow>
+        <com:TTablerow>
+            <com:TTablecell CssClass="titulos_formularios">Remitente</com:TTablecell>
+            <com:TTablecell><com:TTextBox ID="t5" ReadOnly="true"/></com:TTablecell>
+            <com:TTextBox ID="t5a" ReadOnly="true" Visible="false"/>            
+        </com:TTablerow>
+        <com:TTablerow>
+            <com:TTablecell CssClass="titulos_formularios">Adjuntos</com:TTablecell>
+            <com:TTablecell>
+                <com:TTextBox ID="t6" visible="false"/>
+                <com:TDataGrid
+                ID="dg1"
+                AutoGenerateColumns="false"                                
+                ItemStyle.BackColor="#BFCFFF"
+                ItemStyle.Font.Italic="true"
+                AlternatingItemStyle.BackColor="#E6ECFF">
+                    <com:TBoundColumn DataField="nom_adjunto"/>
+                    <com:TTemplateColumn>
+                        <prop:ItemTemplate>
+                            <com:TLinkButton Text="descarga" CommandParameter="<%# $this->Parent->DataItem['nom_adjunto'].'-'.$this->Parent->DataItem['cod_adjunto'] %>" OnClick="Page.renombrar"/>
+                        </prop:ItemTemplate>
+                    </com:TTemplateColumn>
+                </com:TDataGrid>                
+            </com:TTablecell>
+        </com:TTablerow>
+        <!--<tr>
+            <td colspan="2">Adjuntar Memoranda
+                <com:THtmlArea ID="html1">
+                    <prop:Options>                        
+                        readonly:true
+                    </prop:Options>
+                </com:THtmlArea>
+                <com:TLinkButton Text="imprimir" OnClick="imprimir"></com:TLinkButton>
+            </td>
+        </tr>-->
+    </com:TTable>
+    </fieldset>
+    </div>
+</com:TContent>

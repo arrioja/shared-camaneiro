@@ -1,0 +1,111 @@
+<%@ Title="N&oacute;mina - Insertar Nueva Constante" %>
+
+<com:TContent ID="cuerpo">
+<fieldset Align="Center" width="500" >
+        <legend>Crear una nueva Constante</legend>
+<table align="center" border="1" width="600">
+
+<tr>
+    <td Align="Right" width="250">
+            <span>C&oacute;digo:</span>
+    </td>
+    <td Align="Left">
+        <com:TTextBox ID="txt_codigo" ValidationGroup="1" />
+        <com:TRequiredFieldValidator
+            ControlToValidate="txt_codigo"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+        <!--solo enteros-->
+        <com:TDataTypeValidator
+            ControlToValidate="txt_codigo"
+            DataType="Integer"
+            Text="S&oacute;lo Enteros."
+            Display="Dynamic"
+            ValidationGroup="1"/>
+        <!--solo 4 digitos para el código -->
+        <com:TRegularExpressionValidator
+            ControlToValidate="txt_codigo"
+            RegularExpression="\d{4}"
+            Text="El c&oacute;digo debe ser de 4 d&iacute;gitos"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+        <!--verifica en la bd por el codigo-->
+        <com:TCustomValidator ControlToValidate='txt_codigo'
+              OnServerValidate='check_codigo'
+              Text='C&oacute;digo Existente, Por Favor C&aacute;mbielo!'
+              Display='Dynamic'
+              ValidationGroup="1"/>
+
+    </td>
+    </tr>
+
+ <tr BorderWidth="1">
+     <td Align="Right">
+        <span>Descripci&oacute;n:</span>
+     </td>
+     <td Align="Left">
+        <com:TTextBox ID="txt_descripcion" ValidationGroup="1" />
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_descripcion"
+        ErrorMessage="Requerido!"
+        Display="Dynamic"
+        ValidationGroup="1"/>
+     </td>
+ </tr>
+
+
+
+
+<tr BorderWidth="1" >
+    <td Align="Right">
+        <span>Abreviatura:</span>
+    </td>
+    <td Align="Left">
+        <com:TTextBox ID="txt_abreviatura" ValidationGroup="1"  />
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_abreviatura"
+        ErrorMessage="Requerido!"
+        Display="Dynamic"
+        ValidationGroup="1"/>
+    </td>
+</tr>
+
+<tr BorderWidth="1" >
+    <td Align="Right">
+        <span>Tipo:</span>
+    </td>
+    <td Align="Left">
+        <com:TDropDownList ID="cmb_tipo">
+            <com:TListItem Text="CREDITO" Value="CREDITO" /><!--HACERLO CONTRA UNA bd-->
+            <com:TListItem Text="DEBITO" Value="DEBITO" />
+        </com:TDropDownList>
+    </td>
+</tr>
+
+
+<tr BorderWidth="1" >
+    <td Align="Right">
+        <span>Tipo de Pago:</span>
+    </td>
+    <td Align="Left">
+        <com:TDropDownList ID="cmb_tipo_pago">
+            <com:TListItem Text="CORRIENTE" Value="CORRIENTE" /><!--HACERLO CONTRA UNA bd-->
+            <com:TListItem Text="ESPECIAL" Value="ESPECIAL" />
+        </com:TDropDownList>
+    </td>
+</tr>
+
+ <tr BorderWidth="1">
+     <td  Align="center">
+        <com:TButton Text="Guardar" OnClick="guardar_constante" ValidationGroup="1" />
+     </td>
+     <td Align="center">
+        <com:TButton Text="Cancelar" OnClick="regresar" />
+     </td>
+</tr>
+
+</table>
+</fieldset>
+
+</com:TContent>

@@ -1,0 +1,216 @@
+<com:TContent ID="cuerpo">
+<com:MensajeDiv ID="LTB"/>
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Consulta de Vacaciones Personal</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Visible="false">
+        <com:TTableRow BorderWidth="1" >
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="C&eacute;dula:"/>
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TTextBox ID="txt_cedula"/>
+                    <com:TRequiredFieldValidator
+                    ControlToValidate="txt_cedula"
+                    Text="Requerido."
+                    Display='Dynamic'
+                    ValidationGroup="1"/>
+                  <com:TCustomValidator ControlToValidate='txt_cedula'
+                  OnServerValidate='verificar_cedula'
+                  Text='La C&eacute;dula no se encuentra'
+                  Display='Dynamic'
+                  ValidationGroup="1"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Consultar"
+                    OnClick="consulta_vacacion">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+<br>
+<com:XActiveDataGrid
+	ID="DataGrid"
+	Width="80%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+    OnItemDataBound="formatear"
+    OnDeleteCommand="mostrar_detalle_disfrute"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Detalle de vacaciones para el funcionario seleccionado"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+               color:#FF0000;
+               height:100px;
+               font-weight:bold;
+               vertical-align:middle;
+               padding-top:40px;'>
+    No existen datos para generar el reporte.</div>"
+    >
+
+	<com:XActiveBoundColumn
+		ID="periodo"
+		HeaderText="Período"
+		DataField="periodo"
+		HeaderStyle.Width="120px"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+        ID="anos"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="anos"
+        HeaderText="Años"
+		HeaderStyle.Width="60px"
+        />
+
+	<com:XActiveBoundColumn
+        ID="dias"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="dias"
+		HeaderStyle.Width="40px"
+        HeaderText="Días"/>
+
+	<com:XActiveBoundColumn
+        ID="disfrutados"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="disfrutados"
+        HeaderText="Disfrutados"/>
+
+	<com:XActiveBoundColumn
+        ID="pendientes"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="pendientes"
+        HeaderText="Pendientes"/>
+
+	<com:XActiveBoundColumn
+        ID="restados"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="restados"
+        HeaderText="Descontados"/>
+
+	<com:XActiveBoundColumn
+        ID="disponible_desde"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="disponible_desde"
+        HeaderText="Disponible desde"/>
+
+	<com:XActiveButtonColumn
+		ID="detalle"
+		HeaderText="Detalles"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		Text="Ver"
+		CommandName="delete"
+		/>
+
+	<com:XActiveBoundColumn
+		ID="antiguo"
+		HeaderText="antiguo"
+        DataField="antiguo"
+        Visible = "false"
+		/>
+
+</com:XActiveDataGrid>
+
+<br>
+<com:XActiveDataGrid
+	ID="DataGriddetalle"
+	Width="80%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+	DataKeyField="id"
+    OnItemDataBound="formatear2"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    ForeColor="black"
+    Caption="Detalle de Disfrute de vacaciones del período: "
+    BorderColor="black"
+    >
+
+	<com:XActiveBoundColumn
+		ID="fecha_desde"
+		HeaderText="Desde"
+		DataField="fecha_desde"
+		HeaderStyle.Width="120px"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+		ID="fecha_hasta"
+		HeaderText="Hasta"
+		DataField="fecha_hasta"
+		HeaderStyle.Width="120px"
+        ItemStyle.HorizontalAlign="Center"  />
+
+	<com:XActiveBoundColumn
+        ID="dias_disfrute"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="dias_disfrute"
+		HeaderStyle.Width="40px"
+        HeaderText="Días Hábiles"/>
+
+	<com:XActiveBoundColumn
+        ID="dias_feriados"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="dias_feriados"
+		HeaderStyle.Width="40px"
+        HeaderText="Días Feriados"/>
+
+	<com:XActiveBoundColumn
+        ID="dias_restados"
+        ItemStyle.HorizontalAlign="Center"
+        DataField="dias_restados"
+		HeaderStyle.Width="40px"
+        HeaderText="Días Restados"/>
+
+	<com:XActiveBoundColumn
+        ID="estatus"
+        ItemStyle.HorizontalAlign="Center"
+        ItemStyle.Font.Bold = "True"
+        DataField="estatus"
+        HeaderText="Estatus"/>
+
+        <com:XActiveTemplateColumn
+        ID="acciones"
+        HeaderText="Acciones"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img alt='Ver' src='imagenes/iconos/imprimir.png' border='0' />" ToolTip="Imprimir Solicitud" OnClick="Page.imprimir_item" />
+                <com:TActiveLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>" Text="<img src='imagenes/iconos/rechazar.png' border='0'  />" ToolTip="Cancelar Solicitud" Attributes.onClick="if(!confirm('¿Est&aacute; Seguro de Cancelar solicitud seleccionada?')) return false;" OnClick="Page.eliminar_click" />
+
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+</com:XActiveDataGrid>
+<br>
+<div class="notas_y_leyendas">
+Nota: Los valores de  las columnas: Días, Disfrutados, Pendientes, Días Hábiles y Días Feriados se encuentran expresados en Días hábiles laborables. AÑOS: CENE + Previos en la Administración  Pública; Si en Años aparece "---",  el registro fué ingresado al sistema como dato previo al funcionamiento del mismo; N/D=No Disponible.
+</div>
+</fieldset>
+</div>
+</com:TContent>

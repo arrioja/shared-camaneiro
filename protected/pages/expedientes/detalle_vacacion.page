@@ -1,0 +1,65 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Detalle Vacacion</legend>
+            <com:XActiveDataGrid
+             ID="DataGriddetalle"
+             Width="80%"
+             PagerStyle.Mode="Numeric"
+             PagerStyle.HorizontalAlign="Center"
+             CellPadding="0"
+             CellSpacing="0"
+             GridLines="Both"
+             HeaderStyle.BackColor="#29166F"
+             HeaderStyle.ForeColor="white"
+             ItemStyle.BackColor="#BFCFFF"
+             ItemStyle.BorderColor="white"
+             DataKeyField="id"
+             OnItemDataBound="formatear2"
+             AlternatingItemStyle.BackColor="#E6ECFF"
+             AutoGenerateColumns="false"
+             ForeColor="black"
+             Caption="Detalle de Disfrute de vacaciones del período: "
+             BorderColor="black">
+             <com:XActiveBoundColumn
+              ID="fecha_desde"
+              HeaderText="Desde"
+              DataField="fecha_desde"
+              HeaderStyle.Width="120px"
+              ItemStyle.HorizontalAlign="Center"/>
+             <com:XActiveBoundColumn
+              ID="fecha_hasta"
+              HeaderText="Hasta"
+              DataField="fecha_hasta"
+              HeaderStyle.Width="120px"
+              ItemStyle.HorizontalAlign="Center"/>
+             <com:XActiveBoundColumn
+              ID="dias_disfrute"
+              ItemStyle.HorizontalAlign="Center"
+              DataField="dias_disfrute"
+              HeaderStyle.Width="40px"
+              HeaderText="Días Hábiles"/>
+             <com:XActiveBoundColumn
+              ID="dias_feriados"
+              ItemStyle.HorizontalAlign="Center"
+              DataField="dias_feriados"
+              HeaderStyle.Width="40px"
+              HeaderText="Días Feriados"/>
+             <com:XActiveBoundColumn
+              ID="dias_restados"
+              ItemStyle.HorizontalAlign="Center"
+              DataField="dias_restados"
+              HeaderStyle.Width="40px"
+              HeaderText="Días Restados"/>
+             <com:XActiveBoundColumn
+              ID="estatus"
+              ItemStyle.HorizontalAlign="Center"
+              ItemStyle.Font.Bold = "True"
+              DataField="estatus"
+              HeaderText="Estatus"/>                    
+            </com:XActiveDataGrid>
+            <br>
+               <com:TButton Text="Volver" CommandParameter="<%# array($this->Parent->DataItem['cedula']) %>" OnClick="page.volver"></com:TButton>
+        </fieldset>
+    </div>
+</com:TContent>

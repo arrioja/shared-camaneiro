@@ -1,0 +1,187 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+       <fieldset Align="Center" width="95%">
+       <legend>Presupuesto Pagado</legend>
+       <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+            <com:TTableRow>
+                <com:TTableCell Text="Orden #"></com:TTableCell>
+                <com:TTableCell ColumnSpan="2"><com:TTextBox ID="t1" ReadOnly="true"></com:TTextBox> </com:TTableCell>
+                 <com:TTableCell Text="Beneficiario"></com:TTableCell>
+                 <com:TTableCell ColumnSpan="2"><com:TTextBox ID="t2" Width="300px" ReadOnly="true"></com:TTextBox> </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell Text="Fecha" ColumnSpan="2"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TDatePicker ID="dp1" Culture="es"
+                        DateFormat="dd/MM/yyyy"
+                        FromYear="2007"
+                        UpToYear="<%= @date('Y') %>"
+                        InputMode="TextBox"
+                        Mode="ImageButton"
+                        Columns="10">
+                    </com:TDatePicker>
+                    <com:TRequiredFieldValidator
+                            ValidationGroup="grupo1"
+                            ControlToValidate="dp1"
+                            ErrorMessage="Requerido."
+                            Display="Dynamic"/>
+                </com:TTableCell>
+                <com:TTableCell Text="Cheque" ColumnSpan="2"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TTextBox ID="t3"></com:TTextBox>
+                    <com:TRequiredFieldValidator
+                            ValidationGroup="grupo1"
+                            ControlToValidate="t3"
+                            ErrorMessage="Requerido."
+                            Display="Dynamic"/>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell Text="Banco" ColumnSpan="2"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TDropDownList
+                        ID="ddl1"
+                        DataTextField="nombre"
+                        DataValueField="cod_banco"
+                        PromptText="Seleccione"
+                        PromptValue="x"
+                        OnSelectedIndexChanged="cargar_cuentas"
+                        AutoPostBack="true">
+                    </com:TDropDownList>
+                    <com:TRequiredFieldValidator
+                            ValidationGroup="grupo1"
+                            ControlToValidate="ddl1"
+                            InitialValue="x"
+                            ErrorMessage="Requerido."
+                            Display="Dynamic"/>
+                </com:TTableCell>
+                <com:TTableCell Text="Cuenta" ColumnSpan="2"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TDropDownList
+                        ID="ddl2"
+                        DataTextField="numero_cuenta"
+                        DataValueField="numero_cuenta"
+                        PromptText="Seleccione"
+                        PromptValue="x">
+                    </com:TDropDownList>
+                    <com:TRequiredFieldValidator
+                            ValidationGroup="grupo1"
+                            ControlToValidate="ddl2"
+                            InitialValue="x"
+                            ErrorMessage="Requerido."
+                            Display="Dynamic"/>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell Text="Monto Total" ColumnSpan="2"></com:TTableCell>
+                <com:TTableCell><com:TTextBox ID="t4" ReadOnly="true"></com:TTextBox></com:TTableCell>
+                <com:TTableCell Text="Monto Pendiente" ColumnSpan="2"></com:TTableCell>
+                <com:TTableCell><com:TTextBox ID="t5" ReadOnly="true"></com:TTextBox></com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell Text="Concepto"></com:TTableCell>
+                <com:TTableCell ColumnSpan="2"><com:TTextBox ID="t6" ReadOnly="true" TextMode="MultiLine" Rows="1" Width="300px"></com:TTextBox></com:TTableCell>
+                <com:TTableCell Text="Observaciones"></com:TTableCell>
+                <com:TTableCell ColumnSpan="2">
+                    <com:TTextBox ID="t7" TextMode="MultiLine" Rows="1" Width="300px"></com:TTextBox>
+                    <com:TRequiredFieldValidator
+                            ValidationGroup="grupo1"
+                            ControlToValidate="t7"
+                            ErrorMessage="Requerido."
+                            Display="Dynamic"/>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell Text="detalle"></com:TTableCell>
+                <com:TTableCell ColumnSpan="5">
+                    <com:TTextBox ID="t8" Width="870px"></com:TTextBox>
+                    <com:TRequiredFieldValidator
+                            ValidationGroup="grupo1"
+                            ControlToValidate="t8"
+                            ErrorMessage="Requerido."
+                            Display="Dynamic"/>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell Text="parciales"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TTextBox ID="t9"></com:TTextBox>                    
+                </com:TTableCell>
+                <com:TTableCell Text="debito"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TTextBox ID="t10"></com:TTextBox>                    
+                </com:TTableCell>
+                <com:TTableCell Text="credito"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TTextBox ID="t11"></com:TTextBox>                    
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell Text="retención" ColumnSpan="2"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TDropDownList
+                        ID="ddl3"
+                        DataTextField="descripcion"
+                        DataValueField="codigo"
+                        PromptText="Seleccione"
+                        PromptValue="x">
+                    </com:TDropDownList>
+                </com:TTableCell>
+                <com:TTableCell Text="monto" ColumnSpan="2"></com:TTableCell>
+                <com:TTableCell>
+                    <com:TTextBox ID="t12"></com:TTextBox>
+                </com:TTableCell>
+            </com:TTableRow>
+            <com:TTableRow>
+                <com:TTableCell ColumnSpan="6" HorizontalAlign="Right">
+                    <com:TTextBox ID="t13"></com:TTextBox>
+                    <com:TButton ID="b1" Text="+" OnClick="agregar_temporal" ValidationGroup="grupo1"></com:TButton>
+                </com:TTableCell>
+            </com:TTableRow>
+        </com:TTable>
+    </fieldset>
+    <br></br>
+    <com:XActiveDataGrid
+        ID="dg1"
+        Width="90%"
+        PagerStyle.HorizontalAlign="Center"
+        CellPadding="0"
+        CellSpacing="0"
+        GridLines="Both"
+        HeaderStyle.BackColor="#29166F"
+        HeaderStyle.ForeColor="white"
+        ItemStyle.BackColor="#BFCFFF"
+        ItemStyle.BorderColor="white"
+        DataKeyField="id"
+        AlternatingItemStyle.BackColor="#E6ECFF"
+        AutoGenerateColumns="false"
+        ForeColor="black"
+        BorderColor="black"
+	>
+        <com:XActiveBoundColumn
+		ID="descripcion"
+		HeaderText="descripcion"
+		DataField="descripcion"
+		/>
+        <com:XActiveBoundColumn
+		ID="codigo"
+		HeaderText="codigo"
+		DataField="codigo"
+		/>
+        <com:XActiveBoundColumn
+		ID="monto"
+		HeaderText="monto"
+		DataField="monto"
+		/>
+        
+        <com:XActiveTemplateColumn HeaderText="opcion">
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# array($this->Parent->DataItem['id']) %>" Text="borrar" OnClick="page.borrar_item_temporal"></com:TLinkButton>
+            </prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+    </com:XActiveDataGrid>
+    </div>
+</com:TContent>

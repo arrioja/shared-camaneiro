@@ -1,0 +1,171 @@
+<com:TContent ID="cuerpo">
+<com:MensajeDiv ID="LTB"/>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Modificar Justificación / Permiso.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+
+
+        <com:TTableRow BorderWidth="1"  >
+            <com:TTableCell CssClass="titulos_formularios" >
+             <com:TLabel Text="Funcionarios:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TActiveLabel ID="funcionarios"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Desde:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+            <com:TActiveCheckBox  AutoPostBack="false" ID="hora_completa" Text="Todo el Dia </br>(Presione si se ajustara al horario Activo de la Jornada Laboral)" /><br>
+                Fecha:
+                <com:TDatePicker ID="txt_fecha_desde"  Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Date=""
+                    FromYear="<%= @date('Y')-2 %>"
+                    UpToYear="<%= @date('Y')+20 %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_desde"
+                    ControlToValidate="txt_fecha_desde"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+
+                Hora:
+                <com:MaskedTextBox ID="txt_hora_desde" Mask="##:## !!" Columns="8" />
+                <com:TRequiredFieldValidator ID="val_txt_hora_desde"
+                    ControlToValidate="txt_hora_desde"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/> (HH:MM AM)
+                <com:TRegularExpressionValidator ID="val_txt_hora_desde_2"
+                    ControlToValidate="txt_hora_desde"
+                    RegularExpression="\d{2}:\d{2} \w{2}"
+                    ErrorMessage="Debe ser HH:MM AM"
+                    Display="Dynamic"/>
+                <com:TActiveCustomValidator
+                    ControlToValidate="txt_fecha_desde"
+                    OnServerValidate="validar_fecha_inicio"
+                    FocusOnError="true"
+                    Text="No Válido" />
+                 </com:TTableCell>
+
+        </com:TTableRow>
+
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Hasta:"/>
+            </com:TTableCell>
+            <com:TTableCell >
+                Fecha:
+                <com:TActiveDatePicker ID="txt_fecha_hasta"  Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Date=""
+                    FromYear="<%= @date('Y')-1 %>"
+                    UpToYear="<%= @date('Y')+1 %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_hasta"
+                    ControlToValidate="txt_fecha_hasta"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+
+                Hora:
+                <com:MaskedTextBox ID="txt_hora_hasta" Mask="##:## !!" Columns="8" />
+                <com:TRequiredFieldValidator ID="val_txt_hora_hasta_1"
+                    ControlToValidate="txt_hora_hasta"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/> (HH:MM AM)
+                <com:TRegularExpressionValidator ID="val_txt_hora_hasta_2"
+                    ControlToValidate="txt_hora_hasta"
+                    RegularExpression="\d{2}:\d{2} \w{2}"
+                    ErrorMessage="Debe ser HH:MM AM"
+                    Display="Dynamic"/>
+                <com:TActiveCustomValidator
+                    ControlToValidate="txt_hora_hasta"
+                    OnServerValidate="validar_fecha_hasta"
+                    FocusOnError="true"
+                    Text="No Válido" />
+            </com:TTableCell>
+
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Falta:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+               <com:TActiveDropDownList ID="drop_falta"
+                DataTextField="descripcion"
+                DataValueField="codigo"
+                AutoPostBack="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tipo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+               <com:TActiveDropDownList ID="drop_tipo"
+                DataTextField="descripcion"
+                DataValueField="codigo"
+                AutoPostBack="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+<com:TTableRow BorderWidth="1">
+          <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Dias:"/>
+          </com:TTableCell>
+         <com:TTableCell ColumnSpan="3">
+            <com:TActiveCheckBox  AutoPostBack="true" ID="todos" Text="Todos" OnCheckedChanged="checkboxClicked" />
+          <com:TActiveCheckBox  AutoPostBack="true" ID="lunes"  Text="Lunes" />
+          <com:TActiveCheckBox  AutoPostBack="true" ID="martes"   Text="Martes"  />
+          <com:TActiveCheckBox  AutoPostBack="true" ID="miercoles"  Text="Miercoles"  />
+          <com:TActiveCheckBox  AutoPostBack="true" ID="jueves" Text="Jueves"  />
+          <com:TActiveCheckBox  AutoPostBack="true" ID="viernes"  Text="Viernes" />
+        </com:TTableCell>
+</com:TTableRow>
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Motivo:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_observacion" TextMode="MultiLine" Rows="4" Columns="60" Enabled="true">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    CausesValidation="False"
+                    Visible="false"
+                    OnClick="btn_imprimir_click"/>
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Aceptar"
+                    
+                    OnCallBack="btn_incluir_click"/>
+                       &nbsp;&nbsp;&nbsp;<com:TButton ID="btn_cancelar"
+                    Text="Cancelar"
+                    CausesValidation="False"
+
+                    OnClick="btn_cancelar_click"/>
+           
+            </com:TTableCell>
+            
+     
+          
+                  
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

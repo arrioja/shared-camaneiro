@@ -1,0 +1,15 @@
+Este archivo contiene información concerniente a los programadores,
+desarrolladores y colaboradores del sistema.  Si su nombre aparece dentro de
+alguno de los módulos del sistema, sientase libre de colocar su información
+de contacto en este archivo.
+
+*****************************************
+Pedro E. Arrioja M.
+Ingeniero de Sistemas
+- - - - - - - - - - - - - - - - - - - - -
+     pedroarrioja@gmail.com
+     arrioja@cantv.net
+     pedro_arrioja@gmail.com
+- - - - - - - - - - - - - - - - - - - - -
+     0412-3506594
+*****************************************

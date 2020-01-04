@@ -1,0 +1,126 @@
+<%@ Title="N&oacute;mina - Insertar Nuevo Banco" %>
+
+<com:TContent ID="cuerpo">
+
+<h1 align="center">Crear un Nuevo Banco</h1>
+<!--<com:TValidationSummary
+	Display="Dynamic"
+	ValidationGroup="constante" />-->
+<table width="1" align="center" border="1">
+
+<tr>
+    <td HorizontalAlign="Right">
+            <span>C&oacute;digo:</span>
+    </td>
+    <td HorizontalAlign="Left">
+         <com:TTextBox ID="txt_codigo" />
+        <com:TRequiredFieldValidator
+            ControlToValidate="txt_codigo"
+            ErrorMessage="Requerido!"
+            Display="Dynamic" />
+        <!--solo enteros-->
+        <com:TDataTypeValidator
+            ControlToValidate="txt_codigo"
+            DataType="Integer"
+            Text="S&oacute;lo Enteros"
+            Display="Dynamic"/>
+        <!--solo 4 digitos para el código -->
+        <com:TRegularExpressionValidator
+            ControlToValidate="txt_codigo"
+            RegularExpression="\d{4}"
+            Text="el c&oacute;digo debe ser de 4 d&iacute;gitos"
+            Display="Dynamic"/>
+        <!--verifica en la bd por el codigo-->
+        <com:TCustomValidator ControlToValidate='txt_codigo'
+              OnServerValidate='check_codigo'
+              Text='C&oacute;digo Existente, Por Favor C&aacute;mbielo!'
+              Display='Dynamic' />
+
+    </td>
+    </tr>
+
+
+
+
+<!--<tr BorderWidth="1" >
+    <td HorizontalAlign="Right">
+
+    </td>
+</tr>-->
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right">
+        <span>Nombre:</span>
+     </td>
+     <td HorizontalAlign="Left">
+        <com:TTextBox ID="txt_nombre" />
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_nombre"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+     </td>
+ </tr>
+
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right">
+        <span>Descripci&oacute;n:</span>
+     </td>
+     <td HorizontalAlign="Left">
+        <com:TTextBox ID="txt_descripcion" />
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_descripcion"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+     </td>
+ </tr>
+
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right">
+        <span>N&uacute;mero:</span>
+     </td>
+     <td HorizontalAlign="Left">
+        <com:TTextBox ID="txt_numero" />
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_numero"
+        ErrorMessage="Requerido!"
+        Display="Dynamic" />
+     </td>
+    <com:TRegularExpressionValidator
+            ControlToValidate="txt_numero"
+            RegularExpression="^[0-9]+$"
+            Text="debe contener s&oacute;lo letras"
+            Display="Dynamic"/>
+ </tr>
+
+<tr BorderWidth="1" >
+    <td HorizontalAlign="Right">
+        <span>Tipo de Cuenta:</span>
+    </td>
+    <td HorizontalAlign="Left">
+        <com:TDropDownList ID="cmb_tipo">
+            <com:TListItem Text="AHORRO" Value="AHORRO" /><!--HACERLO CONTRA UNA bd-->
+            <com:TListItem Text="CORRIENTE" Value="CORRIENTE" />
+        </com:TDropDownList>
+    </td>
+</tr>
+
+
+ <tr BorderWidth="1">
+     <td HorizontalAlign="Right">
+
+     </td>
+     <td HorizontalAlign="Left">
+
+     </td>
+</tr>
+ <tr BorderWidth="1">
+     <td  Align="center">
+        <com:TButton Text="Guardar" OnClick="guardar_concepto" />
+     </td>
+     <td Align="center">
+        <a href="<%= $this->Service->constructUrl('nomina.banco.admin_banco')%>">Cancelar</a>
+     </td>
+</tr>
+
+</table>
+
+</com:TContent>

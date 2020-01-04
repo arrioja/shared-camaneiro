@@ -1,0 +1,115 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Cálculo de Vacaciones.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell  ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+    <com:TTableRow BorderWidth="1">
+        <com:TTableCell HorizontalAlign="Right">
+            <com:TLabel Text="A&ntilde;o"/>
+        </com:TTableCell>
+        <com:TTableCell>
+                <com:TActiveDropDownList ID="drop_ano"
+                    DataTextField="ano"
+                    DataValueField="ano"
+                    AutoPostBack="true"
+                    OnCallback="actualiza_listado"
+                    PromptText="Seleccione"
+                    PromptValue="X">
+                </com:TActiveDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_ano"
+                    InitialValue="X"
+                    Text="Seleccione." />
+        </com:TTableCell>
+    </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="6">
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Calcular"
+                    OnClick="calcular_vacaciones">
+                    <prop:ClientSide
+                          OnLoading="Element.show('mensaje')"
+                          OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+<com:XActiveDataGrid
+	ID="DataGrid"
+    Width="90%"
+	PagerStyle.Mode="Numeric"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+    HeaderStyle.Font.Size = "14px"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="Black"
+    ItemStyle.Font.Size = "13px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    OnItemDataBound="formatear"
+    ForeColor="black"
+    Caption="Cálculo de Vacaciones disponibles de funcionarios"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+               color:#FF0000;
+               height:100px;
+               font-weight:bold;
+               vertical-align:middle;
+               padding-top:40px;'>
+    No existen datos para generar el reporte.</div>"
+    >
+
+	<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="Cedula"
+		DataField="cedula"
+        ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="70px"/>
+
+	<com:XActiveBoundColumn
+        ID="nombres"
+        DataField="nombres"
+        HeaderText="Nombres"/>
+
+	<com:XActiveBoundColumn
+        ID="estatus"
+        DataField="estatus"
+        HeaderText="Estatus"
+        ItemStyle.HorizontalAlign="Center"/>
+	<com:XActiveBoundColumn
+        ID="fecha_ingreso"
+        DataField="fecha_ingreso"
+        HeaderText="fecha_ingreso"
+        Visible = "false"/>
+	<com:XActiveBoundColumn
+        ID="anos_servicio"
+        DataField="anos_servicio"
+        HeaderText="anos_servicio"
+        Visible = "false"/>
+</com:XActiveDataGrid>
+
+<br>
+<div class="notas_y_leyendas" width="80%">
+Nota: En esta página se calcula el número de días hábiles que tendran los funcionarios
+y funcionarias para el año seleccionado, los dias expresados son hábiles; el cálculo de
+las vacaciones disponibles para el año seleccionado se hace de conformidad a la Ley.
+</div>
+</div>
+</com:TContent>

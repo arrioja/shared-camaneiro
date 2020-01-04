@@ -1,0 +1,198 @@
+<%@ Title="N&oacute;mina - Administrar Integrantes de la N&oacute;mina" %>
+<com:TContent ID="cuerpo">
+<table align="center" width="90%" >
+		<tr>
+		<td class="formtd"><com:TLabel Text="Criterio de B&uacute;squeda:"/></td>
+		<td class="formcampo">
+		<com:TRadioButton ID="rad_cedula" GroupName="opciones_busq" Text="C&eacute;dula" Checked="true"/>
+		<com:TRadioButton ID="rad_nombres" GroupName="opciones_busq" Text="Nombres"/>
+        <com:TRadioButton ID="rad_apellidos" GroupName="opciones_busq" Text="Apellidos"/>
+		<com:TRadioButton ID="rad_status" GroupName="opciones_busq" Text="Status (0 &oacute; 1)"/>
+
+
+        
+        <com:TActiveButton ID="btn_reset" Text="Reset"  OnCallback="reset">
+        <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            /></com:TActiveButton>
+</td>
+	</tr>
+    <tr>
+	    <td class="formtd"><com:TLabel Text="Cadena de B&uacute;squeda:" ForControl="txt_cadena" /></td>
+		<td class="formcampo"><com:TActiveTextBox ID="txt_cadena" Columns="31"/> <com:TActiveButton ID="btn_buscar" Text="Buscar" ValidationGroup="Grupo1" OnCallback="filtrar">
+        <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            /></com:TActiveButton>
+
+		<com:TRequiredFieldValidator ID="val" ControlToValidate="txt_cadena" ErrorMessage="Este campo no puede quedar vacio" ValidationGroup="Grupo1" Display="Dynamic"/>
+		</td>
+	</tr>
+</table>
+<br/>
+
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+<div align="center">
+<com:XActiveDataGrid
+	ID="DataGrid"
+	AllowPaging="true"
+	Width="90%"
+	PageSize="24"
+	PagerStyle.Mode="Numeric"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	OnPageIndexChanged="changePage"
+	OnPagerCreated="pagerCreated"
+	AutoGenerateColumns="false"
+    OnItemCreated="itemCreated"
+	OnEditCommand="editItem"
+	OnUpdateCommand="saveItem"
+	OnCancelCommand="cancelItem"
+	OnDeleteCommand="deleteItem"
+    OnItemDataBound="formatear"
+    Caption="Listado de Integrantes"
+    ShowFooter="true"
+     
+  >
+
+          <prop:ClientSide
+              OnLoading="Element.show('loading')"
+              OnComplete="Element.hide('loading')"
+            />
+	
+		<com:XActiveBoundColumn
+		ID="cod"
+		HeaderText="Cod"
+		DataField="cod"
+		HeaderStyle.Width="50px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+
+
+		<com:XActiveBoundColumn
+		ID="cedula"
+		HeaderText="C&eacute;dula"
+		DataField="cedula"
+		HeaderStyle.Width="80px"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+		<com:XActiveBoundColumn
+		ID="nombres"
+		HeaderText="Nombres"
+		HeaderStyle.Width="200px"
+		DataField="nombres"
+		ItemStyle.HorizontalAlign="Left"
+        ReadOnly="True"
+		/>
+
+        <com:XActiveBoundColumn
+		ID="apellidos"
+		HeaderText="Apellidos"
+		HeaderStyle.Width="200px"
+		DataField="apellidos"
+		ItemStyle.HorizontalAlign="Center"
+        ReadOnly="True"
+		/>
+        <com:XActiveBoundColumn
+		ID="anos"
+		HeaderText="Años Servicio"
+		HeaderStyle.Width="30px"
+		DataField="anos_servicio"
+		ItemStyle.HorizontalAlign="Center"
+		/>       
+        <com:XActiveDropDownListColumn
+        ID="pago_banco"
+        HeaderText="Pago Banco?"
+        DataTextField="pago_banco"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <com:TListItem Value="1" Text="S&iacute;" />
+            <com:TListItem Value="0" Text="No" />
+        </com:XActiveDropDownListColumn>
+        <com:XActiveDropDownListColumn
+        ID="tipo_nomina2"
+        HeaderText="Nomina"
+        DataTextField="tipo_nomina"
+        ItemStyle.HorizontalAlign="Center"
+        >
+         <com:TListItem Value="EMPLEADOS" Text="EMPLEADOS" />
+         <com:TListItem Value="PENSIONADOS" Text="PENSIONADOS" />
+          <com:TListItem Value="DIRECTORES" Text="DIRECTORES" />
+         <com:TListItem Value="JUBILADOS" Text="JUBILADOS" />
+          <com:TListItem Value="CONTRALOR" Text="CONTRALOR" />
+         </com:XActiveDropDownListColumn>
+
+         <com:XActiveDropDownListColumn
+        ID="status"
+        HeaderText="Status"
+        DataTextField="status"
+        ItemStyle.HorizontalAlign="Center"
+        >
+            <com:TListItem Value="1" Text="ACTIVO" />
+            <com:TListItem Value="0" Text="INACTIVO" />
+        </com:XActiveDropDownListColumn>
+
+        <com:XActiveTemplateColumn
+		ID="banco"
+		HeaderText="Banco"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id'] %>"   Text="<img src='imagenes/iconos/banco.png' border='0' />" OnClick="Page.go" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+        <com:XActiveTemplateColumn
+		ID="pagos"
+		HeaderText="Pagos"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['cedula'] %>"   Text="<img src='imagenes/iconos/money.png' border='0' />" OnClick="Page.pagos" />
+			</prop:ItemTemplate>
+        </com:XActiveTemplateColumn>
+
+
+
+
+		<com:XActiveEditCommandColumn
+		HeaderText="Editar"
+		HeaderStyle.Width="50px"
+		UpdateText="Guardar"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		CancelText="Cancelar"
+		EditText="Editar"
+		/>
+	<com:XActiveButtonColumn
+		ID="Borrar"
+		HeaderText="Borrar"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		ItemStyle.Font.Italic="false"
+		Text="Borrar"
+		CommandName="delete"
+		/>
+
+</com:XActiveDataGrid>
+</div>
+
+
+</com:TContent>

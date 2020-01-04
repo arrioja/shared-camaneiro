@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+ <pages MasterClass="Application.layouts.solo_login.solo_login" />
+</configuration>

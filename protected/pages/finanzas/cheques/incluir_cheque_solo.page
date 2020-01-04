@@ -1,0 +1,310 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+   <com:MensajeDiv ID="cargando"/>
+ <fieldset Align="Center" width="80%">
+    <legend>Incluir nuevo Cheque Sin Orden</legend>
+    <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+                <com:TLabel ID="lbl_codigo_temporal" Text="" Visible="false"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="A&ntilde;o: "/>
+                <com:TLabel ID="lbl_ano" Text="XXXX" Font.Bold="true"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="titulos_formularios" ColumnSpan="3">
+                <com:TLabel Text="Fecha: "/>
+ <com:TDatePicker ID="lbl_fecha" DateFormat="dd/MM/yyyy" Culture="es"/>
+                <com:TLabel ID="lbl_fecha2" Text="XX/XX/XXXX" Font.Bold="true" visible="false"/>
+            </com:TTableCell>
+      
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Cancelar a:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TDropDownList ID="drop_proveedor"
+                    DataTextField="nomb"
+                    DataValueField="cod_proveedor"
+                    AutoPostBack="false"
+                    PromptText="Seleccione"
+                    ValidationGroup="99"
+                    PromptValue="X">
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_proveedor"
+                    InitialValue="X"
+                    Text="?." />
+            </com:TTableCell>      
+        </com:TTableRow>
+
+
+ <com:TTableRow>
+
+            <com:TTableCell HorizontalAlign="Right"  CssClass="titulos_formularios" ColumnSpan="4">
+ <com:TCompareValidator
+                    ValidationGroup="12"
+                    ControlToValidate="txt_total"
+                    ValueToCompare="0"
+                    DataType="Float"
+                    Operator="GreaterThan"
+                    Text="Numero Invalido" />
+                <com:TRequiredFieldValidator
+                    ValidationGroup="12"
+                    Display="Dynamic"
+                    ControlToValidate="txt_total"
+                    FocusOnError="true"
+                    Text="Requerido" />
+                <com:TLabel ID="lbl_total1" Text="Monto: Bs."/>
+              
+                 <com:TActiveTextBox ID="txt_total" Text="0" Columns="12" />
+                
+                        </com:TTableCell>
+        </com:TTableRow>
+<com:TTableRow >
+
+<com:TTableCell CssClass="titulos_formularios" visible="false"  HorizontalAlign="Left" ColumnSpan="4"><div align="center" >Retenciones Pendientes</div>
+</com:TTableCell>
+</com:TTableRow>
+    <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Center" ColumnSpan="4">
+                <com:XActiveDataGrid
+                    ID="DataGrid"
+                    Width="100%"
+                    CellPadding="0"
+                    CellSpacing="0"
+                    GridLines="Both"
+                    HeaderStyle.BackColor="#29166F"
+                    HeaderStyle.ForeColor="white"
+                    ItemStyle.BackColor="#BFCFFF"
+                    ItemStyle.BorderColor="white"
+                    OnItemDataBound="nuevo_item"
+                    DataKeyField="id"
+                    AlternatingItemStyle.BackColor="#E6ECFF"
+                    AutoGenerateColumns="false"
+                    OnDeleteCommand="eliminar"
+                    ForeColor="black"
+                    BorderColor="black"
+                    Visible="false"
+                    Caption=""
+                    EmptyTemplate="<div style='font-size:14px;
+                                           color:#FF0000;
+                                           height:100px;
+                                           font-weight:bold;
+                                           vertical-align:middle;
+                                           align:center;
+                                           padding-top:20px;'>
+                                Sin Pendientes.</div>"
+                    >
+                        <com:XActiveButtonColumn
+                            HeaderText="Acci&oacute;n"
+                            HeaderStyle.Width="50px"
+                            ID="quitar_column"
+                            ItemStyle.HorizontalAlign="Center"
+                            Text="Eliminar"
+                            CommandName="delete"/>
+                        <com:XActiveBoundColumn
+                        ID="proveedor"
+                        HeaderText="Proveedor"
+                        HeaderStyle.Width="230px"
+                        DataField="proveedor"
+                        ItemStyle.HorizontalAlign="Left"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="fecha"
+                        HeaderText="Fecha"
+                        HeaderStyle.Width="50px"
+                        DataField="fecha_cheque"
+                        ItemStyle.HorizontalAlign="Center"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="orden"
+                        HeaderText="Documento"
+                        HeaderStyle.Width="80px"
+                        DataField="orden"
+                        ItemStyle.HorizontalAlign="Center"
+                        />
+                        <com:XActiveBoundColumn
+                        ID="monto"
+                        HeaderText="Monto Bs."
+                        HeaderStyle.Width="120px"
+                        DataField="monto"
+                        ItemStyle.HorizontalAlign="Right"
+                        />
+                </com:XActiveDataGrid>
+            </com:TTableCell>
+        </com:TTableRow>
+</com:TTable>
+ 
+
+
+<fieldset title="Datos del Cheque" Align="Center" Width="100%">
+<legend>Datos del Cheque</legend>
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+    <td  width="20%">Fecha</td><td width="25%">Numero Cheque</td><td width="20%">Banco</td><td width="35%">Cuenta:</td>
+    </tr>
+    <tr>
+    <td ><com:TDatePicker ID="txt_fecha_cheque" DateFormat="dd/MM/yyyy" Columns="8"  Culture="es" /></td>
+    <td align="Center" >&nbsp;&nbsp;
+    <com:TActiveTextBox ID="txt_numero_cheque" Columns="12"  />
+    <com:TCompareValidator
+        ValidationGroup="12"
+        ControlToValidate="txt_numero_cheque"
+        ValueToCompare="0"
+        DataType="Integer"
+        Operator="GreaterThan"
+        Text="Numero Invalido" />
+    <com:TRequiredFieldValidator
+        ValidationGroup="12"
+        Display="Dynamic"
+        ControlToValidate="txt_numero_cheque"
+        FocusOnError="true"
+        Text="Requerido" />
+    </td>
+    <td>
+    <com:TActiveDropDownList ID="drop_banco"
+    PromptValue="X"
+    PromptText="Seleccione"
+    DataTextField="nombre"
+    DataValueField="cod_banco"
+    OnCallback="cargar_cuentas"/>
+    <com:TRequiredFieldValidator
+    ControlToValidate="drop_banco"
+    InitialValue="X"
+    Text="?."
+    ValidationGroup="12" />
+    </td>
+    <td>
+    <com:TActiveDropDownList ID="drop_cuentas"
+    DataTextField="numero_cuenta"
+    DataValueField="numero"/>
+    <com:TRequiredFieldValidator
+    ControlToValidate="drop_cuentas"
+    InitialValue="X"
+    Text="?."
+    ValidationGroup="12" />
+    </td>
+    </tr>
+</table>
+</fieldset>
+
+
+<fieldset title="Firmas" Align="Center" Width="100%">
+<legend>Firmas</legend>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+    <td >Preparado</td><td>Revisado</td> <td>Aprobado</td><td>Auxiliar</td><td>Diario</td>
+    </tr>
+    <tr>
+        <td>
+        <com:TActiveTextBox ID="txt_preparado" Text=" " Columns="2" />
+        <!--<com:TRequiredFieldValidator
+                            ControlToValidate="txt_preparado"
+                            
+                            ErrorMessage="Requerido"
+                            FocusOnError="True"
+                            Display="Dynamic"
+                            ValidationGroup="12"/>!-->
+       </td>
+       <td>
+        <com:TActiveTextBox ID="txt_revisado" Text=" " Columns="2" />
+       <!-- <com:TRequiredFieldValidator
+                            ControlToValidate="txt_revisado"
+                           
+                            ErrorMessage="Requerido"
+                            FocusOnError="True"
+                            Display="Dynamic"
+                            ValidationGroup="12"/>!-->
+       </td>
+       <td>
+        <com:TActiveTextBox ID="txt_aprobado" Text=" " Columns="2" />
+       <!-- <com:TRequiredFieldValidator
+                            ControlToValidate="txt_aprobado"
+                            
+                            ErrorMessage="Requerido"
+                            FocusOnError="True"
+                            Display="Dynamic"
+                            ValidationGroup="12"/>!-->
+       </td>
+       <td>
+        <com:TActiveTextBox ID="txt_auxiliar" Text=" " Columns="2" />
+       <!-- <com:TRequiredFieldValidator
+                            ControlToValidate="txt_auxiliar"
+                            
+                            ErrorMessage="Requerido"
+                            FocusOnError="True"
+                            Display="Dynamic"
+                            ValidationGroup="12"/>!-->
+       </td>
+       <td>
+        <com:TActiveTextBox ID="txt_diario" Text=" " Columns="2" />
+       <!-- <com:TRequiredFieldValidator
+                            ControlToValidate="txt_diario"
+                          
+                            ErrorMessage="Requerido"
+                            FocusOnError="True"
+                            Display="Dynamic"
+                            ValidationGroup="12"/> !-->
+       </td>
+    </tr>
+</table>
+
+</fieldset>
+
+
+
+<com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+<com:TTableRow>
+<com:TTableCell CssClass="titulos_formularios"  HorizontalAlign="Right">Concepto:
+</com:TTableCell>
+    <com:TTableCell ColumnSpan="3" HorizontalAlign="Center">
+        <com:TActiveTextBox ID="txt_motivo"  TextMode="MultiLine" Rows="3" Columns="80" />
+            <com:TRequiredFieldValidator
+                            ControlToValidate="txt_motivo"
+
+                            ErrorMessage="Requerido"
+                            FocusOnError="True"
+                            Display="Dynamic"
+                            ValidationGroup="12"/>
+    </com:TTableCell>
+
+</com:TTableRow>
+
+        <com:TTableRow>
+
+             <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                 <com:TButton ID="btn_imprimir"
+                    Text="Imprimir Cheque"
+                    Enabled="True"
+                    OnClick="imprimir_item"/>
+                 <com:TActiveButton
+                ID="btn_incluir"
+                Text="Guardar Pago"
+                Enabled="true"
+                ValidationGroup="12"
+                OnCallback="incluir_click" >
+                <prop:ClientSide
+                OnLoading="Element.show('mensaje')"
+                OnComplete="Element.hide('mensaje')"/>
+                </com:TActiveButton>
+                <com:TActiveLabel ID="lbl_numero" Text="" Visible="false"  />
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+  </fieldset>
+</div>
+</com:TContent>

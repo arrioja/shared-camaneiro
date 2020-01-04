@@ -1,0 +1,117 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Inclusi&oacute;n de Cuentas Bancarias.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both">
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Banco:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                <com:TDropDownList ID="drop_bancos"
+                    DataTextField="nombre"
+                    PromptText="Seleccione Banco"
+                    PromptValue="X"
+                    DataValueField="cod_banco" />
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_bancos"
+                    InitialValue="X"
+                    Text="Seleccione." />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Número de Cuenta:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                <com:MaskedTextBox ID="txt_numero_cuenta" Mask="####################" Columns="25" />
+                Núm de 20 dígitos (SIN GUIONES)
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_numero_cuenta"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+                <com:TRegularExpressionValidator ID="val_codigo_2"
+                    ControlToValidate="txt_numero_cuenta"
+                    RegularExpression="\d{20}"
+                    ErrorMessage="Requerido"
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Fecha Apertura:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios" ColumnSpan="3">
+                <com:TDatePicker ID="txt_fecha" Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Mode="ImageButton"
+                    InputMode="TextBox"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="txt_fecha"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Tipo:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                <com:TDropDownList ID="drop_tipo">
+                  <com:TListItem Value="N/A" Text="Seleccione" />
+                  <com:TListItem Value="Ahorro" Text="Ahorro" />
+                  <com:TListItem Value="Corriente" Text="Corriente" />
+                  <com:TListItem Value="FAL" Text="F.A.L." />
+                </com:TDropDownList>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="drop_tipo"
+                    ErrorMessage="Requerido"
+                    InitialValue="N/A"
+                    Display="Dynamic"
+                    />
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="titulos_formularios">
+                <com:TLabel Text="Saldo Inicial:"/>
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios">
+                &nbsp;&nbsp;&nbsp; Bs.
+                <com:TActiveTextBox ID="txt_monto"
+                    Columns="12"
+                    ValidationGroup="9"
+                    Text="0.00"
+                    Style="text-align:right"/>
+                <com:TRequiredFieldValidator ID="val_monto_1"
+                    ControlToValidate="txt_monto"
+                    ErrorMessage="Monto Requerido"
+                    ValidationGroup="9"
+                    Display="Dynamic"/>
+                <com:TDataTypeValidator ID="val_monto_2"
+                    ControlToValidate="txt_monto"
+                    DataType="Float"
+                    ValidationGroup="9"
+                    ErrorMessage="El monto debe ser num&eacute;rico"
+                    Display="Dynamic"/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                <com:TButton ID="btn_incluir"
+                    Text="Incluir"
+                    OnClick="incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+<com:DMessagesPanel ID="mensaje" DefaultHideEffect="SwitchOff" />
+</fieldset>
+</div>
+</com:TContent>

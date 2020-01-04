@@ -1,0 +1,59 @@
+<com:TContent ID="cuerpo">
+    <div align="center">
+        <fieldset Align="Center" width="80%">
+            <legend>Agregar Nombramiento / Punto de Cuenta</legend>
+            <com:TTable Width="100%" BorderWidth="1" GridLines="Both">
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">De:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t1"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Para:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t2"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Fecha:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TDatePicker ID="fecha1"
+                            DateFormat="dd/MM/yyyy"
+                            FromYear="2007"
+                            UpToYear="<%= @date('Y') %>"
+                            InputMode="TextBox"
+                            Mode="ImageButton"
+                            Columns="10">
+                        </com:TDatePicker>
+                         </com:TTableCell>
+                      </com:TTableRow>                      
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Asunto:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TTextBox ID="t3"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                        <com:TTableCell CssClass="titulos_formularios">Imagen:</com:TTableCell>
+                         <com:TTableCell>
+                            <com:TFileUpload ID="fu1" OnFileUpload="cargar">
+                            <com:TRequiredFieldValidator
+                            ValidationGroup="grupo2"
+                            ControlToValidate="fu1"
+                            ErrorMessage="Requerido."
+                            Display="Dynamic">
+                            </com:TRequiredFieldValidator>
+                        </com:TFileUpload>
+                        <com:TTextBox ID="t4" ReadOnly="true" visible="false"></com:TTextBox>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                      <com:TTableRow>
+                      <com:TTableCell ColumnSpan="2">
+                           <com:TButton Text="Guardar" OnClick="guardar" ValidationGroup="grupo1"></com:TButton>
+                         </com:TTableCell>
+                      </com:TTableRow>
+                     </com:TTable>
+        </fieldset>
+    </div>
+</com:TContent>

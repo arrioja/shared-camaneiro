@@ -1,0 +1,215 @@
+<%@ Title="N&oacute;mina - Insertar Nuevo Concepto" %>
+
+<com:TContent ID="cuerpo">
+
+<div align="center">
+ <fieldset Align="Center"  width="90%">
+    <legend>Crear un Nuevo Concepto</legend>
+<table width="60%"align="center" border="1">
+
+<tr>
+    <td Align="Right">
+            <span>C&oacute;digo:</span>
+    </td>
+    <td  >
+         <com:TTextBox ID="txt_codigo" />
+        <com:TRequiredFieldValidator
+            ControlToValidate="txt_codigo"
+            ErrorMessage="Requerido!"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+        <!--solo enteros-->
+        <com:TDataTypeValidator
+            ControlToValidate="txt_codigo"
+            DataType="Integer"
+            Text="S&oacute;lo Enteros"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+        <!--solo 4 digitos para el código -->
+        <com:TRegularExpressionValidator
+            ControlToValidate="txt_codigo"
+            RegularExpression="\d{4}"
+            Text="el c&oacute;digo debe ser de 4 d&iacute;gitos"
+            Display="Dynamic"
+            ValidationGroup="1"/>
+        <!--verifica en la bd por el codigo-->
+        <com:TCustomValidator ControlToValidate='txt_codigo'
+              OnServerValidate='check_codigo'
+              Text='C&oacute;digo Existente, Por Favor C&aacute;mbielo!'
+              Display='Dynamic'
+              ValidationGroup="1"/>
+
+    </td>
+    </tr>
+
+ <tr>
+     <td Align="Right">
+        <span>Descripci&oacute;n:</span>
+     </td>
+     <td Align="Left">
+        <com:TTextBox ID="txt_descripcion" />
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_descripcion"
+        ErrorMessage="Requerido!"
+        Display="Dynamic"
+        ValidationGroup="1"/>
+     </td>
+ </tr>
+
+
+
+
+<tr>
+    <td align="Right">
+        <span>F&oacute;rmula:</span>
+    </td>
+    <td>
+        <com:TActiveLabel id="lbl_formula" Text="y()=" />
+        <com:TActiveTextBox ID="txt_formula"  />
+        <com:TRequiredFieldValidator
+        ControlToValidate="txt_formula"
+        ErrorMessage="Requerido!"
+        Display="Dynamic"
+        ValidationGroup="1"/>
+        <!--solo string-->
+        <com:TCheckBox ID="D" Text="Ver Constantes" /><com:TActiveButton Text="Reset" ID="reset" OnClick="reset" />
+    </td>
+    
+</tr>
+
+<tr>
+    <td align="Right">
+        <span>Tipo:</span>
+    </td>
+    <td Align="Left">
+        <com:TDropDownList ID="cmb_tipo">
+            <com:TListItem Text="CREDITO" Value="CREDITO" /><!--HACERLO CONTRA UNA bd-->
+            <com:TListItem Text="DEBITO" Value="DEBITO" />
+        </com:TDropDownList>
+    </td>
+</tr>
+
+
+<tr BorderWidth="1" >
+    <td Align="Right">
+        <span>Tipo de Pago:</span>
+    </td>
+    <td Align="Left">
+        <com:TDropDownList ID="cmb_tipo_pago">
+            <com:TListItem Text="CORRIENTE" Value="CORRIENTE" /><!--HACERLO CONTRA UNA bd-->
+            <com:TListItem Text="ESPECIAL" Value="ESPECIAL" />
+        </com:TDropDownList>
+    </td>
+</tr>
+
+<tr BorderWidth="1" >
+    <td Align="Right">
+        <span>General:</span>
+    </td>
+    <td Align="Left">
+        <com:TDropDownList ID="cmb_general">
+            <com:TListItem Text="S&iacute;" Value="1" />
+            <com:TListItem Text="No" Value="0" />
+        </com:TDropDownList>
+    </td>
+</tr>
+
+<tr >
+    <td Align="Right">
+        <span>Frecuencia:</span>
+    </td>
+    <td Align="Left">
+        <com:TDropDownList ID="cmb_frecuencia">
+            <com:TListItem Text="SEMANAL" Value="SEMANAL" />
+            <com:TListItem Text="QUINCENAL" Value="QUINCENAL" />
+            <com:TListItem Text="MENSUAL" Value="MENSUAL" />
+            <com:TListItem Text="TRIMESTRAL" Value="TRIMESTRAL" />
+            <com:TListItem Text="SEMESTRAL" Value="SEMESTRAL" />
+            <com:TListItem Text="ANUAL" Value="ANUAL" />
+        </com:TDropDownList>
+    </td>
+</tr>
+
+ <tr BorderWidth="1">
+     <td  Align="center">
+        <com:TButton Text="Guardar" OnClick="guardar_concepto" ValidationGroup="1" />
+     </td>
+     <td Align="center">
+         <com:TButton Text="Cancelar" OnClick="regresar"/>
+        
+     </td>
+</tr>
+</table>
+</fieldset>
+
+    <com:MEffectPanel 
+        ToggleControls="D"
+        OpenByDefault="False"
+        OpenEffect="Effect.SlideDown"
+        OpenEffectOptions="{duration:.5,queue:'end'}"
+        CloseEffect="Effect.SlideUp"
+        CloseEffectOptions="{duration:.5,queue:'end'}" >
+
+ <fieldset Align="Center"  width="90%">
+    <legend>Listado de Constantes Disponibles</legend>
+<table width="60%"align="center" border="1">
+
+<tr>
+<com:XActiveDataGrid
+	ID="DataGrid_constantes"
+	Width="60%"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	DataKeyField="id"
+	HeaderStyle.BackColor="black"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+    ItemStyle.BorderColor="white"
+
+    Caption="Constantes"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>No existen datos para el listado de constantes asignadas <br>">
+	<com:XActiveBoundColumn
+        ID="descripcion"
+        HeaderStyle.Width="150px"
+        DataField="descripcion"
+        HeaderText="Descripcion"
+        />
+
+    <com:XActiveBoundColumn
+		ID="abreviatura"
+		HeaderText="Abreviatura"
+		HeaderStyle.Width="65px"
+		DataField="abreviatura"
+        ItemStyle.HorizontalAlign="Center"
+        />
+	<com:XActiveTemplateColumn
+		ID="agregar"
+		HeaderText="Agregar Fórmula"
+		HeaderStyle.Width="50px"
+		ItemStyle.HorizontalAlign="Center"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['abreviatura'] %>"   Text="<img src='imagenes/iconos/add.png' border='0' />" OnClick="Page.agregar" />
+			</prop:ItemTemplate>
+       </com:XActiveTemplateColumn>
+
+
+</com:XActiveDataGrid>
+
+
+</tr>
+</table>
+</fieldset>
+</com:MEffectPanel>
+</div>
+
+</com:TContent>

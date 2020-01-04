@@ -1,0 +1,32 @@
+<%@ Title="escoja el mes para el reporte" %>
+<com:TContent ID="cuerpo">
+<br/>
+
+
+<div align="center">
+    <fieldset Align="Center" width="500" >
+        <legend>Listado de Meses</legend>
+<table align="center" width="60%" >
+
+    <tr>
+	    <td class="formtd" width="20"><com:TLabel Text="Tipos de N&oacute;mina" /></td>
+		<td class="formcampo"><com:TDropDownList ID="drop_tipo_nomina"
+                DataTextField="tipo_nomina"
+                 PromptText="Seleccione un tipo de N&oacute;mina"
+                PromptValue="-1"
+                DataValueField="tipo_nomina"
+            />
+		<com:TRequiredFieldValidator ID="val"
+        ControlToValidate="drop_tipo_nomina" ErrorMessage="Requerido!!"
+        ValidationGroup="1" Display="Dynamic"/>
+        <com:TButton ID="btn_set" Text="Establecer" ValidationGroup="1" OnClick="export" />
+
+		</td>
+
+	</tr>
+</table>
+</fieldset>
+</div>
+
+
+</com:TContent>

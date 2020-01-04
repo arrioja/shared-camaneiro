@@ -1,0 +1,120 @@
+<com:TContent ID="cuerpo">
+<com:MensajeDiv ID="LTB"/>
+<div align="center">
+ <fieldset Align="Center" width="80%">
+    <legend>Solicitud de Disfrute de Vacaciones.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="C&eacute;dula:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="txt_cedula" />
+                
+                
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Nombre:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="txt_nombre"/>
+                
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Disponibles:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TActiveRepeater OnDataBound="formatear_fecha" ID="Repeater" EnableViewState="false">
+                    <prop:HeaderTemplate>
+                    </prop:HeaderTemplate>
+                    <prop:ItemTemplate>
+                        <table width="100%" border="1" align="center" cellpadding="3" cellspacing="0">
+                           <tr>
+                              <td class="titulos_formularios"><strong>&nbsp;Per&iacute;odo:</strong></td>
+                              <td width="100" class="datos_formularios"><div align="center">
+                              <com:TLabel ID="lbl_periodo" Text="<%#$this->Data['periodo'] %>" /></div></td>
+                              <td class="titulos_formularios"><strong> &nbsp;D&iacute;as Disp.:</strong></td>
+                              <td width="43" class="datos_formularios"><div align="center">
+                                <com:TLabel ID="lbl_pendientes" Text="<%#$this->Data['pendientes'] %>" /></div></td>
+                              <td class="titulos_formularios"><strong>Desde:</strong></td>
+                              <td width="101" class="datos_formularios">&nbsp;
+                              <com:TLabel ID="lbl_disponible" Text="<%#$this->Data['disponible_desde'] %>" />
+                           </tr>
+                        </table>
+                    </prop:ItemTemplate>
+                    <prop:FooterTemplate>
+                    </prop:FooterTemplate>
+                </com:TActiveRepeater>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Desde:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TDatePicker ID="txt_fecha_desde"  Culture="es"
+                    DateFormat="dd/MM/yyyy"
+                    Date=<%= @date('d/m/Y') %>"
+                    FromYear="<%= @date('Y')-10 %>"
+                    UpToYear="<%= @date('Y')+2 %>"
+                    InputMode="TextBox"
+                    Mode="ImageButton"
+                    Columns="10"/>
+                <com:TRequiredFieldValidator ID="val_fecha_desde"
+                    ControlToValidate="txt_fecha_desde"
+                    ErrorMessage="Requerido."
+                    Display="Dynamic"/>
+                <com:TActiveCustomValidator
+                    ControlToValidate="txt_fecha_desde"
+                    OnServerValidate="validar_fecha_inicio"
+                    FocusOnError="true"
+                    Text="Debe ser Laborable e igual o mayor a la fecha actual" />
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Num. días:"/>
+                <com:TActiveLabel ID="lbl_num_dias" Text="0" />
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TActiveDropDownList ID="num_dias" AutoPostBack="false"/>
+                * Días hábiles.
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell HorizontalAlign="Right">
+                <com:TLabel Text="Observación:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TTextBox ID="txt_observacion" TextMode="MultiLine" Rows="4" Columns="70">
+                </com:TTextBox>
+            </com:TTableCell>
+        </com:TTableRow>
+
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+            <com:TButton ID="btn_limpiar"
+                    Text="Limpiar"
+                    CausesValidation="False"
+                    Visible="True"
+                    OnClick="limpiar"/>
+                <com:TActiveButton ID="btn_incluir"
+                    Text="Incluir"
+                    Enabled="false"
+                    OnCallBack="btn_incluir_click"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</div>
+</com:TContent>

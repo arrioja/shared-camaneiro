@@ -1,0 +1,421 @@
+<com:TContent ID="cuerpo">
+<div align="center">
+<br>
+ <fieldset Align="Center" width="95%">
+    <legend>Detalle de Ejecución Presupuestaria.</legend>
+    <com:TTable BorderWidth="1" GridLines="Both" Width="90%">
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="Organizaci&oacute;n:"/>
+            </com:TTableCell>
+            <com:TTableCell ColumnSpan="3">
+                <com:TLabel ID="lbl_organizacion" Text=""/>
+            </com:TTableCell>
+        </com:TTableRow>
+
+
+        
+        <com:TTableRow BorderWidth="1">
+            <com:TTableCell CssClass="color_b" HorizontalAlign="Right">
+                <com:TLabel Text="C&oacute;digo presupuestario"/>
+                <com:TLabel ID="filtrada" Text="0" Visible="False" />
+            </com:TTableCell>
+            <com:TTableCell CssClass="datos_formularios" >
+            <com:TActiveTextBox ID="txt_codigo"
+                    ReadOnly="True"
+                    Columns="30"
+                    ValidationGroup="9"
+                    />
+
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell HorizontalAlign="Right" ColumnSpan="4">
+                 <com:TButton ID="btn_imprimir"
+                    Text="Imprimir"
+                    Enabled="False"
+                    OnClick="imprimir_listado">
+                </com:TButton>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+<div  id="loading" style="display:none;     width: 90%;
+     text-align: center;
+    "
+				><img ID='loading' src='imagenes/iconos/loadinfo.gif'>
+			</div>
+<com:TDataGrid
+	ID="DataGrid_Compromisos"
+    Width="90%"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+    OnItemDataBound="nuevo_item"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    Caption="Compromisos"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Presupuesto de Gastos. <br><br>
+                No existen datos suficientes para realizar el listado.</div>">
+
+        <com:TBoundColumn
+		ID="numero"
+		HeaderText="Nº Orden"
+		DataField="numero"
+        Visible="true"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="tipo_documento"
+		HeaderText="Tipo doc"
+		DataField="np"
+        Visible="true"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+        <com:TBoundColumn
+		ID="fecha"
+		HeaderText="Fecha"
+		DataField="fecha"
+        Visible="true"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="cod_proveedor"
+		HeaderText="Proveedor"
+		DataField="nombre"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="monto_parcial"
+		HeaderText="Monto Parcial"
+		DataField="monto_parcial"
+        ItemStyle.ForeColor="green"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="monto_total"
+		HeaderText="Monto Total"
+		DataField="monto_total"
+        ItemStyle.ForeColor="green"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="status_actual"
+		HeaderText="Status"
+		DataField="estatus_actual"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		
+        <com:TTemplateColumn
+		ID="ver"
+		HeaderText="Imp. Orden"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id2'] %>"   Text="<img src='imagenes/iconos/imprimir.png' border='0' />" OnClick="Page.imprimir_compromiso" />
+			</prop:ItemTemplate>
+        </com:TTemplateColumn>
+
+</com:TDataGrid>
+<com:TDataGrid
+	ID="DataGrid_Causados"
+    Width="90%"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+    OnItemDataBound="nuevo_item2"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    Caption="Causados"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Órdenes Causadas. <br><br>
+                No existen datos suficientes para realizar el listado.</div>">
+
+        <com:TBoundColumn
+		ID="numero2"
+		HeaderText="Nº Orden"
+		DataField="numero_documento_causado"
+        ItemStyle.HorizontalAlign="Center"
+        Visible="true"
+		/>
+		<com:TBoundColumn
+		ID="tipo_documento2"
+		HeaderText="Tipo doc"
+		DataField="np"
+        ItemStyle.HorizontalAlign="Center"
+        Visible="true"
+		/>
+        <com:TBoundColumn
+		ID="fecha2"
+		HeaderText="Fecha"
+		DataField="fecha"
+        Visible="true"
+        ItemStyle.HorizontalAlign="Center"
+        />
+		<com:TBoundColumn
+		ID="cod_proveedor2"
+		HeaderText="Proveedor"
+		DataField="nombre"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="monto_parcial2"
+		HeaderText="Monto Parcial"
+		DataField="monto"
+        ItemStyle.ForeColor="green"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="monto_total2"
+		HeaderText="Monto Total"
+		DataField="monto_total"
+        ItemStyle.ForeColor="green"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+		<com:TBoundColumn
+		ID="status_actual2"
+		HeaderText="Status"
+		DataField="estatus_actual"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+        <com:TTemplateColumn
+		ID="ver2"
+		HeaderText="Imp Ordenes"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id2'] %>"   Text="<img src='imagenes/iconos/imprimir.png' border='0' />" OnClick="Page.imprimir_causado" />
+			</prop:ItemTemplate>
+        </com:TTemplateColumn>
+
+</com:TDataGrid>
+
+<com:TDataGrid
+	ID="DataGrid_Pagados"
+    Width="50%"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    Caption="Pagados"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Órdenes Pagadas. <br><br>
+                No existen órdenes pagadas para esta partida.</div>">
+
+        <com:TBoundColumn
+		ID="numero3"
+		HeaderText="Nº de Cheque"
+		DataField="numero_cheque"
+        ItemStyle.HorizontalAlign="Center"
+        Visible="true"
+		/>
+		<com:TBoundColumn
+		ID="tipo_documento3"
+		HeaderText="Tipo doc"
+		DataField="np"
+        ItemStyle.HorizontalAlign="Center"
+        Visible="true"
+		/>
+		<com:TBoundColumn
+		ID="monto3"
+		HeaderText="Monto"
+		DataField="monto"
+        Visible="true"
+		/>
+		<com:TBoundColumn
+		ID="status_actual3"
+		HeaderText="Status"
+		DataField="estatus_actual"
+        ItemStyle.HorizontalAlign="Center"
+		/>
+
+        <com:TTemplateColumn
+		ID="ver3"
+		HeaderText="Ver Ordenes"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['id2'] %>"   Text="<img src='imagenes/iconos/imprimir.png' border='0' />" OnClick="Page.ver_detalle_cheque" />
+			</prop:ItemTemplate>
+        </com:TTemplateColumn>
+
+</com:TDataGrid>
+
+<com:TDataGrid
+	ID="DataGrid_Traslados"
+    Width="50%"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    Caption="Traslados"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Traslados. <br><br>
+                No existen Traslados para esta partida.</div>">
+
+        <com:TBoundColumn
+		ID="numero4"
+		HeaderText="Numero de Traslado"
+		DataField="numero"
+        Visible="true"
+		/>
+		<com:TBoundColumn
+		ID="num_doc4"
+		HeaderText="Número Documento"
+		DataField="num_documento"
+        Visible="true"
+		/>
+		<com:TBoundColumn
+		ID="monto4"
+		HeaderText="Monto Disminucion"
+		DataField="monto_disminucion"
+        Visible="true"
+		/>
+    <com:TBoundColumn
+		ID="monto_a4"
+		HeaderText="Monto Aumento"
+		DataField="monto_aumento"
+        Visible="true"
+		/>
+
+        <com:TTemplateColumn
+		ID="ver4"
+		HeaderText="Ver Ordenes"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['numero'] %>"   Text="<img src='imagenes/iconos/ver_p.png' border='0' />" OnClick="Page.ver_traslado" />
+			</prop:ItemTemplate>
+        </com:TTemplateColumn>
+
+</com:TDataGrid>
+
+<com:TDataGrid
+	ID="DataGrid_Recortes"
+    Width="50%"
+	PagerStyle.HorizontalAlign="Center"
+	CellPadding="0"
+	CellSpacing="0"
+	GridLines="Both"
+	HeaderStyle.BackColor="#29166F"
+	HeaderStyle.ForeColor="white"
+	ItemStyle.BackColor="#BFCFFF"
+	ItemStyle.BorderColor="white"
+    ItemStyle.Font.Size = "12px"
+	DataKeyField="id"
+	AlternatingItemStyle.BackColor="#E6ECFF"
+	AutoGenerateColumns="false"
+    Caption="Recortes"
+    ForeColor="black"
+    BorderColor="black"
+    EmptyTemplate="<div style='font-size:14px;
+                           color:#FF0000;
+                           height:100px;
+                           font-weight:bold;
+                           vertical-align:middle;
+                           padding-top:40px;'>
+                <br>Recortes. <br><br>
+                No existen Recortes para esta partida.</div>">
+
+		<com:THyperLinkColumn
+		ID="numero5"
+		HeaderText="Numero de Recorte"
+		HeaderStyle.Width="130px"
+
+        ItemStyle.HorizontalAlign="Center"
+        DataTextField="numero"
+        NavigateUrl="hola"
+		/>
+		<com:TBoundColumn
+		ID="num_doc5"
+		HeaderText="Número Documento"
+		DataField="num_documento"
+        Visible="true"
+		/>
+
+		<com:TBoundColumn
+		ID="monto5"
+		HeaderText="Monto Disminucion"
+		DataField="monto_disminucion"
+        Visible="true"
+		/>
+
+
+        <com:TTemplateColumn
+		ID="ver5"
+		HeaderText="Ver Ordenes"
+		ItemStyle.HorizontalAlign="Center"
+		HeaderStyle.Width="50px"
+		>
+            <prop:ItemTemplate>
+                <com:TLinkButton CommandParameter="<%# $this->Parent->DataItem['numero'] %>"   Text="<img src='imagenes/iconos/ver_p.png' border='0' />" OnClick="Page.ver_ordenes" />
+			</prop:ItemTemplate>
+        </com:TTemplateColumn>
+
+</com:TDataGrid>
+</div>
+
+</com:TContent>
